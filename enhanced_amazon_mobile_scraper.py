@@ -44,9 +44,18 @@ class AmazonMobileScraper:
                 if proxy and ':' in proxy:
                     print(f"New proxy obtained: {proxy[:20]}...")
                     return proxy
+                else:
+                    print("Invalid proxy format received")
+            else:
+                print(f"Proxy API returned status code: {response.status_code}")
+        except requests.exceptions.Timeout:
+            print("Timeout getting proxy from API")
+        except requests.exceptions.ConnectionError:
+            print("Connection error getting proxy from API")
         except Exception as e:
             print(f"Error getting proxy: {e}")
         
+        print("Falling back to no proxy")
         return None
     
     def setup_driver(self, use_proxy=True):
