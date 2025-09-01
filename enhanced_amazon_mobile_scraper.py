@@ -22,7 +22,7 @@ class AmazonMobileScraper:
     def __init__(self, headless=False):
         self.driver = None
         self.wait = None
-        self.results = {}
+        self.results = []  # Changed to list for atomic entries
         self.headless = headless
         self.progress_file = "scraping_progress.json"
         self.screenshot_dir = "screenshots"
@@ -31,6 +31,9 @@ class AmazonMobileScraper:
         self.current_proxy = None
         self.rows_processed = 0
         self.session_change_threshold = 5
+        self.backup_threshold = 100  # Create backup every 100 rows
+        self.error_retry_count = 0
+        self.max_retries = 2
         self.setup_driver()
         self.load_progress()
         
@@ -183,9 +186,9 @@ class AmazonMobileScraper:
             if os.path.exists(self.progress_file):
                 with open(self.progress_file, 'r', encoding='utf-8') as f:
                     progress_data = json.load(f)
-                    self.results = progress_data.get('results', {})
+                    self.results = progress_data.get('results', [])
                     self.last_processed_index = progress_data.get('last_processed_index', -1)
-                    print(f"Loaded progress: {len(self.results)} models already processed")
+                    print(f"Loaded progress: {len(self.results)} entries already processed")
                     print(f"Resuming from index: {self.last_processed_index + 1}")
                 return True
         except Exception as e:
@@ -204,9 +207,65 @@ class AmazonMobileScraper:
             }
             with open(self.progress_file, 'w', encoding='utf-8') as f:
                 json.dump(progress_data, f, indent=2, ensure_ascii=False)
-            print(f"Progress saved: {len(self.results)} models processed")
+            print(f"Progress saved: {len(self.results)} entries processed")
         except Exception as e:
             print(f"Error saving progress: {e}")
+    
+    def create_backup(self):
+        """Create backup file and delete previous backup"""
+        try:
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            backup_file = f"amazon_mobile_results_backup_{timestamp}.json"
+            
+            # Save current results to backup
+            with open(backup_file, 'w', encoding='utf-8') as f:
+                json.dump(self.results, f, indent=2, ensure_ascii=False)
+            
+            print(f"Backup created: {backup_file}")
+            
+            # Find and delete previous backup files
+            backup_files = [f for f in os.listdir('.') if f.startswith('amazon_mobile_results_backup_') and f.endswith('.json')]
+            backup_files.sort()
+            
+            # Keep only the latest backup, delete others
+            if len(backup_files) > 1:
+                for old_backup in backup_files[:-1]:
+                    try:
+                        os.remove(old_backup)
+                        print(f"Deleted old backup: {old_backup}")
+                    except Exception as e:
+                        print(f"Error deleting old backup {old_backup}: {e}")
+            
+            return backup_file
+            
+        except Exception as e:
+            print(f"Error creating backup: {e}")
+            return None
+    
+    def handle_error_with_backup(self, error_msg, search_query, index):
+        """Handle errors by creating backup and managing retries"""
+        print(f"Error occurred: {error_msg}")
+        
+        # Create backup on error
+        backup_file = self.create_backup()
+        if backup_file:
+            print(f"Backup created due to error: {backup_file}")
+        
+        # Take screenshot for debugging
+        self.take_screenshot("error_occurred", search_query, index)
+        
+        # Increment error retry count
+        self.error_retry_count += 1
+        
+        if self.error_retry_count >= self.max_retries:
+            print(f"Max retries ({self.max_retries}) reached. Skipping this entry.")
+            self.error_retry_count = 0  # Reset for next entry
+            return False
+        else:
+            print(f"Retry attempt {self.error_retry_count}/{self.max_retries}")
+            # Change session and proxy on error
+            self.change_session(change_proxy=True)
+            return True
     
     def take_screenshot(self, reason, search_query, index):
         """Take screenshot for debugging purposes"""
@@ -393,24 +452,43 @@ class AmazonMobileScraper:
                                     self.take_screenshot("blank_values", search_query, index)
                                     break
                             
-                            # Store results grouped by model_id (overwrite if same model_id)
-                            # This ensures we get the latest search results for each model
-                            self.results[model_id] = {
+                            # Create separate entry for each CSV row (atomic structure)
+                            entry = {
                                 'product_name': product_name,
+                                'colour': colour,
+                                'ram_rom': ram_rom,
                                 'model_id': model_id,
                                 'amazon_links': products
                             }
                             
-                            print(f"Extracted {len(products)} Amazon products for model {model_id}")
+                            # Add to results list (each row is a separate entry)
+                            self.results.append(entry)
+                            
+                            print(f"Extracted {len(products)} Amazon products for entry {index + 1}")
                         else:
                             print("No Amazon products found")
                             # Take screenshot for no products found
                             self.take_screenshot("no_products", search_query, index)
+                            
+                            # Still create an entry even if no products found
+                            entry = {
+                                'product_name': product_name,
+                                'colour': colour,
+                                'ram_rom': ram_rom,
+                                'model_id': model_id,
+                                'amazon_links': []
+                            }
+                            self.results.append(entry)
                         
                         # Update progress and row counter
                         self.last_processed_index = index
                         self.rows_processed += 1
                         self.save_progress()
+                        
+                        # Create backup every 100 rows
+                        if self.rows_processed % self.backup_threshold == 0:
+                            print(f"\n--- Creating backup after {self.rows_processed} rows ---")
+                            self.create_backup()
                         
                         # Random delay between searches
                         delay = random.uniform(3, 7)
@@ -419,14 +497,50 @@ class AmazonMobileScraper:
                         
                     else:
                         print("Failed to search Amazon")
-                        # Take screenshot for search failure
-                        self.take_screenshot("search_failed", search_query, index)
+                        # Handle search failure with backup and retry
+                        if self.handle_error_with_backup("Search failed", search_query, index):
+                            continue  # Retry
+                        else:
+                            # Max retries reached, create empty entry and continue
+                            entry = {
+                                'product_name': product_name,
+                                'colour': colour,
+                                'ram_rom': ram_rom,
+                                'model_id': model_id,
+                                'amazon_links': []
+                            }
+                            self.results.append(entry)
+                            self.last_processed_index = index
+                            self.rows_processed += 1
+                            self.save_progress()
+                            continue
                 
                 except Exception as e:
-                    print(f"Error processing row {index + 1}: {e}")
-                    # Take screenshot for processing error
-                    self.take_screenshot("processing_error", search_query, index)
-                    continue
+                    error_msg = f"Error processing row {index + 1}: {e}"
+                    print(error_msg)
+                    
+                    # Check if it's a connection-related error
+                    if any(error_type in str(e).lower() for error_type in ['timeout', 'connection', 'pool', 'http', 'network']):
+                        if self.handle_error_with_backup(f"Connection error: {e}", search_query, index):
+                            continue  # Retry
+                        else:
+                            # Max retries reached, create empty entry and continue
+                            entry = {
+                                'product_name': product_name,
+                                'colour': colour,
+                                'ram_rom': ram_rom,
+                                'model_id': model_id,
+                                'amazon_links': []
+                            }
+                            self.results.append(entry)
+                            self.last_processed_index = index
+                            self.rows_processed += 1
+                            self.save_progress()
+                            continue
+                    else:
+                        # Other errors - create backup and continue
+                        self.handle_error_with_backup(error_msg, search_query, index)
+                        continue
                     
         except KeyboardInterrupt:
             print("\nScraping interrupted by user. Saving progress...")
@@ -439,14 +553,12 @@ class AmazonMobileScraper:
         
         if self.results:
             try:
-                # Convert results to list format as requested
-                results_list = list(self.results.values())
-                
+                # Results are already in list format
                 with open(output_file, 'w', encoding='utf-8') as f:
-                    json.dump(results_list, f, indent=2, ensure_ascii=False)
+                    json.dump(self.results, f, indent=2, ensure_ascii=False)
                 
                 print(f"Amazon results saved to {output_file}")
-                print(f"Total models processed: {len(self.results)}")
+                print(f"Total entries processed: {len(self.results)}")
                 
                 # Also save as CSV for compatibility
                 csv_file = output_file.replace('.json', '.csv')
@@ -461,14 +573,18 @@ class AmazonMobileScraper:
         """Save results in CSV format for compatibility"""
         try:
             csv_data = []
-            for model_data in self.results.values():
-                model_id = model_data['model_id']
-                product_name = model_data['product_name']
+            for entry in self.results:
+                model_id = entry['model_id']
+                product_name = entry['product_name']
+                colour = entry['colour']
+                ram_rom = entry['ram_rom']
                 
-                for link in model_data['amazon_links']:
+                for link in entry['amazon_links']:
                     csv_data.append({
                         'model_id': model_id,
                         'product_name': product_name,
+                        'colour': colour,
+                        'ram_rom': ram_rom,
                         'url': link['url'],
                         'product_name_via_url': link['product_name_via_url']
                     })

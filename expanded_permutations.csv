@@ -1,205 +1,4 @@
 model_id,product_name,colour,ram_rom
-41211,Ai+ Pulse,Black,4 GB + 64 GB
-41211,Ai+ Pulse,Black,6 GB + 128 GB
-41211,Ai+ Pulse,Blue,4 GB + 64 GB
-41211,Ai+ Pulse,Blue,6 GB + 128 GB
-41211,Ai+ Pulse,Green,4 GB + 64 GB
-41211,Ai+ Pulse,Green,6 GB + 128 GB
-40396,Honor X9c,Jade Cyan,8GB + 256GB
-40396,Honor X9c,Jade Cyan,12GB + 256GB
-40396,Honor X9c,Jade Cyan,12GB + 512GB
-40396,Honor X9c,Titanium Black,8GB + 256GB
-40396,Honor X9c,Titanium Black,12GB + 256GB
-40396,Honor X9c,Titanium Black,12GB + 512GB
-41105,iQOO Z10 Lite,Cyber Green,4GB+128GB
-41105,iQOO Z10 Lite,Cyber Green,6GB+128GB
-41105,iQOO Z10 Lite,Cyber Green,8GB+256GB
-41105,iQOO Z10 Lite,Titanium Blue,4GB+128GB
-41105,iQOO Z10 Lite,Titanium Blue,6GB+128GB
-41105,iQOO Z10 Lite,Titanium Blue,8GB+256GB
-41082,Itel City 100,Navy Blue,4GB + 128GB
-41082,Itel City 100,Navy Blue,4GB + 256GB
-41082,Itel City 100,Navy Blue,6GB + 128GB
-41082,Itel City 100,Navy Blue,8GB + 128GB
-41082,Itel City 100,Pure Titanium,4GB + 128GB
-41082,Itel City 100,Pure Titanium,4GB + 256GB
-41082,Itel City 100,Pure Titanium,6GB + 128GB
-41082,Itel City 100,Pure Titanium,8GB + 128GB
-41082,Itel City 100,Fairy Purple,4GB + 128GB
-41082,Itel City 100,Fairy Purple,4GB + 256GB
-41082,Itel City 100,Fairy Purple,6GB + 128GB
-41082,Itel City 100,Fairy Purple,8GB + 128GB
-41199,Lava Blaze Amoled,Titanium Grey,4GB + 128GB
-41199,Lava Blaze Amoled,Titanium Grey,6GB + 128GB
-41199,Lava Blaze Amoled,Titanium Grey,8GB + 128GB
-41199,Lava Blaze Amoled,Sapphire Blue,4GB + 128GB
-41199,Lava Blaze Amoled,Sapphire Blue,6GB + 128GB
-41199,Lava Blaze Amoled,Sapphire Blue,8GB + 128GB
-41199,Lava Blaze Amoled,Starlight Purple,4GB + 128GB
-41199,Lava Blaze Amoled,Starlight Purple,6GB + 128GB
-41199,Lava Blaze Amoled,Starlight Purple,8GB + 128GB
-40844,Lava Shark,Stellar Gold,4GB + 64GB
-40844,Lava Shark,Stellar Blue,4GB + 64GB
-41117,Lava Storm Lite,Astral Blue,4GB + 64GB
-41117,Lava Storm Lite,Astral Blue,4GB + 128GB
-41117,Lava Storm Lite,Cosmic Titanium,4GB + 64GB
-41117,Lava Storm Lite,Cosmic Titanium,4GB + 128GB
-41121,Lava Storm Play,Dune Titanium,6GB + 128GB
-41121,Lava Storm Play,Frosty Blue,6GB + 128GB
-40949,Motorola Edge 60,Pantone Gibraltar Sea,12GB + 256GB
-40949,Motorola Edge 60,Pantone Shamrock,12GB + 256GB
-41009,OnePlus 13s,Green Silk,12 GB + 256 GB
-41009,OnePlus 13s,Green Silk,12 GB + 512 GB
-41009,OnePlus 13s,Black Velvet,12 GB + 256 GB
-41009,OnePlus 13s,Black Velvet,12 GB + 512 GB
-41009,OnePlus 13s,Pink Satin,12 GB + 256 GB
-41009,OnePlus 13s,Pink Satin,12 GB + 512 GB
-38383,OnePlus Nord 5,Marble Sands,8 GB + 256 GB
-38383,OnePlus Nord 5,Marble Sands,12 GB + 256 GB
-38383,OnePlus Nord 5,Marble Sands,12 GB + 512 GB
-38383,OnePlus Nord 5,Dry Ice,8 GB + 256 GB
-38383,OnePlus Nord 5,Dry Ice,12 GB + 256 GB
-38383,OnePlus Nord 5,Dry Ice,12 GB + 512 GB
-38383,OnePlus Nord 5,Phantom Grey,8 GB + 256 GB
-38383,OnePlus Nord 5,Phantom Grey,12 GB + 256 GB
-38383,OnePlus Nord 5,Phantom Grey,12 GB + 512 GB
-38760,OnePlus Nord CE 5 5G,Nexus Blue,8 GB + 128 GB
-38760,OnePlus Nord CE 5 5G,Nexus Blue,8 GB + 256 GB
-38760,OnePlus Nord CE 5 5G,Nexus Blue,12 GB + 512 GB
-38760,OnePlus Nord CE 5 5G,Black Infinity,8 GB + 128 GB
-38760,OnePlus Nord CE 5 5G,Black Infinity,8 GB + 256 GB
-38760,OnePlus Nord CE 5 5G,Black Infinity,12 GB + 512 GB
-38760,OnePlus Nord CE 5 5G,Marble Mist,8 GB + 128 GB
-38760,OnePlus Nord CE 5 5G,Marble Mist,8 GB + 256 GB
-38760,OnePlus Nord CE 5 5G,Marble Mist,12 GB + 512 GB
-41018,OPPO A5 5G,Aurora Green,6 GB + 128 GB
-41018,OPPO A5 5G,Aurora Green,8 GB + 128 GB
-41018,OPPO A5 5G,Mist White,6 GB + 128 GB
-41018,OPPO A5 5G,Mist White,8 GB + 128 GB
-41125,OPPO K13x,Midnight Violet,4 GB + 128 GB
-41125,OPPO K13x,Midnight Violet,6 GB + 128 GB
-41125,OPPO K13x,Midnight Violet,8 GB + 128 GB
-41125,OPPO K13x,Sunset Peach,4 GB + 128 GB
-41125,OPPO K13x,Sunset Peach,6 GB + 128 GB
-41125,OPPO K13x,Sunset Peach,8 GB + 128 GB
-41010,OPPO Reno14,Forest Green,8 GB + 256 GB
-41010,OPPO Reno14,Forest Green,12 GB + 256 GB
-41010,OPPO Reno14,Forest Green,12 GB + 512 GB
-41010,OPPO Reno14,Pearl White,8 GB + 256 GB
-41010,OPPO Reno14,Pearl White,12 GB + 256 GB
-41010,OPPO Reno14,Pearl White,12 GB + 512 GB
-41010,OPPO Reno14,Mint Green,8 GB + 256 GB
-41010,OPPO Reno14,Mint Green,12 GB + 256 GB
-41010,OPPO Reno14,Mint Green,12 GB + 512 GB
-41011,OPPO Reno14 Pro,Pearl White,12 GB + 256 GB
-41011,OPPO Reno14 Pro,Pearl White,12 GB + 512 GB
-41011,OPPO Reno14 Pro,Titanium Grey,12 GB + 256 GB
-41011,OPPO Reno14 Pro,Titanium Grey,12 GB + 512 GB
-41126,POCO F7,Black,12 GB + 256 GB
-41126,POCO F7,Black,12 GB + 512 GB
-41126,POCO F7,Silver,12 GB + 256 GB
-41126,POCO F7,Silver,12 GB + 512 GB
-41126,POCO F7,White,12 GB + 256 GB
-41126,POCO F7,White,12 GB + 512 GB
-41089,realme C71,Obsidian Black,6GB+128GB
-41089,realme C71,Obsidian Black,4GB+64GB
-41089,realme C71,Sea Blue,6GB+128GB
-41089,realme C71,Sea Blue,4GB+64GB
-40966,realme C75 5G,Lily White,6GB+128GB
-40966,realme C75 5G,Lily White,4GB+128GB
-40966,realme C75 5G,Midnight Lily,6GB+128GB
-40966,realme C75 5G,Midnight Lily,4GB+128GB
-40966,realme C75 5G,Purple Blossom,6GB+128GB
-40966,realme C75 5G,Purple Blossom,4GB+128GB
-41116,realme Narzo 80 Lite,Obsidian Black,6GB+128GB
-41116,realme Narzo 80 Lite,Obsidian Black,4GB+64GB
-41116,realme Narzo 80 Lite,Beach Gold,6GB+128GB
-41116,realme Narzo 80 Lite,Beach Gold,4GB+64GB
-41265,Samsung Galaxy F36,Luxe Violet,6GB + 128GB
-41265,Samsung Galaxy F36,Luxe Violet,8GB +128GB
-41265,Samsung Galaxy F36,Luxe Violet,8GB + 256GB
-41265,Samsung Galaxy F36,Coral Red,6GB + 128GB
-41265,Samsung Galaxy F36,Coral Red,8GB +128GB
-41265,Samsung Galaxy F36,Coral Red,8GB + 256GB
-41265,Samsung Galaxy F36,Onyx Black,6GB + 128GB
-41265,Samsung Galaxy F36,Onyx Black,8GB +128GB
-41265,Samsung Galaxy F36,Onyx Black,8GB + 256GB
-41140,Samsung Galaxy M36,Serene Green,8GB+128GB
-41140,Samsung Galaxy M36,Serene Green,8GB+256GB
-41140,Samsung Galaxy M36,Velvet Black,8GB+128GB
-41140,Samsung Galaxy M36,Velvet Black,8GB+256GB
-41140,Samsung Galaxy M36,Haze Orange,8GB+128GB
-41140,Samsung Galaxy M36,Haze Orange,8GB+256GB
-41227,Samsung Galaxy Z Flip 7 FE,Black,8GB+128GB
-41227,Samsung Galaxy Z Flip 7 FE,Black,8GB+256GB
-41227,Samsung Galaxy Z Flip 7 FE,White,8GB+128GB
-41227,Samsung Galaxy Z Flip 7 FE,White,8GB+256GB
-41148,Samsung Galaxy Z Flip7,Mint (Special Colour),12GB+256GB
-41148,Samsung Galaxy Z Flip7,Mint (Special Colour),12GB+512GB
-41148,Samsung Galaxy Z Flip7,Blue Shadow,12GB+256GB
-41148,Samsung Galaxy Z Flip7,Blue Shadow,12GB+512GB
-41148,Samsung Galaxy Z Flip7,Jetblack,12GB+256GB
-41148,Samsung Galaxy Z Flip7,Jetblack,12GB+512GB
-41148,Samsung Galaxy Z Flip7,Coralred,12GB+256GB
-41148,Samsung Galaxy Z Flip7,Coralred,12GB+512GB
-41091,Samsung Galaxy Z Fold7,Mint (Special Colour),12GB+256GB
-41091,Samsung Galaxy Z Fold7,Mint (Special Colour),12GB+512GB
-41091,Samsung Galaxy Z Fold7,Mint (Special Colour),16GB+ 1024GB
-41091,Samsung Galaxy Z Fold7,Blue Shadow,12GB+256GB
-41091,Samsung Galaxy Z Fold7,Blue Shadow,12GB+512GB
-41091,Samsung Galaxy Z Fold7,Blue Shadow,16GB+ 1024GB
-41091,Samsung Galaxy Z Fold7,Jetblack,12GB+256GB
-41091,Samsung Galaxy Z Fold7,Jetblack,12GB+512GB
-41091,Samsung Galaxy Z Fold7,Jetblack,16GB+ 1024GB
-41091,Samsung Galaxy Z Fold7,Silver Shadow,12GB+256GB
-41091,Samsung Galaxy Z Fold7,Silver Shadow,12GB+512GB
-41091,Samsung Galaxy Z Fold7,Silver Shadow,16GB+ 1024GB
-41161,Tecno Pova 7 5G,Hyper Titanium,16GB* (8GB + 8GB Extended) + 256GB
-41161,Tecno Pova 7 5G,Hyper Titanium,16GB* (8GB + 8GB Extended) + 128GB
-41161,Tecno Pova 7 5G,Magic Silver,16GB* (8GB + 8GB Extended) + 256GB
-41161,Tecno Pova 7 5G,Magic Silver,16GB* (8GB + 8GB Extended) + 128GB
-41161,Tecno Pova 7 5G,Geek Black,16GB* (8GB + 8GB Extended) + 256GB
-41161,Tecno Pova 7 5G,Geek Black,16GB* (8GB + 8GB Extended) + 128GB
-41162,Tecno Pova 7 Pro 5G,Geek Black,24GB* (12GB + 12GB Extended) + 256GB
-41162,Tecno Pova 7 Pro 5G,Geek Black,16GB* (8GB + 8GB Extended) + 256GB
-41162,Tecno Pova 7 Pro 5G,Geek Black,16GB* (8GB + 8GB Extended) + 128GB
-41162,Tecno Pova 7 Pro 5G,Dynamic Grey,24GB* (12GB + 12GB Extended) + 256GB
-41162,Tecno Pova 7 Pro 5G,Dynamic Grey,16GB* (8GB + 8GB Extended) + 256GB
-41162,Tecno Pova 7 Pro 5G,Dynamic Grey,16GB* (8GB + 8GB Extended) + 128GB
-41162,Tecno Pova 7 Pro 5G,Neon Cyan,24GB* (12GB + 12GB Extended) + 256GB
-41162,Tecno Pova 7 Pro 5G,Neon Cyan,16GB* (8GB + 8GB Extended) + 256GB
-41162,Tecno Pova 7 Pro 5G,Neon Cyan,16GB* (8GB + 8GB Extended) + 128GB
-41129,vivo T4 Lite,Prism Blue,4GB+128GB
-41129,vivo T4 Lite,Prism Blue,6GB+128GB
-41129,vivo T4 Lite,Prism Blue,8GB+256GB
-41129,vivo T4 Lite,Titanium Gold,4GB+128GB
-41129,vivo T4 Lite,Titanium Gold,6GB+128GB
-41129,vivo T4 Lite,Titanium Gold,8GB+256GB
-41073,vivo T4 Ultra,Meteor Grey,8GB+256GB
-41073,vivo T4 Ultra,Meteor Grey,12GB+256GB
-41073,vivo T4 Ultra,Meteor Grey,12GB+512GB
-41073,vivo T4 Ultra,Phoenix Gold,8GB+256GB
-41073,vivo T4 Ultra,Phoenix Gold,12GB+256GB
-41073,vivo T4 Ultra,Phoenix Gold,12GB+512GB
-41155,vivo X Fold 5,Titanium Grey,16GB + 512 GB
-41132,vivo X200 FE,Amber Yellow,12GB+256GB
-41132,vivo X200 FE,Amber Yellow,16GB+512GB
-41132,vivo X200 FE,Frost Blue,12GB+256GB
-41132,vivo X200 FE,Frost Blue,16GB+512GB
-41132,vivo X200 FE,Luxe Grey,12GB+256GB
-41132,vivo X200 FE,Luxe Grey,16GB+512GB
-41124,vivo Y400 Pro,Fest Gold,8GB+128GB
-41124,vivo Y400 Pro,Fest Gold,8GB+256GB
-41124,vivo Y400 Pro,Freestyle White,8GB+128GB
-41124,vivo Y400 Pro,Freestyle White,8GB+256GB
-41124,vivo Y400 Pro,Nebula Purple,8GB+128GB
-41124,vivo Y400 Pro,Nebula Purple,8GB+256GB
-40686,Xiaomi 15 Ultra,White,16GB + 512GB
-40686,Xiaomi 15 Ultra,White,16GB + 1024GB
-40686,Xiaomi 15 Ultra,Black,16GB + 512GB
-40686,Xiaomi 15 Ultra,Black,16GB + 1024GB
-40686,Xiaomi 15 Ultra,Silver Chrome,16GB + 512GB
-40686,Xiaomi 15 Ultra,Silver Chrome,16GB + 1024GB
 40913,Acer Super ZX,Carbon Black,4GB+128GB
 40913,Acer Super ZX,Carbon Black,6GB+128GB
 40913,Acer Super ZX,Carbon Black,8GB+128GB
@@ -242,7 +41,7 @@ model_id,product_name,colour,ram_rom
 40498,Amaq Q2,Gold,128MB
 40498,Amaq Q2,Blue,128MB
 40495,Amaq Q20,Black,64MB
-40724,Amaq Q3,Blue,32MB
+40724,Amaq Q3,Blue,32MB+128MB
 40723,Amaq Q4,Black,32MB
 40487,Amaq Q7,Black,32MB+128MB
 40493,Amaq Q9,Black,32MB
@@ -261,64 +60,64 @@ model_id,product_name,colour,ram_rom
 36967,Apple iPhone 15,Black,6GB+128
 36967,Apple iPhone 15,Black,6GB+256GB
 36967,Apple iPhone 15,Black,6GB+512GB
-38524,Apple iPhone 15 Plus,Black,8 GB + 128 GB
-38524,Apple iPhone 15 Plus,Black,8 GB + 256 GB
-38524,Apple iPhone 15 Plus,Black,8 GB + 512 GB
-38524,Apple iPhone 15 Plus,Blue,8 GB + 128 GB
-38524,Apple iPhone 15 Plus,Blue,8 GB + 256 GB
-38524,Apple iPhone 15 Plus,Blue,8 GB + 512 GB
-38524,Apple iPhone 15 Plus,Green,8 GB + 128 GB
-38524,Apple iPhone 15 Plus,Green,8 GB + 256 GB
-38524,Apple iPhone 15 Plus,Green,8 GB + 512 GB
-38524,Apple iPhone 15 Plus,Yellow,8 GB + 128 GB
-38524,Apple iPhone 15 Plus,Yellow,8 GB + 256 GB
-38524,Apple iPhone 15 Plus,Yellow,8 GB + 512 GB
-38524,Apple iPhone 15 Plus,Pink,8 GB + 128 GB
-38524,Apple iPhone 15 Plus,Pink,8 GB + 256 GB
-38524,Apple iPhone 15 Plus,Pink,8 GB + 512 GB
-39323,Apple iPhone 15 Pro 256GB,Black Titanium,128GB 8GB RAM
-39323,Apple iPhone 15 Pro 256GB,Black Titanium,256GB 8GB RAM
-39323,Apple iPhone 15 Pro 256GB,Black Titanium,512GB 8GB RAM
-39323,Apple iPhone 15 Pro 256GB,Black Titanium,1TB 8GB RAM
-39323,Apple iPhone 15 Pro 256GB,White Titanium,128GB 8GB RAM
-39323,Apple iPhone 15 Pro 256GB,White Titanium,256GB 8GB RAM
-39323,Apple iPhone 15 Pro 256GB,White Titanium,512GB 8GB RAM
-39323,Apple iPhone 15 Pro 256GB,White Titanium,1TB 8GB RAM
-39323,Apple iPhone 15 Pro 256GB,Blue Titanium,128GB 8GB RAM
-39323,Apple iPhone 15 Pro 256GB,Blue Titanium,256GB 8GB RAM
-39323,Apple iPhone 15 Pro 256GB,Blue Titanium,512GB 8GB RAM
-39323,Apple iPhone 15 Pro 256GB,Blue Titanium,1TB 8GB RAM
-39323,Apple iPhone 15 Pro 256GB,Natural Titanium,128GB 8GB RAM
-39323,Apple iPhone 15 Pro 256GB,Natural Titanium,256GB 8GB RAM
-39323,Apple iPhone 15 Pro 256GB,Natural Titanium,512GB 8GB RAM
-39323,Apple iPhone 15 Pro 256GB,Natural Titanium,1TB 8GB RAM
-36819,Apple iPhone 15 Pro Max,Desert Titanium,8GB+256GB
-36819,Apple iPhone 15 Pro Max,Desert Titanium,8GB+512GB
-36819,Apple iPhone 15 Pro Max,Desert Titanium,8GB+1TB
-36819,Apple iPhone 15 Pro Max,Natural Titanium,8GB+256GB
-36819,Apple iPhone 15 Pro Max,Natural Titanium,8GB+512GB
-36819,Apple iPhone 15 Pro Max,Natural Titanium,8GB+1TB
-36819,Apple iPhone 15 Pro Max,White Titanium,8GB+256GB
-36819,Apple iPhone 15 Pro Max,White Titanium,8GB+512GB
-36819,Apple iPhone 15 Pro Max,White Titanium,8GB+1TB
+38524,Apple iPhone 15 Plus,Black,6GB RAM + 128GB
+38524,Apple iPhone 15 Plus,Black,6GB RAM + 256GB
+38524,Apple iPhone 15 Plus,Black,6GB RAM + 512GB
+38524,Apple iPhone 15 Plus,Blue,6GB RAM + 128GB
+38524,Apple iPhone 15 Plus,Blue,6GB RAM + 256GB
+38524,Apple iPhone 15 Plus,Blue,6GB RAM + 512GB
+38524,Apple iPhone 15 Plus,Green,6GB RAM + 128GB
+38524,Apple iPhone 15 Plus,Green,6GB RAM + 256GB
+38524,Apple iPhone 15 Plus,Green,6GB RAM + 512GB
+38524,Apple iPhone 15 Plus,Yellow,6GB RAM + 128GB
+38524,Apple iPhone 15 Plus,Yellow,6GB RAM + 256GB
+38524,Apple iPhone 15 Plus,Yellow,6GB RAM + 512GB
+38524,Apple iPhone 15 Plus,Pink,6GB RAM + 128GB
+38524,Apple iPhone 15 Plus,Pink,6GB RAM + 256GB
+38524,Apple iPhone 15 Plus,Pink,6GB RAM + 512GB
+39323,Apple iPhone 15 Pro 256GB,Black Titanium,8GB+128GB
+39323,Apple iPhone 15 Pro 256GB,Black Titanium,8GB+256GB
+39323,Apple iPhone 15 Pro 256GB,Black Titanium,8GB+512GB
+39323,Apple iPhone 15 Pro 256GB,Black Titanium,8GB+1TB
+39323,Apple iPhone 15 Pro 256GB,White Titanium,8GB+128GB
+39323,Apple iPhone 15 Pro 256GB,White Titanium,8GB+256GB
+39323,Apple iPhone 15 Pro 256GB,White Titanium,8GB+512GB
+39323,Apple iPhone 15 Pro 256GB,White Titanium,8GB+1TB
+39323,Apple iPhone 15 Pro 256GB,Blue Titanium,8GB+128GB
+39323,Apple iPhone 15 Pro 256GB,Blue Titanium,8GB+256GB
+39323,Apple iPhone 15 Pro 256GB,Blue Titanium,8GB+512GB
+39323,Apple iPhone 15 Pro 256GB,Blue Titanium,8GB+1TB
+39323,Apple iPhone 15 Pro 256GB,Natural Titanium,8GB+128GB
+39323,Apple iPhone 15 Pro 256GB,Natural Titanium,8GB+256GB
+39323,Apple iPhone 15 Pro 256GB,Natural Titanium,8GB+512GB
+39323,Apple iPhone 15 Pro 256GB,Natural Titanium,8GB+1TB
 36819,Apple iPhone 15 Pro Max,Black Titanium,8GB+256GB
 36819,Apple iPhone 15 Pro Max,Black Titanium,8GB+512GB
 36819,Apple iPhone 15 Pro Max,Black Titanium,8GB+1TB
+36819,Apple iPhone 15 Pro Max,White Titanium,8GB+256GB
+36819,Apple iPhone 15 Pro Max,White Titanium,8GB+512GB
+36819,Apple iPhone 15 Pro Max,White Titanium,8GB+1TB
+36819,Apple iPhone 15 Pro Max,Blue Titanium,8GB+256GB
+36819,Apple iPhone 15 Pro Max,Blue Titanium,8GB+512GB
+36819,Apple iPhone 15 Pro Max,Blue Titanium,8GB+1TB
+36819,Apple iPhone 15 Pro Max,Natural Titanium,8GB+256GB
+36819,Apple iPhone 15 Pro Max,Natural Titanium,8GB+512GB
+36819,Apple iPhone 15 Pro Max,Natural Titanium,8GB+1TB
 38217,Apple iPhone 16,Black,8GB+128GB
 38217,Apple iPhone 16,Black,8GB+256GB
-38217,Apple iPhone 16,Black,8GB+256GB
+38217,Apple iPhone 16,Black,8GB+512GB
 38217,Apple iPhone 16,White,8GB+128GB
 38217,Apple iPhone 16,White,8GB+256GB
-38217,Apple iPhone 16,White,8GB+256GB
+38217,Apple iPhone 16,White,8GB+512GB
 38217,Apple iPhone 16,Pink,8GB+128GB
 38217,Apple iPhone 16,Pink,8GB+256GB
-38217,Apple iPhone 16,Pink,8GB+256GB
+38217,Apple iPhone 16,Pink,8GB+512GB
 38217,Apple iPhone 16,Teal,8GB+128GB
 38217,Apple iPhone 16,Teal,8GB+256GB
-38217,Apple iPhone 16,Teal,8GB+256GB
+38217,Apple iPhone 16,Teal,8GB+512GB
 38217,Apple iPhone 16,Ultramarine,8GB+128GB
 38217,Apple iPhone 16,Ultramarine,8GB+256GB
-38217,Apple iPhone 16,Ultramarine,8GB+256GB
+38217,Apple iPhone 16,Ultramarine,8GB+512GB
 38754,Apple iPhone 16 Plus,Black,8GB + 128GB
 38754,Apple iPhone 16 Plus,Black,8GB + 256GB
 38754,Apple iPhone 16 Plus,Black,8GB + 512GB
@@ -375,7 +174,9 @@ model_id,product_name,colour,ram_rom
 40714,Apple iPhone 16E 256GB,Black,8GB + 256GB
 40714,Apple iPhone 16E 256GB,Black,8GB + 512GB
 39294,Asus ROG Phone 8 Pro,Phantom Black,16GB+512GB
-38984,Benco V90,Blue,4GB+64GB
+39294,Asus ROG Phone 8 Pro,Phantom Black,12GB+256
+39294,Asus ROG Phone 8 Pro,Phantom Black,16GB+256GB
+38984,Benco V90,Sky Blue,4GB+64GB
 39898,Blackview BL9000,Black,12GB+512GB
 39898,Blackview BL9000,Gold,12GB+512GB
 38922,Blackview BV7100,Orange,6GB+128GB
@@ -394,15 +195,15 @@ model_id,product_name,colour,ram_rom
 40593,BlackZone B313C,Black,64MB
 40593,BlackZone B313C,Blue,64MB
 40593,BlackZone B313C,Gold,64MB
-39207,BlackZone Bijli,black,1Gb
-39207,BlackZone Bijli,blue,1Gb
-39207,BlackZone Bijli,gold,1Gb
-39207,BlackZone Bijli,green,1Gb
-39207,BlackZone Bijli,maroon,1Gb
-39757,BlackZone BZ Fold,Black,1GB
-39757,BlackZone BZ Fold,Orange,1GB
-39757,BlackZone BZ Fold,White,1GB
-39757,BlackZone BZ Fold,Black Bow,1GB
+39207,BlackZone Bijli,black,32MB
+39207,BlackZone Bijli,blue,32MB
+39207,BlackZone Bijli,gold,32MB
+39207,BlackZone Bijli,green,32MB
+39207,BlackZone Bijli,maroon,32MB
+39757,BlackZone BZ Fold,Black,32MB
+39757,BlackZone BZ Fold,Orange,32MB
+39757,BlackZone BZ Fold,White,32MB
+39757,BlackZone BZ Fold,Black Bow,32MB
 39965,BlackZone Carbon,Black,32MB+32MB
 39965,BlackZone Carbon,dark green,32MB+32MB
 39300,BlackZone Elevate,black,32MB
@@ -452,10 +253,11 @@ model_id,product_name,colour,ram_rom
 40359,BlackZone U707,Red,32MB
 40359,BlackZone U707,Black,32MB
 40950,BlackZone Ultima,Blue,64MB
-39677,BlackZone Vega,Black,1GB
-39677,BlackZone Vega,Blue,1GB
-39677,BlackZone Vega,White,1GB
+39677,BlackZone Vega,Black,32MB
+39677,BlackZone Vega,Blue,32MB
+39677,BlackZone Vega,White,32MB
 39966,BlackZone Warrior,Grey,7GB+128GB
+39966,BlackZone Warrior,Sky Blue,7GB+128GB
 39508,BlackZone Winx 4G,Black,2GB+16GB
 39508,BlackZone Winx 4G,Blue,2GB+16GB
 39508,BlackZone Winx 4G,Green,2GB+16GB
@@ -472,12 +274,12 @@ model_id,product_name,colour,ram_rom
 38982,Caul CP1870,White,32MB
 39674,Caul X1 Plus,Black,32MB+32MB
 40264,Caul X10 Prime,Blue,32MB
-39498,Caul X2,Blue,1GB
-39498,Caul X2,Black,1GB
+39498,Caul X2,Blue,32MB
+39498,Caul X2,Black,32MB
 39706,Caul X2 Plus,Blue,32MB
 39706,Caul X2 Plus,Black,32MB
-39506,Caul X3,Pink,1GB
-39506,Caul X3,Blue,1GB
+39506,Caul X3,Pink,32MB
+39506,Caul X3,Blue,32MB
 39507,Caul X4,Silver,32MB
 39513,Caul X40 4G,Green,32MB
 39513,Caul X40 4G,Red,32MB
@@ -534,10 +336,10 @@ model_id,product_name,colour,ram_rom
 40814,Gfive Z15 Mini,Gold,32MB+32MB
 39346,Good One Bullet,Blue,32MB
 38912,Good One G115,Gold,32MB
-37787,Google Pixel 7A,Hazel,8GB+256GB
-37787,Google Pixel 7A,Mint,8GB+256GB
-37787,Google Pixel 7A,Obsidian,8GB+256GB
-37787,Google Pixel 7A,Rose,8GB+256GB
+37787,Google Pixel 7A,Charcoal,8GB+256GB
+37787,Google Pixel 7A,Snow,8GB+256GB
+37787,Google Pixel 7A,Sea,8GB+256GB
+37787,Google Pixel 7A,Coral,8GB+256GB
 39363,Google Pixel 8 256GB,Hazel,8GB+256GB
 39363,Google Pixel 8 256GB,Mint,8GB+256GB
 39363,Google Pixel 8 256GB,Obsidian,8GB+256GB
@@ -563,22 +365,28 @@ model_id,product_name,colour,ram_rom
 40075,Google Pixel 9 Pro Fold,Obsidian,8GB+256GB
 40119,Google Pixel 9 Pro XL,Porcelain,16GB RAM + 256GB
 40119,Google Pixel 9 Pro XL,Porcelain,16GB RAM + 512GB
+40119,Google Pixel 9 Pro XL,Porcelain,16GB+128GB
+40119,Google Pixel 9 Pro XL,Porcelain,16GB+1TB
 40119,Google Pixel 9 Pro XL,Rose Quartz,16GB RAM + 256GB
 40119,Google Pixel 9 Pro XL,Rose Quartz,16GB RAM + 512GB
+40119,Google Pixel 9 Pro XL,Rose Quartz,16GB+128GB
+40119,Google Pixel 9 Pro XL,Rose Quartz,16GB+1TB
 40119,Google Pixel 9 Pro XL,Hazel,16GB RAM + 256GB
 40119,Google Pixel 9 Pro XL,Hazel,16GB RAM + 512GB
+40119,Google Pixel 9 Pro XL,Hazel,16GB+128GB
+40119,Google Pixel 9 Pro XL,Hazel,16GB+1TB
 40119,Google Pixel 9 Pro XL,Obsidian,16GB RAM + 256GB
 40119,Google Pixel 9 Pro XL,Obsidian,16GB RAM + 512GB
+40119,Google Pixel 9 Pro XL,Obsidian,16GB+128GB
+40119,Google Pixel 9 Pro XL,Obsidian,16GB+1TB
 39031,Google Pixel 9A,Iris,8GB+256GB
 39031,Google Pixel 9A,Porcelain,8GB+256GB
 39031,Google Pixel 9A,obsidian,8GB+256GB
 40204,HMD 105 4G,Black,64MB+128MB
 40204,HMD 105 4G,Cyan,64MB+128MB
 40204,HMD 105 4G,Pink,64MB+128MB
-40205,HMD 110 4G,Black,64MB+8GB
-40205,HMD 110 4G,Black,128GB+8GB
-40205,HMD 110 4G,Blue,64MB+8GB
-40205,HMD 110 4G,Blue,128GB+8GB
+40205,HMD 110 4G,Titanium,64MB+128MB
+40205,HMD 110 4G,Blue,64MB+128MB
 40748,HMD 130 Music,Dark Grey,8MB+8MB
 40748,HMD 130 Music,Red,8MB+8MB
 40748,HMD 130 Music,Blue,8MB+8MB
@@ -592,7 +400,7 @@ model_id,product_name,colour,ram_rom
 40083,HMD Crest Max,Royal Pink,8GB+256GB
 40083,HMD Crest Max,Aqua Green,8GB+256GB
 40083,HMD Crest Max,Deep Purple,8GB+256GB
-40178,HMD Fusion,Noir,6GB+1024GB
+40178,HMD Fusion,Noir,6GB+128GB
 40054,HMD Skyline,Neon Pink,12GB+256GB
 40054,HMD Skyline,Blue Topaz,12GB+256GB
 40054,HMD Skyline,Twisted Black,12GB+256GB
@@ -648,12 +456,18 @@ model_id,product_name,colour,ram_rom
 39418,Honor Magic 6 Pro,White,16GB+ 1024GB
 39387,Honor X9B,Sunrise Orange,8GB+256GB
 39387,Honor X9B,Sunrise Orange,12GB+256GB
+39387,Honor X9B,Sunrise Orange,8GB+512GB
 39387,Honor X9B,Sunrise Orange,12GB+512GB
 39387,Honor X9B,Midnight Black,8GB+256GB
 39387,Honor X9B,Midnight Black,12GB+256GB
+39387,Honor X9B,Midnight Black,8GB+512GB
 39387,Honor X9B,Midnight Black,12GB+512GB
+39387,Honor X9B,Emerald Green,8GB+256GB
+39387,Honor X9B,Emerald Green,12GB+256GB
+39387,Honor X9B,Emerald Green,8GB+512GB
+39387,Honor X9B,Emerald Green,12GB+512GB
 40620,Hotline Ace,Green,32MB
-40939,Hotline Aura,Black,4GB+128GB
+40939,Hotline Aura,Black,32MB
 40622,Hotline Classic i,Black,32MB
 40623,Hotline H101,Blue,32MB
 40619,Hotline H17,Red,32MB
@@ -693,18 +507,24 @@ model_id,product_name,colour,ram_rom
 40225,I Kall K74 New,Black,32MB
 40846,I Kall K99 Pro 2024,Black,32MB
 40055,I Kall K999 New,Black,32MB
-39312,I Kall S2 Pro,Black,6GB
-38815,I Kall Z19 64GB,Pink,4GB+64GB
+39312,I Kall S2 Pro,Black,6GB+128GB
+38815,I Kall Z19 64GB,Pink,4GB+32GB
 38545,I Kall Z19 Pro,Blue,4GB+64GB
 38545,I Kall Z19 Pro,Black,4GB+64GB
 39040,I Kall Z19 Pro Ultra,Blue,6GB+128GB
+39790,iAir D10 Mini,Navy Blue,32MB
+39790,iAir D10 Mini,Grey,32MB
 40263,iAir D40 Pro Plus,Violet,32MB
 39439,iAir D7 Mini,Blue,32MB
 40074,iAir X10,Black,32MB
 38827,Infinix GT 10 Pro,Lavender Grey,8GB+256GB
+38827,Infinix GT 10 Pro,Lavender Grey,12GB+256GB
 38827,Infinix GT 10 Pro,Black,8GB+256GB
+38827,Infinix GT 10 Pro,Black,12GB+256GB
 38827,Infinix GT 10 Pro,Dark Green,8GB+256GB
+38827,Infinix GT 10 Pro,Dark Green,12GB+256GB
 38827,Infinix GT 10 Pro,Blue,8GB+256GB
+38827,Infinix GT 10 Pro,Blue,12GB+256GB
 39830,Infinix GT 20 Pro 5G,Mecha Blue,8GB+256GB
 39830,Infinix GT 20 Pro 5G,Mecha Blue,12GB+256GB
 39830,Infinix GT 20 Pro 5G,Mecha Orange,8GB+256GB
@@ -731,18 +551,10 @@ model_id,product_name,colour,ram_rom
 39162,Infinix Hot 30 5G,Knight Black,8GB+128GB
 39162,Infinix Hot 30 5G,Aurora Blue,4GB+128GB
 39162,Infinix Hot 30 5G,Aurora Blue,8GB+128GB
-39192,Infinix Hot 30 5G 8GB RAM,Racing Black,4GB+128GB
-39192,Infinix Hot 30 5G 8GB RAM,Racing Black,8GB+128GB
-39192,Infinix Hot 30 5G 8GB RAM,Racing Black,8GB+256GB
-39192,Infinix Hot 30 5G 8GB RAM,Surfing Green,4GB+128GB
-39192,Infinix Hot 30 5G 8GB RAM,Surfing Green,8GB+128GB
-39192,Infinix Hot 30 5G 8GB RAM,Surfing Green,8GB+256GB
-39192,Infinix Hot 30 5G 8GB RAM,Sonic White,4GB+128GB
-39192,Infinix Hot 30 5G 8GB RAM,Sonic White,8GB+128GB
-39192,Infinix Hot 30 5G 8GB RAM,Sonic White,8GB+256GB
-39192,Infinix Hot 30 5G 8GB RAM,Free Fire,4GB+128GB
-39192,Infinix Hot 30 5G 8GB RAM,Free Fire,8GB+128GB
-39192,Infinix Hot 30 5G 8GB RAM,Free Fire,8GB+256GB
+39192,Infinix Hot 30 5G 8GB RAM,Knight Black,4GB+128GB
+39192,Infinix Hot 30 5G 8GB RAM,Knight Black,8GB+128GB
+39192,Infinix Hot 30 5G 8GB RAM,Aurora Blue,4GB+128GB
+39192,Infinix Hot 30 5G 8GB RAM,Aurora Blue,8GB+128GB
 38624,Infinix Hot 30i,Mirror Black,4GB+64GB
 38624,Infinix Hot 30i,Mirror Black,4GB+128GB
 38624,Infinix Hot 30i,Mirror Black,8GB+128GB
@@ -767,24 +579,22 @@ model_id,product_name,colour,ram_rom
 38958,Infinix Hot 40i,Starfall Green,4GB+128GB
 38958,Infinix Hot 40i,Starfall Green,8GB+128GB
 38958,Infinix Hot 40i,Starfall Green,8GB+256GB
-40171,Infinix Hot 50 5G,Black,4GB+128GB
-40171,Infinix Hot 50 5G,Green,4GB+128GB
-40174,Infinix Hot 50 5G 8GB RAM,Vibrant Blue,4GB+128GB
-40174,Infinix Hot 50 5G 8GB RAM,Vibrant Blue,6GB+128GB
-40174,Infinix Hot 50 5G 8GB RAM,Vibrant Blue,6GB+256GB
-40174,Infinix Hot 50 5G 8GB RAM,Vibrant Blue,8GB+256GB
-40174,Infinix Hot 50 5G 8GB RAM,Sleek Black,4GB+128GB
-40174,Infinix Hot 50 5G 8GB RAM,Sleek Black,6GB+128GB
-40174,Infinix Hot 50 5G 8GB RAM,Sleek Black,6GB+256GB
-40174,Infinix Hot 50 5G 8GB RAM,Sleek Black,8GB+256GB
-40174,Infinix Hot 50 5G 8GB RAM,Sage Green,4GB+128GB
-40174,Infinix Hot 50 5G 8GB RAM,Sage Green,6GB+128GB
-40174,Infinix Hot 50 5G 8GB RAM,Sage Green,6GB+256GB
-40174,Infinix Hot 50 5G 8GB RAM,Sage Green,8GB+256GB
-40174,Infinix Hot 50 5G 8GB RAM,Dreamy Purple,4GB+128GB
-40174,Infinix Hot 50 5G 8GB RAM,Dreamy Purple,6GB+128GB
-40174,Infinix Hot 50 5G 8GB RAM,Dreamy Purple,6GB+256GB
-40174,Infinix Hot 50 5G 8GB RAM,Dreamy Purple,8GB+256GB
+40171,Infinix Hot 50 5G,Metallic Black,4GB+128GB
+40171,Infinix Hot 50 5G,Metallic Black,4GB+128GB
+40171,Infinix Hot 50 5G,Neo Titanium,4GB+128GB
+40171,Infinix Hot 50 5G,Neo Titanium,4GB+128GB
+40171,Infinix Hot 50 5G,Mint Green,4GB+128GB
+40171,Infinix Hot 50 5G,Mint Green,4GB+128GB
+40171,Infinix Hot 50 5G,Coral Gold,4GB+128GB
+40171,Infinix Hot 50 5G,Coral Gold,4GB+128GB
+40174,Infinix Hot 50 5G 8GB RAM,Metallic Black,4GB+128GB
+40174,Infinix Hot 50 5G 8GB RAM,Metallic Black,4GB+128GB
+40174,Infinix Hot 50 5G 8GB RAM,Neo Titanium,4GB+128GB
+40174,Infinix Hot 50 5G 8GB RAM,Neo Titanium,4GB+128GB
+40174,Infinix Hot 50 5G 8GB RAM,Mint Green,4GB+128GB
+40174,Infinix Hot 50 5G 8GB RAM,Mint Green,4GB+128GB
+40174,Infinix Hot 50 5G 8GB RAM,Coral Gold,4GB+128GB
+40174,Infinix Hot 50 5G 8GB RAM,Coral Gold,4GB+128GB
 37691,Infinix Note 12i,Force Black,4GB+128GB
 37691,Infinix Note 12i,Snowfal,4GB+128GB
 38571,Infinix Note 12i 2022,Force Black,4GB+64GB
@@ -793,12 +603,12 @@ model_id,product_name,colour,ram_rom
 38571,Infinix Note 12i 2022,Metaverse Blue,6GB+128GB
 38571,Infinix Note 12i 2022,Alpine White,4GB+64GB
 38571,Infinix Note 12i 2022,Alpine White,6GB+128GB
-39037,Infinix Note 30 5G,Black,4GB+128GB
-39037,Infinix Note 30 5G,Black,8GB+256GB
+39037,Infinix Note 30 5G,Magic Black,4GB+128GB
+39037,Infinix Note 30 5G,Magic Black,8GB+256GB
+39037,Infinix Note 30 5G,Interstellar Blue,4GB+128GB
+39037,Infinix Note 30 5G,Interstellar Blue,8GB+256GB
 39037,Infinix Note 30 5G,Sunset Gold,4GB+128GB
 39037,Infinix Note 30 5G,Sunset Gold,8GB+256GB
-39037,Infinix Note 30 5G,Blue,4GB+128GB
-39037,Infinix Note 30 5G,Blue,8GB+256GB
 39117,Infinix Note 30 5G 256GB,Magic Black,4GB+128GB
 39117,Infinix Note 30 5G 256GB,Magic Black,8GB+256GB
 39117,Infinix Note 30 5G 256GB,Interstellar Blue,4GB+128GB
@@ -909,7 +719,9 @@ model_id,product_name,colour,ram_rom
 37458,iQOO 11 5G,Legend,16GB+256GB
 37458,iQOO 11 5G,Alpha,8GB+256GB
 37458,iQOO 11 5G,Alpha,16GB+256GB
+38547,iQOO 11 5G 16GB RAM,Legend,8GB+256GB
 38547,iQOO 11 5G 16GB RAM,Legend,16GB+256GB
+38547,iQOO 11 5G 16GB RAM,Alpha,8GB+256GB
 38547,iQOO 11 5G 16GB RAM,Alpha,16GB+256GB
 38671,iQOO 12 5G,Alpha,12GB+256GB
 38671,iQOO 12 5G,Alpha,12GB+512GB
@@ -923,12 +735,18 @@ model_id,product_name,colour,ram_rom
 38671,iQOO 12 5G,Legend,12GB+512GB
 38671,iQOO 12 5G,Legend,16GB+256GB
 38671,iQOO 12 5G,Legend,16GB+512GB
-39526,iQOO 12 5G 512GB,Legend,12GB+256GB
-39526,iQOO 12 5G 512GB,Legend,16GB+512GB
 39526,iQOO 12 5G 512GB,Alpha,12GB+256GB
+39526,iQOO 12 5G 512GB,Alpha,12GB+512GB
+39526,iQOO 12 5G 512GB,Alpha,16GB+256GB
 39526,iQOO 12 5G 512GB,Alpha,16GB+512GB
 39526,iQOO 12 5G 512GB,Desert Red,12GB+256GB
+39526,iQOO 12 5G 512GB,Desert Red,12GB+512GB
+39526,iQOO 12 5G 512GB,Desert Red,16GB+256GB
 39526,iQOO 12 5G 512GB,Desert Red,16GB+512GB
+39526,iQOO 12 5G 512GB,Legend,12GB+256GB
+39526,iQOO 12 5G 512GB,Legend,12GB+512GB
+39526,iQOO 12 5G 512GB,Legend,16GB+256GB
+39526,iQOO 12 5G 512GB,Legend,16GB+512GB
 39763,iQOO 12 5G Anniversary Edition,Alpha,12GB+256GB
 39763,iQOO 12 5G Anniversary Edition,Alpha,12GB+512GB
 39763,iQOO 12 5G Anniversary Edition,Alpha,16GB+256GB
@@ -961,8 +779,26 @@ model_id,product_name,colour,ram_rom
 38672,iQOO 13 5G,Green,12GB+512GB
 38672,iQOO 13 5G,Green,16GB+512GB
 38672,iQOO 13 5G,Green,16GB+1024GB
-40463,iQOO 13 5G 512GB,Nardo Grey,16GB+512GB
-40463,iQOO 13 5G 512GB,Lengend,16GB+512GB
+40463,iQOO 13 5G 512GB,Alpha (Black),12GB+256GB
+40463,iQOO 13 5G 512GB,Alpha (Black),16GB+256GB
+40463,iQOO 13 5G 512GB,Alpha (Black),12GB+512GB
+40463,iQOO 13 5G 512GB,Alpha (Black),16GB+512GB
+40463,iQOO 13 5G 512GB,Alpha (Black),16GB+1024GB
+40463,iQOO 13 5G 512GB,Nardo Gray (Silver),12GB+256GB
+40463,iQOO 13 5G 512GB,Nardo Gray (Silver),16GB+256GB
+40463,iQOO 13 5G 512GB,Nardo Gray (Silver),12GB+512GB
+40463,iQOO 13 5G 512GB,Nardo Gray (Silver),16GB+512GB
+40463,iQOO 13 5G 512GB,Nardo Gray (Silver),16GB+1024GB
+40463,iQOO 13 5G 512GB,White (BMW M branding),12GB+256GB
+40463,iQOO 13 5G 512GB,White (BMW M branding),16GB+256GB
+40463,iQOO 13 5G 512GB,White (BMW M branding),12GB+512GB
+40463,iQOO 13 5G 512GB,White (BMW M branding),16GB+512GB
+40463,iQOO 13 5G 512GB,White (BMW M branding),16GB+1024GB
+40463,iQOO 13 5G 512GB,Green,12GB+256GB
+40463,iQOO 13 5G 512GB,Green,16GB+256GB
+40463,iQOO 13 5G 512GB,Green,12GB+512GB
+40463,iQOO 13 5G 512GB,Green,16GB+512GB
+40463,iQOO 13 5G 512GB,Green,16GB+1024GB
 41045,iQOO Neo 10 512GB,Inferno Red,8GB+128GB
 41045,iQOO Neo 10 512GB,Inferno Red,8GB+256GB
 41045,iQOO Neo 10 512GB,Inferno Red,12GB+256GB
@@ -1009,9 +845,14 @@ model_id,product_name,colour,ram_rom
 37327,iQOO Z7 Pro,Blue Lagoon,8GB+256GB
 37327,iQOO Z7 Pro,Graphite Matte,8GB+128GB
 37327,iQOO Z7 Pro,Graphite Matte,8GB+256GB
+39012,iQOO Z7s 5G,Norway Blue,6GB+128GB
 39012,iQOO Z7s 5G,Norway Blue,8GB+128GB
+39012,iQOO Z7s 5G,Pacific Night,6GB+128GB
 39012,iQOO Z7s 5G,Pacific Night,8GB+128GB
-39049,iQOO Z7s 5G 8GB RAM,Blue,8GB+128GB
+39049,iQOO Z7s 5G 8GB RAM,Norway Blue,6GB+128GB
+39049,iQOO Z7s 5G 8GB RAM,Norway Blue,8GB+128GB
+39049,iQOO Z7s 5G 8GB RAM,Pacific Night,6GB+128GB
+39049,iQOO Z7s 5G 8GB RAM,Pacific Night,8GB+128GB
 38095,iQOO Z9,Mocha Brown,4GB+128GB
 38095,iQOO Z9,Mocha Brown,6GB+128GB
 38095,iQOO Z9,Aqua Flow,4GB+128GB
@@ -1103,8 +944,8 @@ model_id,product_name,colour,ram_rom
 39145,Itel Circle 1,Black,32GB
 40044,Itel Color Pro 5G,River Blue,12GB+128GB
 40044,Itel Color Pro 5G,Lavender Fantasy,12GB+128GB
-40283,Itel Color Pro 5G 4GB RAM,Purple,4GB+128GB
-40283,Itel Color Pro 5G 4GB RAM,Blue,4GB+128GB
+40283,Itel Color Pro 5G 4GB RAM,River Blue,12GB+128GB
+40283,Itel Color Pro 5G 4GB RAM,Lavender Fantasy,12GB+128GB
 40258,Itel Flip One,Black,4MB
 40258,Itel Flip One,Blue,4MB
 40258,Itel Flip One,Orange,4MB
@@ -1128,15 +969,10 @@ model_id,product_name,colour,ram_rom
 39146,Itel P40 Plus,Sunshine Gold,8GB+128GB
 39146,Itel P40 Plus,Force Black,8GB+128GB
 39146,Itel P40 Plus,Moonlit Violet,8GB+128GB
-39334,Itel P55 5G,Mint Green,8GB+64GB
-39334,Itel P55 5G,Mint Green,12GB+128GB
-39334,Itel P55 5G,Mint Green,16GB+256GB
-39334,Itel P55 5G,Galaxy Blue,8GB+64GB
-39334,Itel P55 5G,Galaxy Blue,12GB+128GB
-39334,Itel P55 5G,Galaxy Blue,16GB+256GB
-39334,Itel P55 5G,Luxurious Gold,8GB+64GB
-39334,Itel P55 5G,Luxurious Gold,12GB+128GB
-39334,Itel P55 5G,Luxurious Gold,16GB+256GB
+39334,Itel P55 5G,Galaxy Blue,4GB+64
+39334,Itel P55 5G,Galaxy Blue,6GB+128
+39334,Itel P55 5G,Mint Green,4GB+64
+39334,Itel P55 5G,Mint Green,6GB+128
 39349,Itel P55 5G 128GB,Galaxy Blue,4GB+64
 39349,Itel P55 5G 128GB,Galaxy Blue,6GB+128
 39349,Itel P55 5G 128GB,Mint Green,4GB+64
@@ -1271,8 +1107,10 @@ model_id,product_name,colour,ram_rom
 39574,Lava Blaze Curve 5G,Glass Iron,8GB+256GB
 39574,Lava Blaze Curve 5G,Glass Viridian,8GB+128GB
 39574,Lava Blaze Curve 5G,Glass Viridian,8GB+256GB
-39690,Lava Blaze Curve 5G 256GB,Iron Glass and Viridian Glass,8GB+128GB
-39690,Lava Blaze Curve 5G 256GB,Iron Glass and Viridian Glass,8GB+256GB
+39690,Lava Blaze Curve 5G 256GB,Glass Iron,8GB+128GB
+39690,Lava Blaze Curve 5G 256GB,Glass Iron,8GB+256GB
+39690,Lava Blaze Curve 5G 256GB,Glass Viridian,8GB+128GB
+39690,Lava Blaze Curve 5G 256GB,Glass Viridian,8GB+256GB
 40481,Lava Blaze Duo,Celestial Blue,6GB+128GB
 40481,Lava Blaze Duo,Celestial Blue,8GB+128GB
 40481,Lava Blaze Duo,Arctic White,6GB+128GB
@@ -1516,10 +1354,22 @@ model_id,product_name,colour,ram_rom
 37494,Motorola Edge 50 Pro 5G,Vanilla Cream,8GB+256GB
 37494,Motorola Edge 50 Pro 5G,Vanilla Cream,12GB+256GB
 37494,Motorola Edge 50 Pro 5G,Vanilla Cream,12GB+512GB
-39762,Motorola Edge 50 Pro 5G 12GB RAM,Black Beauty,12GB+512GB
-39762,Motorola Edge 50 Pro 5G 12GB RAM,Caneel Bay,12GB+512GB
-39762,Motorola Edge 50 Pro 5G 12GB RAM,Luxe Lavender,12GB+512GB
-39762,Motorola Edge 50 Pro 5G 12GB RAM,Moonlight Pearl,12GB+512GB
+39762,Motorola Edge 50 Pro 5G,Luxe Lavender,8GB+128GB
+39762,Motorola Edge 50 Pro 5G,Luxe Lavender,8GB+256GB
+39762,Motorola Edge 50 Pro 5G,Luxe Lavender,12GB+256GB
+39762,Motorola Edge 50 Pro 5G,Luxe Lavender,12GB+512GB
+39762,Motorola Edge 50 Pro 5G,Black Beauty,8GB+128GB
+39762,Motorola Edge 50 Pro 5G,Black Beauty,8GB+256GB
+39762,Motorola Edge 50 Pro 5G,Black Beauty,12GB+256GB
+39762,Motorola Edge 50 Pro 5G,Black Beauty,12GB+512GB
+39762,Motorola Edge 50 Pro 5G,Moonlight Pearl,8GB+128GB
+39762,Motorola Edge 50 Pro 5G,Moonlight Pearl,8GB+256GB
+39762,Motorola Edge 50 Pro 5G,Moonlight Pearl,12GB+256GB
+39762,Motorola Edge 50 Pro 5G,Moonlight Pearl,12GB+512GB
+39762,Motorola Edge 50 Pro 5G,Vanilla Cream,8GB+128GB
+39762,Motorola Edge 50 Pro 5G,Vanilla Cream,8GB+256GB
+39762,Motorola Edge 50 Pro 5G,Vanilla Cream,12GB+256GB
+39762,Motorola Edge 50 Pro 5G,Vanilla Cream,12GB+512GB
 38284,Motorola Edge 50 Ultra,Forest Grey,12GB+512GB
 38284,Motorola Edge 50 Ultra,Peach Fuzz,12GB+512GB
 38284,Motorola Edge 50 Ultra,Nordic Wood,12GB+512GB
@@ -1772,8 +1622,8 @@ model_id,product_name,colour,ram_rom
 40551,OnePlus 13R 512GB,Astral Trail,12GB+256GB
 36393,OnePlus Nord 3 5G,Tempest Gray,8GB+128GB
 36393,OnePlus Nord 3 5G,Tempest Gray,16GB+256GB
-36393,OnePlus Nord 3 5G,Green,8GB+128GB
-36393,OnePlus Nord 3 5G,Green,16GB+256GB
+36393,OnePlus Nord 3 5G,Misty Green,8GB+128GB
+36393,OnePlus Nord 3 5G,Misty Green,16GB+256GB
 39168,OnePlus Nord 3 5G 256GB,Tempest Gray,8GB+128GB
 39168,OnePlus Nord 3 5G 256GB,Tempest Gray,16GB+256GB
 39168,OnePlus Nord 3 5G 256GB,Misty Green,8GB+128GB
@@ -1791,7 +1641,9 @@ model_id,product_name,colour,ram_rom
 37685,OnePlus Nord CE 3 5G,Aqua Surge,12GB+256GB
 37685,OnePlus Nord CE 3 5G,Gray Shimmer,8GB+128GB
 37685,OnePlus Nord CE 3 5G,Gray Shimmer,12GB+256GB
+39169,OnePlus Nord CE 3 5G 256GB,Aqua Surge,8GB+128GB
 39169,OnePlus Nord CE 3 5G 256GB,Aqua Surge,12GB+256GB
+39169,OnePlus Nord CE 3 5G 256GB,Gray Shimmer,8GB+128GB
 39169,OnePlus Nord CE 3 5G 256GB,Gray Shimmer,12GB+256GB
 37686,OnePlus Nord CE 3 Lite 5G,Pastel Lime,8GB+128
 37686,OnePlus Nord CE 3 Lite 5G,Pastel Lime,8GB+256
@@ -1805,22 +1657,22 @@ model_id,product_name,colour,ram_rom
 38219,OnePlus Nord CE 4 5G,Celadon Marble,8GB+256GB
 38219,OnePlus Nord CE 4 5G,Dark Chrome,8GB+128GB
 38219,OnePlus Nord CE 4 5G,Dark Chrome,8GB+256GB
-39756,OnePlus Nord CE 4 5G 256GB,Dark Chrome,8GB+128GB
-39756,OnePlus Nord CE 4 5G 256GB,Dark Chrome,8GB+256GB
 39756,OnePlus Nord CE 4 5G 256GB,Celadon Marble,8GB+128GB
 39756,OnePlus Nord CE 4 5G 256GB,Celadon Marble,8GB+256GB
+39756,OnePlus Nord CE 4 5G 256GB,Dark Chrome,8GB+128GB
+39756,OnePlus Nord CE 4 5G 256GB,Dark Chrome,8GB+256GB
 37716,OnePlus Nord CE 4 Lite 5G,Mega Blue,8GB+128GB
 37716,OnePlus Nord CE 4 Lite 5G,Mega Blue,8GB+256GB
 37716,OnePlus Nord CE 4 Lite 5G,Super Silver,8GB+128GB
 37716,OnePlus Nord CE 4 Lite 5G,Super Silver,8GB+256GB
 37716,OnePlus Nord CE 4 Lite 5G,Ultra Orange,8GB+128GB
 37716,OnePlus Nord CE 4 Lite 5G,Ultra Orange,8GB+256GB
-39973,OnePlus Nord CE 4 Lite 5G 256GB,Ultra Orange,8GB+128GB
-39973,OnePlus Nord CE 4 Lite 5G 256GB,Ultra Orange,8GB+256GB
-39973,OnePlus Nord CE 4 Lite 5G 256GB,Super Silver,8GB+128GB
-39973,OnePlus Nord CE 4 Lite 5G 256GB,Super Silver,8GB+256GB
 39973,OnePlus Nord CE 4 Lite 5G 256GB,Mega Blue,8GB+128GB
 39973,OnePlus Nord CE 4 Lite 5G 256GB,Mega Blue,8GB+256GB
+39973,OnePlus Nord CE 4 Lite 5G 256GB,Super Silver,8GB+128GB
+39973,OnePlus Nord CE 4 Lite 5G 256GB,Super Silver,8GB+256GB
+39973,OnePlus Nord CE 4 Lite 5G 256GB,Ultra Orange,8GB+128GB
+39973,OnePlus Nord CE 4 Lite 5G 256GB,Ultra Orange,8GB+256GB
 39248,OnePlus Open,Voyager Black,16GB+512GB
 39248,OnePlus Open,Voyager Black,16GB+1024GB
 39248,OnePlus Open,Emerald Dusk,16GB+512GB
@@ -1880,7 +1732,9 @@ model_id,product_name,colour,ram_rom
 39541,OPPO A59 5G 6GB RAM,Starry Black,4GB+128GB
 39541,OPPO A59 5G 6GB RAM,Silk Gold,4GB+128GB
 41023,OPPO A5x,Laser White,4GB + 128GB
+41023,OPPO A5x,Laser White,6GB + 128GB
 41023,OPPO A5x,Midnight Blue,4GB + 128GB
+41023,OPPO A5x,Midnight Blue,6GB + 128GB
 37767,OPPO A78 5G,Glowing Black,4GB+128GB
 37767,OPPO A78 5G,Glowing Black,8GB+128GB
 37767,OPPO A78 5G,Glowing Purple,4GB+128GB
@@ -1893,9 +1747,9 @@ model_id,product_name,colour,ram_rom
 39350,OPPO A79 5G,Dazzling Purple,4GB+128GB
 39350,OPPO A79 5G,Dazzling Purple,8GB+128GB
 39350,OPPO A79 5G,Dazzling Purple,8GB+256GB
-39350,OPPO A79 5G,Glowing,4GB+128GB
-39350,OPPO A79 5G,Glowing,8GB+128GB
-39350,OPPO A79 5G,Glowing,8GB+256GB
+39350,OPPO A79 5G,Glowing Green,4GB+128GB
+39350,OPPO A79 5G,Glowing Green,8GB+128GB
+39350,OPPO A79 5G,Glowing Green,8GB+256GB
 37412,OPPO F25 Pro,Ocean Blue,8GB+128GB
 37412,OPPO F25 Pro,Ocean Blue,8GB+256GB
 37412,OPPO F25 Pro,Lava Red,8GB+128GB
@@ -1990,14 +1844,15 @@ model_id,product_name,colour,ram_rom
 38525,OPPO Reno8 T 5G,Black Starlight (Midnight Black),8GB+256GB
 38525,OPPO Reno8 T 5G,Dawn Gold (Sunrise Gold),8GB+128GB
 38525,OPPO Reno8 T 5G,Dawn Gold (Sunrise Gold),8GB+256GB
-40367,Oukitel WP35,Green,24GB+256GB
-40367,Oukitel WP35,Grey,24GB+256GB
+40367,Oukitel WP35,Green,8GB+256GB
+40367,Oukitel WP35,Grey,8GB+256GB
+40367,Oukitel WP35,Coffee,8GB+256GB
 40374,Oukitel WP39,Grey,6GB+256GB
 40374,Oukitel WP39,Green,6GB+256GB
 40387,Oukitel WP50,Black,4GB+256GB
 40387,Oukitel WP50,Blue,4GB+256GB
-40384,Oukitel WP52,Black,16GB+256GB
-40384,Oukitel WP52,Blue,16GB+256GB
+40384,Oukitel WP52,Black,4GB+256GB
+40384,Oukitel WP52,Dark Blue,4GB+256GB
 38118,POCO C50,Country Green,2GB+32GB
 38118,POCO C50,Country Green,3GB+32GB
 38118,POCO C50,Royal Blue,2GB+32GB
@@ -2096,9 +1951,12 @@ model_id,product_name,colour,ram_rom
 40471,POCO M7 Pro,Olive Twilight,8GB+256GB
 40471,POCO M7 Pro,Lunar Dust,6GB+128GB
 40471,POCO M7 Pro,Lunar Dust,8GB+256GB
-38820,POCO X5 256GB,Black,8GB+256GB
-38820,POCO X5 256GB,Green,8GB+256GB
-38820,POCO X5 256GB,Blue,8GB+256GB
+38820,POCO X5 256GB,Black,6+128GB
+38820,POCO X5 256GB,Black,8+256GB
+38820,POCO X5 256GB,Green,6+128GB
+38820,POCO X5 256GB,Green,8+256GB
+38820,POCO X5 256GB,Blue,6+128GB
+38820,POCO X5 256GB,Blue,8+256GB
 38625,POCO X5 Pro 256GB,Yellow,6GB+128GB
 38625,POCO X5 Pro 256GB,Yellow,8GB+256GB
 38625,POCO X5 Pro 256GB,Blue,6GB+128GB
@@ -2141,8 +1999,11 @@ model_id,product_name,colour,ram_rom
 38456,POCO X7,Green,12GB+512GB
 38456,POCO X7,Black,8GB+256GB
 38456,POCO X7,Black,12GB+512GB
+40565,POCO X7 Pro 12GB RAM,Nebula Green,8GB+256GB
 40565,POCO X7 Pro 12GB RAM,Nebula Green,12GB+256GB
+40565,POCO X7 Pro 12GB RAM,Obsidian Black,8GB+256GB
 40565,POCO X7 Pro 12GB RAM,Obsidian Black,12GB+256GB
+40565,POCO X7 Pro 12GB RAM,POCO Yellow,8GB+256GB
 40565,POCO X7 Pro 12GB RAM,POCO Yellow,12GB+256GB
 37070,realme 10,White,4GB+64GB
 37070,realme 10,White,4GB+128GB
@@ -2163,12 +2024,15 @@ model_id,product_name,colour,ram_rom
 37427,realme 11 Pro,Sunrise Beige,8GB+128GB
 37427,realme 11 Pro,Sunrise Beige,8GB+256GB
 37427,realme 11 Pro,Sunrise Beige,12GB+256GB
+37427,realme 11 Pro,Sunrise Beige,12GB RAM + 512GB
 37427,realme 11 Pro,Oasis Green,8GB+128GB
 37427,realme 11 Pro,Oasis Green,8GB+256GB
 37427,realme 11 Pro,Oasis Green,12GB+256GB
+37427,realme 11 Pro,Oasis Green,12GB RAM + 512GB
 37427,realme 11 Pro,Astral Black,8GB+128GB
 37427,realme 11 Pro,Astral Black,8GB+256GB
 37427,realme 11 Pro,Astral Black,12GB+256GB
+37427,realme 11 Pro,Astral Black,12GB RAM + 512GB
 37445,realme 11 Pro Plus,Sunrise Beige,8GB+256GB
 37445,realme 11 Pro Plus,Sunrise Beige,12GB+256GB
 37445,realme 11 Pro Plus,Oasis Green,8GB+256GB
@@ -2179,7 +2043,10 @@ model_id,product_name,colour,ram_rom
 39255,realme 11x 5G,Purple Dawn,8GB+128GB
 39255,realme 11x 5G,Midnight Black,6GB+128GB
 39255,realme 11x 5G,Midnight Black,8GB+128GB
-39275,realme 11x 5G 8GB RAM,Light Blue,8GB
+39275,realme 11x 5G 8GB RAM,Purple Dawn,6GB+128GB
+39275,realme 11x 5G 8GB RAM,Purple Dawn,8GB+128GB
+39275,realme 11x 5G 8GB RAM,Midnight Black,6GB+128GB
+39275,realme 11x 5G 8GB RAM,Midnight Black,8GB+128GB
 38666,realme 12,Twilight Purple,6GB+128GB
 38666,realme 12,Twilight Purple,8GB+128GB
 38666,realme 12,Woodland Green,6GB+128GB
@@ -2214,8 +2081,10 @@ model_id,product_name,colour,ram_rom
 39740,realme 12x,Woodland Green,4GB+128GB
 39740,realme 12x,Woodland Green,6GB+128GB
 39740,realme 12x,Woodland Green,8GB+128GB
-40131,realme 13 5G,Speed Green,18GB+256GB
-40131,realme 13 5G,Dark Purple,18GB+256GB
+40131,realme 13 5G,Speed Green,8GB+256GB
+40131,realme 13 5G,Speed Green,8GB + 256 GB
+40131,realme 13 5G,Dark Purple,8GB+256GB
+40131,realme 13 5G,Dark Purple,8GB + 256 GB
 40161,realme 13 5G 256GB,Speed Green,8GB+128GB
 40161,realme 13 5G 256GB,Speed Green,8GB+256GB
 40161,realme 13 5G 256GB,Speed Green,12GB+256GB
@@ -2312,42 +2181,60 @@ model_id,product_name,colour,ram_rom
 39978,realme C61,Marble Black,4 GB + 64 GB
 39978,realme C61,Marble Black,4 GB + 128 GB
 39978,realme C61,Marble Black,6 GB + 128 GB
-39926,realme C63,Leather Blue,8GB+256GB
-39926,realme C63,Jade Green,8GB+256GB
+39926,realme C63,Leather Blue,4GB RAM+ 64GB
+39926,realme C63,Leather Blue,4GB RAM+ 128GB
+39926,realme C63,Leather Blue,6GB RAM + 128GB
+39926,realme C63,Leather Blue,8GB RAM + 128GB
+39926,realme C63,Leather Blue,8GB RAM +256GB
+39926,realme C63,Jade Green,4GB RAM+ 64GB
+39926,realme C63,Jade Green,4GB RAM+ 128GB
+39926,realme C63,Jade Green,6GB RAM + 128GB
+39926,realme C63,Jade Green,8GB RAM + 128GB
+39926,realme C63,Jade Green,8GB RAM +256GB
 40122,realme C63 5G 6GB RAM,Starry Gold,4GB+128GB
 40122,realme C63 5G 6GB RAM,Starry Gold,6GB+128GB
 40122,realme C63 5G 6GB RAM,Starry Gold,8GB+128GB
 40122,realme C63 5G 6GB RAM,Forest Green,4GB+128GB
 40122,realme C63 5G 6GB RAM,Forest Green,6GB+128GB
 40122,realme C63 5G 6GB RAM,Forest Green,8GB+128GB
-40123,realme C63 5G 8GB RAM,Starry Gold,16GB+128GB
-40123,realme C63 5G 8GB RAM,Forest Green,16GB+128GB
-39472,realme C65 5G,Feature Green,6GB+128GB
-39472,realme C65 5G,Glowing Black,6GB+128GB
-39832,realme C65 5G 128GB,Feather Green,4GB+128GB
-39832,realme C65 5G 128GB,Feather Green,6GB+128GB
-39832,realme C65 5G 128GB,Feather Green,8GB+128GB
-39832,realme C65 5G 128GB,Glowing Black,4GB+128GB
-39832,realme C65 5G 128GB,Glowing Black,6GB+128GB
-39832,realme C65 5G 128GB,Glowing Black,8GB+128GB
-39832,realme C65 5G 128GB,Speedy Red,4GB+128GB
-39832,realme C65 5G 128GB,Speedy Red,6GB+128GB
-39832,realme C65 5G 128GB,Speedy Red,8GB+128GB
-39833,realme C65 5G 6GB RAM,Speedy Red,6GB+128GB
-39833,realme C65 5G 6GB RAM,Feather Green,6GB+128GB
-39833,realme C65 5G 6GB RAM,Glowing Black,6GB+128GB
-40141,realme C65 5G 8GB RAM,Speedy Red,4GB+64GB
-40141,realme C65 5G 8GB RAM,Speedy Red,4GB+128GB
-40141,realme C65 5G 8GB RAM,Speedy Red,6GB+128GB
-40141,realme C65 5G 8GB RAM,Speedy Red,8GB+128GB
-40141,realme C65 5G 8GB RAM,Feather Green,4GB+64GB
-40141,realme C65 5G 8GB RAM,Feather Green,4GB+128GB
-40141,realme C65 5G 8GB RAM,Feather Green,6GB+128GB
-40141,realme C65 5G 8GB RAM,Feather Green,8GB+128GB
-40141,realme C65 5G 8GB RAM,Glowing Black,4GB+64GB
-40141,realme C65 5G 8GB RAM,Glowing Black,4GB+128GB
-40141,realme C65 5G 8GB RAM,Glowing Black,6GB+128GB
-40141,realme C65 5G 8GB RAM,Glowing Black,8GB+128GB
+40123,realme C63 5G 8GB RAM,Starry Gold,4GB+128GB
+40123,realme C63 5G 8GB RAM,Starry Gold,6GB+128GB
+40123,realme C63 5G 8GB RAM,Starry Gold,8GB+128GB
+40123,realme C63 5G 8GB RAM,Forest Green,4GB+128GB
+40123,realme C63 5G 8GB RAM,Forest Green,6GB+128GB
+40123,realme C63 5G 8GB RAM,Forest Green,8GB+128GB
+39472,realme C65 5G,Feature Green,4GB RAM + 64GB
+39472,realme C65 5G,Feature Green,4GB RAM + 128GB
+39472,realme C65 5G,Feature Green,6GB RAM + 128GB
+39472,realme C65 5G,Feature Green,8GB RAM + 128GB
+39472,realme C65 5G,Glowing Black,4GB RAM + 64GB
+39472,realme C65 5G,Glowing Black,4GB RAM + 128GB
+39472,realme C65 5G,Glowing Black,6GB RAM + 128GB
+39472,realme C65 5G,Glowing Black,8GB RAM + 128GB
+39832,realme C65 5G 128GB,Feature Green,4GB RAM + 64GB
+39832,realme C65 5G 128GB,Feature Green,4GB RAM + 128GB
+39832,realme C65 5G 128GB,Feature Green,6GB RAM + 128GB
+39832,realme C65 5G 128GB,Feature Green,8GB RAM + 128GB
+39832,realme C65 5G 128GB,Glowing Black,4GB RAM + 64GB
+39832,realme C65 5G 128GB,Glowing Black,4GB RAM + 128GB
+39832,realme C65 5G 128GB,Glowing Black,6GB RAM + 128GB
+39832,realme C65 5G 128GB,Glowing Black,8GB RAM + 128GB
+39833,realme C65 5G 6GB RAM,Feature Green,4GB RAM + 64GB
+39833,realme C65 5G 6GB RAM,Feature Green,4GB RAM + 128GB
+39833,realme C65 5G 6GB RAM,Feature Green,6GB RAM + 128GB
+39833,realme C65 5G 6GB RAM,Feature Green,8GB RAM + 128GB
+39833,realme C65 5G 6GB RAM,Glowing Black,4GB RAM + 64GB
+39833,realme C65 5G 6GB RAM,Glowing Black,4GB RAM + 128GB
+39833,realme C65 5G 6GB RAM,Glowing Black,6GB RAM + 128GB
+39833,realme C65 5G 6GB RAM,Glowing Black,8GB RAM + 128GB
+40141,realme C65 5G 8GB RAM,Feature Green,4GB RAM + 64GB
+40141,realme C65 5G 8GB RAM,Feature Green,4GB RAM + 128GB
+40141,realme C65 5G 8GB RAM,Feature Green,6GB RAM + 128GB
+40141,realme C65 5G 8GB RAM,Feature Green,8GB RAM + 128GB
+40141,realme C65 5G 8GB RAM,Glowing Black,4GB RAM + 64GB
+40141,realme C65 5G 8GB RAM,Glowing Black,4GB RAM + 128GB
+40141,realme C65 5G 8GB RAM,Glowing Black,6GB RAM + 128GB
+40141,realme C65 5G 8GB RAM,Glowing Black,8GB RAM + 128GB
 39492,realme C67 5G,Sunny Oasis,4GB+128GB
 39492,realme C67 5G,Sunny Oasis,6GB+128GB
 39492,realme C67 5G,Dark Purple,4GB+128GB
@@ -2373,12 +2260,15 @@ model_id,product_name,colour,ram_rom
 41053,realme GT 7 12GB RAM,IceSense Blue,8GB+256GB
 41053,realme GT 7 12GB RAM,IceSense Blue,12GB+256GB
 41053,realme GT 7 12GB RAM,IceSense Blue,12GB+512GB
+41053,realme GT 7 12GB RAM,IceSense Blue,16 GB + 512 GB
 41053,realme GT 7 12GB RAM,IceSense Black,8GB+256GB
 41053,realme GT 7 12GB RAM,IceSense Black,12GB+256GB
 41053,realme GT 7 12GB RAM,IceSense Black,12GB+512GB
+41053,realme GT 7 12GB RAM,IceSense Black,16 GB + 512 GB
 41053,realme GT 7 12GB RAM,Aston Martin Green,8GB+256GB
 41053,realme GT 7 12GB RAM,Aston Martin Green,12GB+256GB
 41053,realme GT 7 12GB RAM,Aston Martin Green,12GB+512GB
+41053,realme GT 7 12GB RAM,Aston Martin Green,16 GB + 512 GB
 41057,realme GT 7 Dream Edition,IceSense Black,8GB+256
 41057,realme GT 7 Dream Edition,IceSense Black,12GB+128GB
 41057,realme GT 7 Dream Edition,IceSense Black,12GB+512GB
@@ -2410,25 +2300,49 @@ model_id,product_name,colour,ram_rom
 39131,realme Narzo 60 5G,Cosmic Black,8GB+256GB
 39171,realme Narzo 60 5G 256GB,Mars Orange,8GB + 256G
 39171,realme Narzo 60 5G 256GB,Cosmic Black,8GB + 256G
-37789,realme Narzo 60 Pro 5G,Mars Orange,8GB+128GB
-37789,realme Narzo 60 Pro 5G,Mars Orange,12GB+256GB
-37789,realme Narzo 60 Pro 5G,Mars Orange,12GB+1024GB
-37789,realme Narzo 60 Pro 5G,Cosmic Black,8GB+128GB
-37789,realme Narzo 60 Pro 5G,Cosmic Black,12GB+256GB
-37789,realme Narzo 60 Pro 5G,Cosmic Black,12GB+1024GB
-39175,realme Narzo 60 Pro 5G 1TB,Mars Orange,12GB+1024GB
-39175,realme Narzo 60 Pro 5G 1TB,Cosmic Black,12GB+1024GB
-39174,realme Narzo 60 Pro 5G 256GB,Mars Orange,8GB+128GB
-39174,realme Narzo 60 Pro 5G 256GB,Mars Orange,8GB+256GB
-39174,realme Narzo 60 Pro 5G 256GB,Mars Orange,8GB+1024GB
-39174,realme Narzo 60 Pro 5G 256GB,Cosmic Black,8GB+128GB
-39174,realme Narzo 60 Pro 5G 256GB,Cosmic Black,8GB+256GB
-39174,realme Narzo 60 Pro 5G 256GB,Cosmic Black,8GB+1024GB
+37789,realme Narzo 60 Pro 5G,Mars Orange,8GB + 128GB
+37789,realme Narzo 60 Pro 5G,Mars Orange,8GB + 256GB
+37789,realme Narzo 60 Pro 5G,Mars Orange,8GB + 1TB
+37789,realme Narzo 60 Pro 5G,Mars Orange,12GB + 128GB
+37789,realme Narzo 60 Pro 5G,Mars Orange,12GB + 256GB
+37789,realme Narzo 60 Pro 5G,Mars Orange,12GB + 1TB
+37789,realme Narzo 60 Pro 5G,Cosmic Black,8GB + 128GB
+37789,realme Narzo 60 Pro 5G,Cosmic Black,8GB + 256GB
+37789,realme Narzo 60 Pro 5G,Cosmic Black,8GB + 1TB
+37789,realme Narzo 60 Pro 5G,Cosmic Black,12GB + 128GB
+37789,realme Narzo 60 Pro 5G,Cosmic Black,12GB + 256GB
+37789,realme Narzo 60 Pro 5G,Cosmic Black,12GB + 1TB
+39175,realme Narzo 60 Pro 5G 1TB,Mars Orange,8GB + 128GB
+39175,realme Narzo 60 Pro 5G 1TB,Mars Orange,8GB + 256GB
+39175,realme Narzo 60 Pro 5G 1TB,Mars Orange,8GB + 1TB
+39175,realme Narzo 60 Pro 5G 1TB,Mars Orange,12GB + 128GB
+39175,realme Narzo 60 Pro 5G 1TB,Mars Orange,12GB + 256GB
+39175,realme Narzo 60 Pro 5G 1TB,Mars Orange,12GB + 1TB
+39175,realme Narzo 60 Pro 5G 1TB,Cosmic Black,8GB + 128GB
+39175,realme Narzo 60 Pro 5G 1TB,Cosmic Black,8GB + 256GB
+39175,realme Narzo 60 Pro 5G 1TB,Cosmic Black,8GB + 1TB
+39175,realme Narzo 60 Pro 5G 1TB,Cosmic Black,12GB + 128GB
+39175,realme Narzo 60 Pro 5G 1TB,Cosmic Black,12GB + 256GB
+39175,realme Narzo 60 Pro 5G 1TB,Cosmic Black,12GB + 1TB
+39174,realme Narzo 60 Pro 5G 256GB,Mars Orange,8GB + 128GB
+39174,realme Narzo 60 Pro 5G 256GB,Mars Orange,8GB + 256GB
+39174,realme Narzo 60 Pro 5G 256GB,Mars Orange,8GB + 1TB
+39174,realme Narzo 60 Pro 5G 256GB,Mars Orange,12GB + 128GB
+39174,realme Narzo 60 Pro 5G 256GB,Mars Orange,12GB + 256GB
+39174,realme Narzo 60 Pro 5G 256GB,Mars Orange,12GB + 1TB
+39174,realme Narzo 60 Pro 5G 256GB,Cosmic Black,8GB + 128GB
+39174,realme Narzo 60 Pro 5G 256GB,Cosmic Black,8GB + 256GB
+39174,realme Narzo 60 Pro 5G 256GB,Cosmic Black,8GB + 1TB
+39174,realme Narzo 60 Pro 5G 256GB,Cosmic Black,12GB + 128GB
+39174,realme Narzo 60 Pro 5G 256GB,Cosmic Black,12GB + 256GB
+39174,realme Narzo 60 Pro 5G 256GB,Cosmic Black,12GB + 1TB
 39289,realme Narzo 60X 5G,Stellar Green,4GB+128GB
 39289,realme Narzo 60X 5G,Stellar Green,6GB+128GB
 39289,realme Narzo 60X 5G,Nebula Purple,4GB+128GB
 39289,realme Narzo 60X 5G,Nebula Purple,6GB+128GB
+39305,realme Narzo 60X 5G 6GB RAM,Stellar Green,4GB+128GB
 39305,realme Narzo 60X 5G 6GB RAM,Stellar Green,6GB+128GB
+39305,realme Narzo 60X 5G 6GB RAM,Nebula Purple,4GB+128GB
 39305,realme Narzo 60X 5G 6GB RAM,Nebula Purple,6GB+128GB
 37497,realme Narzo 70,Ice Blue,8GB+128GB
 37497,realme Narzo 70,Forest Green,8GB+128GB
@@ -2445,12 +2359,12 @@ model_id,product_name,colour,ram_rom
 40172,realme Narzo 70 Turbo,Turbo Purple,12GB+256GB
 40172,realme Narzo 70 Turbo,Turbo Purple,8GB+128GB
 40172,realme Narzo 70 Turbo,Turbo Purple,6GB+128GB
-39801,realme Narzo 70x 5G,Ice Blue,8GB+128GB
-39801,realme Narzo 70x 5G,Ice Blue,6GB+128GB
 39801,realme Narzo 70x 5G,Ice Blue,4GB+128GB
-39801,realme Narzo 70x 5G,Forest Green,8GB+128GB
-39801,realme Narzo 70x 5G,Forest Green,6GB+128GB
+39801,realme Narzo 70x 5G,Ice Blue,6GB+128GB
+39801,realme Narzo 70x 5G,Ice Blue,8GB+128GB
 39801,realme Narzo 70x 5G,Forest Green,4GB+128GB
+39801,realme Narzo 70x 5G,Forest Green,6GB+128GB
+39801,realme Narzo 70x 5G,Forest Green,8GB+128GB
 39827,realme Narzo 70x 5G 6GB RAM,Ice Blue,4GB+128GB
 39827,realme Narzo 70x 5G 6GB RAM,Ice Blue,6GB+128GB
 39827,realme Narzo 70x 5G 6GB RAM,Ice Blue,8GB+128GB
@@ -2490,20 +2404,24 @@ model_id,product_name,colour,ram_rom
 39944,realme Narzo N63,Twilight Purple,4GB+128GB
 39944,realme Narzo N63,Leather Blue,4GB+64GB
 39944,realme Narzo N63,Leather Blue,4GB+128GB
-39911,realme Narzo N65 5G,Amber Gold,8GB+128GB
-39911,realme Narzo N65 5G,Amber Gold,6GB+128GB
 39911,realme Narzo N65 5G,Amber Gold,4GB+128GB
-39911,realme Narzo N65 5G,Deep Green,8GB+128GB
-39911,realme Narzo N65 5G,Deep Green,6GB+128GB
+39911,realme Narzo N65 5G,Amber Gold,6GB+128GB
+39911,realme Narzo N65 5G,Amber Gold,8GB+128GB
 39911,realme Narzo N65 5G,Deep Green,4GB+128GB
+39911,realme Narzo N65 5G,Deep Green,6GB+128GB
+39911,realme Narzo N65 5G,Deep Green,8GB+128GB
 39921,realme Narzo N65 5G 6GB RAM,Amber Gold,4GB+128GB
 39921,realme Narzo N65 5G 6GB RAM,Amber Gold,6GB+128GB
-39921,realme Narzo N65 5G 6GB RAM,Amber Gold,8GB+128
+39921,realme Narzo N65 5G 6GB RAM,Amber Gold,8GB+128GB
 39921,realme Narzo N65 5G 6GB RAM,Deep Green,4GB+128GB
 39921,realme Narzo N65 5G 6GB RAM,Deep Green,6GB+128GB
-39921,realme Narzo N65 5G 6GB RAM,Deep Green,8GB+128
+39921,realme Narzo N65 5G 6GB RAM,Deep Green,8GB+128GB
+40110,realme Narzo N65 5G 8GB RAM,Amber Gold,4GB+128GB
 40110,realme Narzo N65 5G 8GB RAM,Amber Gold,6GB+128GB
+40110,realme Narzo N65 5G 8GB RAM,Amber Gold,8GB+128GB
+40110,realme Narzo N65 5G 8GB RAM,Deep Green,4GB+128GB
 40110,realme Narzo N65 5G 8GB RAM,Deep Green,6GB+128GB
+40110,realme Narzo N65 5G 8GB RAM,Deep Green,8GB+128GB
 39787,realme P1,Feather Blue,6GB+128GB
 39787,realme P1,Feather Blue,8GB+128GB
 39787,realme P1,Feather Blue,8GB+256GB
@@ -2524,9 +2442,9 @@ model_id,product_name,colour,ram_rom
 40271,realme P1 Speed 5G,Textured Titanium,8GB+128GB
 40271,realme P1 Speed 5G,Textured Titanium,12GB+256GB
 40272,realme P1 Speed 5G 256GB,Phoenix Red,8GB+128GB
-40272,realme P1 Speed 5G 256GB,Phoenix Red,8GB+156GB
+40272,realme P1 Speed 5G 256GB,Phoenix Red,8GB+256GB
 40272,realme P1 Speed 5G 256GB,Peacock Green,8GB+128GB
-40272,realme P1 Speed 5G 256GB,Peacock Green,8GB+156GB
+40272,realme P1 Speed 5G 256GB,Peacock Green,8GB+256GB
 40181,realme P2 Pro,Parrot Green,8GB+128GB
 40181,realme P2 Pro,Parrot Green,12GB+256GB
 40181,realme P2 Pro,Parrot Green,12GB+512GB
@@ -2575,8 +2493,11 @@ model_id,product_name,colour,ram_rom
 40189,Reliance JioPhone Prima 2 4G,Luxe Blue,512MB+512MB
 39431,Reliance JioPhone Prima 4G,Blue,512MB
 39917,Ringme Ninja,Light Pink,32MB
+37488,Samsung Galaxy A05,Black,4GB+64GB
 37488,Samsung Galaxy A05,Black,6GB+128GB
+37488,Samsung Galaxy A05,Silver,4GB+64GB
 37488,Samsung Galaxy A05,Silver,6GB+128GB
+37488,Samsung Galaxy A05,Light Green,4GB+64GB
 37488,Samsung Galaxy A05,Light Green,6GB+128GB
 39233,Samsung Galaxy A05s,Black,4GB+128GB
 39233,Samsung Galaxy A05s,Black,6GB+128GB
@@ -2593,13 +2514,15 @@ model_id,product_name,colour,ram_rom
 40712,Samsung Galaxy A06 5G,Light Green,4 GB + 64 GB
 40712,Samsung Galaxy A06 5G,Light Green,4 GB + 128 GB
 40712,Samsung Galaxy A06 5G,Light Green,6 GB + 128 GB
-40717,Samsung Galaxy A06 5G 6GB RAM,Light Gray,6GB+128GB
-40717,Samsung Galaxy A06 5G 6GB RAM,Light Green,6GB+128GB
-40717,Samsung Galaxy A06 5G 6GB RAM,Black,6GB+128GB
-38449,Samsung Galaxy A14 5G,Dark Red,4GB+64GB
-38449,Samsung Galaxy A14 5G,Dark Red,4GB+128GB
-38449,Samsung Galaxy A14 5G,Dark Red,6GB+128GB
-38449,Samsung Galaxy A14 5G,Dark Red,8GB+128GB
+40717,Samsung Galaxy A06 5G,Black,4 GB + 64 GB
+40717,Samsung Galaxy A06 5G,Black,4 GB + 128 GB
+40717,Samsung Galaxy A06 5G,Black,6 GB + 128 GB
+40717,Samsung Galaxy A06 5G,Gray,4 GB + 64 GB
+40717,Samsung Galaxy A06 5G,Gray,4 GB + 128 GB
+40717,Samsung Galaxy A06 5G,Gray,6 GB + 128 GB
+40717,Samsung Galaxy A06 5G,Light Green,4 GB + 64 GB
+40717,Samsung Galaxy A06 5G,Light Green,4 GB + 128 GB
+40717,Samsung Galaxy A06 5G,Light Green,6 GB + 128 GB
 38449,Samsung Galaxy A14 5G,Black,4GB+64GB
 38449,Samsung Galaxy A14 5G,Black,4GB+128GB
 38449,Samsung Galaxy A14 5G,Black,6GB+128GB
@@ -2608,58 +2531,110 @@ model_id,product_name,colour,ram_rom
 38449,Samsung Galaxy A14 5G,Light Green,4GB+128GB
 38449,Samsung Galaxy A14 5G,Light Green,6GB+128GB
 38449,Samsung Galaxy A14 5G,Light Green,8GB+128GB
-38575,Samsung Galaxy A14 5G 128GB,Silver,4GB+128GB
-38575,Samsung Galaxy A14 5G 128GB,Silver,6GB+128GB
-38575,Samsung Galaxy A14 5G 128GB,Silver,8GB+128GB
-38575,Samsung Galaxy A14 5G 128GB,Dark Red,4GB+128GB
-38575,Samsung Galaxy A14 5G 128GB,Dark Red,6GB+128GB
-38575,Samsung Galaxy A14 5G 128GB,Dark Red,8GB+128GB
-38575,Samsung Galaxy A14 5G 128GB,Light Green,4GB+128GB
-38575,Samsung Galaxy A14 5G 128GB,Light Green,6GB+128GB
-38575,Samsung Galaxy A14 5G 128GB,Light Green,8GB+128GB
+38449,Samsung Galaxy A14 5G,Dark Red,4GB+64GB
+38449,Samsung Galaxy A14 5G,Dark Red,4GB+128GB
+38449,Samsung Galaxy A14 5G,Dark Red,6GB+128GB
+38449,Samsung Galaxy A14 5G,Dark Red,8GB+128GB
+38449,Samsung Galaxy A14 5G,Silver,4GB+64GB
+38449,Samsung Galaxy A14 5G,Silver,4GB+128GB
+38449,Samsung Galaxy A14 5G,Silver,6GB+128GB
+38449,Samsung Galaxy A14 5G,Silver,8GB+128GB
+38575,Samsung Galaxy A14 5G 128GB,Black,4GB+64GB
 38575,Samsung Galaxy A14 5G 128GB,Black,4GB+128GB
 38575,Samsung Galaxy A14 5G 128GB,Black,6GB+128GB
 38575,Samsung Galaxy A14 5G 128GB,Black,8GB+128GB
+38575,Samsung Galaxy A14 5G 128GB,Light Green,4GB+64GB
+38575,Samsung Galaxy A14 5G 128GB,Light Green,4GB+128GB
+38575,Samsung Galaxy A14 5G 128GB,Light Green,6GB+128GB
+38575,Samsung Galaxy A14 5G 128GB,Light Green,8GB+128GB
+38575,Samsung Galaxy A14 5G 128GB,Dark Red,4GB+64GB
+38575,Samsung Galaxy A14 5G 128GB,Dark Red,4GB+128GB
+38575,Samsung Galaxy A14 5G 128GB,Dark Red,6GB+128GB
+38575,Samsung Galaxy A14 5G 128GB,Dark Red,8GB+128GB
+38575,Samsung Galaxy A14 5G 128GB,Silver,4GB+64GB
+38575,Samsung Galaxy A14 5G 128GB,Silver,4GB+128GB
+38575,Samsung Galaxy A14 5G 128GB,Silver,6GB+128GB
+38575,Samsung Galaxy A14 5G 128GB,Silver,8GB+128GB
 39573,Samsung Galaxy A14 5G 4GB RAM,Black,4GB+64GB
 39573,Samsung Galaxy A14 5G 4GB RAM,Black,4GB+128GB
+39573,Samsung Galaxy A14 5G 4GB RAM,Black,6GB+128GB
+39573,Samsung Galaxy A14 5G 4GB RAM,Black,8GB+128GB
 39573,Samsung Galaxy A14 5G 4GB RAM,Light Green,4GB+64GB
 39573,Samsung Galaxy A14 5G 4GB RAM,Light Green,4GB+128GB
+39573,Samsung Galaxy A14 5G 4GB RAM,Light Green,6GB+128GB
+39573,Samsung Galaxy A14 5G 4GB RAM,Light Green,8GB+128GB
 39573,Samsung Galaxy A14 5G 4GB RAM,Dark Red,4GB+64GB
 39573,Samsung Galaxy A14 5G 4GB RAM,Dark Red,4GB+128GB
+39573,Samsung Galaxy A14 5G 4GB RAM,Dark Red,6GB+128GB
+39573,Samsung Galaxy A14 5G 4GB RAM,Dark Red,8GB+128GB
 39573,Samsung Galaxy A14 5G 4GB RAM,Silver,4GB+64GB
 39573,Samsung Galaxy A14 5G 4GB RAM,Silver,4GB+128GB
-38576,Samsung Galaxy A14 5G 8GB RAM,Silver,8GB+128GB
-38576,Samsung Galaxy A14 5G 8GB RAM,Dark Red,8GB+128GB
-38576,Samsung Galaxy A14 5G 8GB RAM,Light Green,8GB+128GB
+39573,Samsung Galaxy A14 5G 4GB RAM,Silver,6GB+128GB
+39573,Samsung Galaxy A14 5G 4GB RAM,Silver,8GB+128GB
+38576,Samsung Galaxy A14 5G 8GB RAM,Black,4GB+64GB
+38576,Samsung Galaxy A14 5G 8GB RAM,Black,4GB+128GB
+38576,Samsung Galaxy A14 5G 8GB RAM,Black,6GB+128GB
 38576,Samsung Galaxy A14 5G 8GB RAM,Black,8GB+128GB
-39420,Samsung Galaxy A15 5G,Brave Black,4GB+64GB
-39420,Samsung Galaxy A15 5G,Brave Black,4GB+128GB
-39420,Samsung Galaxy A15 5G,Brave Black,6GB+128GB
-39420,Samsung Galaxy A15 5G,Brave Black,8GB+128GB
-39420,Samsung Galaxy A15 5G,Brave Black,8GB+256GB
-39420,Samsung Galaxy A15 5G,Personality Yellow,4GB+64GB
-39420,Samsung Galaxy A15 5G,Personality Yellow,4GB+128GB
-39420,Samsung Galaxy A15 5G,Personality Yellow,6GB+128GB
-39420,Samsung Galaxy A15 5G,Personality Yellow,8GB+128GB
-39420,Samsung Galaxy A15 5G,Personality Yellow,8GB+256GB
-39420,Samsung Galaxy A15 5G,Magical Blue,4GB+64GB
-39420,Samsung Galaxy A15 5G,Magical Blue,4GB+128GB
-39420,Samsung Galaxy A15 5G,Magical Blue,6GB+128GB
-39420,Samsung Galaxy A15 5G,Magical Blue,8GB+128GB
-39420,Samsung Galaxy A15 5G,Magical Blue,8GB+256GB
-39420,Samsung Galaxy A15 5G,Optimistic Blue,4GB+64GB
-39420,Samsung Galaxy A15 5G,Optimistic Blue,4GB+128GB
-39420,Samsung Galaxy A15 5G,Optimistic Blue,6GB+128GB
-39420,Samsung Galaxy A15 5G,Optimistic Blue,8GB+128GB
-39420,Samsung Galaxy A15 5G,Optimistic Blue,8GB+256GB
-39544,Samsung Galaxy A15 5G 256GB,Brave Black,8GB+256GB
-39544,Samsung Galaxy A15 5G 256GB,Personality Yellow,8GB+256GB
-39544,Samsung Galaxy A15 5G 256GB,Magical Blue,8GB+256GB
-39544,Samsung Galaxy A15 5G 256GB,Optimistic Blue,8GB+256GB
+38576,Samsung Galaxy A14 5G 8GB RAM,Light Green,4GB+64GB
+38576,Samsung Galaxy A14 5G 8GB RAM,Light Green,4GB+128GB
+38576,Samsung Galaxy A14 5G 8GB RAM,Light Green,6GB+128GB
+38576,Samsung Galaxy A14 5G 8GB RAM,Light Green,8GB+128GB
+38576,Samsung Galaxy A14 5G 8GB RAM,Dark Red,4GB+64GB
+38576,Samsung Galaxy A14 5G 8GB RAM,Dark Red,4GB+128GB
+38576,Samsung Galaxy A14 5G 8GB RAM,Dark Red,6GB+128GB
+38576,Samsung Galaxy A14 5G 8GB RAM,Dark Red,8GB+128GB
+38576,Samsung Galaxy A14 5G 8GB RAM,Silver,4GB+64GB
+38576,Samsung Galaxy A14 5G 8GB RAM,Silver,4GB+128GB
+38576,Samsung Galaxy A14 5G 8GB RAM,Silver,6GB+128GB
+38576,Samsung Galaxy A14 5G 8GB RAM,Silver,8GB+128GB
+39420,Samsung Galaxy A15 5G,Light Blue,4GB+128GB
+39420,Samsung Galaxy A15 5G,Light Blue,6GB+128GB
+39420,Samsung Galaxy A15 5G,Light Blue,8GB+128GB
+39420,Samsung Galaxy A15 5G,Light Blue,8GB+256GB
+39420,Samsung Galaxy A15 5G,Blue Black,4GB+128GB
+39420,Samsung Galaxy A15 5G,Blue Black,6GB+128GB
+39420,Samsung Galaxy A15 5G,Blue Black,8GB+128GB
+39420,Samsung Galaxy A15 5G,Blue Black,8GB+256GB
+39420,Samsung Galaxy A15 5G,Blue,4GB+128GB
+39420,Samsung Galaxy A15 5G,Blue,6GB+128GB
+39420,Samsung Galaxy A15 5G,Blue,8GB+128GB
+39420,Samsung Galaxy A15 5G,Blue,8GB+256GB
+39420,Samsung Galaxy A15 5G,Yellow,4GB+128GB
+39420,Samsung Galaxy A15 5G,Yellow,6GB+128GB
+39420,Samsung Galaxy A15 5G,Yellow,8GB+128GB
+39420,Samsung Galaxy A15 5G,Yellow,8GB+256GB
+39544,Samsung Galaxy A15 5G 256GB,Light Blue,4GB+128GB
+39544,Samsung Galaxy A15 5G 256GB,Light Blue,6GB+128GB
+39544,Samsung Galaxy A15 5G 256GB,Light Blue,8GB+128GB
+39544,Samsung Galaxy A15 5G 256GB,Light Blue,8GB+256GB
+39544,Samsung Galaxy A15 5G 256GB,Blue Black,4GB+128GB
+39544,Samsung Galaxy A15 5G 256GB,Blue Black,6GB+128GB
+39544,Samsung Galaxy A15 5G 256GB,Blue Black,8GB+128GB
+39544,Samsung Galaxy A15 5G 256GB,Blue Black,8GB+256GB
+39544,Samsung Galaxy A15 5G 256GB,Blue,4GB+128GB
+39544,Samsung Galaxy A15 5G 256GB,Blue,6GB+128GB
+39544,Samsung Galaxy A15 5G 256GB,Blue,8GB+128GB
+39544,Samsung Galaxy A15 5G 256GB,Blue,8GB+256GB
+39544,Samsung Galaxy A15 5G 256GB,Yellow,4GB+128GB
+39544,Samsung Galaxy A15 5G 256GB,Yellow,6GB+128GB
+39544,Samsung Galaxy A15 5G 256GB,Yellow,8GB+128GB
+39544,Samsung Galaxy A15 5G 256GB,Yellow,8GB+256GB
+39657,Samsung Galaxy A15 5G 6GB RAM,Light Blue,4GB+128GB
 39657,Samsung Galaxy A15 5G 6GB RAM,Light Blue,6GB+128GB
+39657,Samsung Galaxy A15 5G 6GB RAM,Light Blue,8GB+128GB
+39657,Samsung Galaxy A15 5G 6GB RAM,Light Blue,8GB+256GB
+39657,Samsung Galaxy A15 5G 6GB RAM,Blue Black,4GB+128GB
 39657,Samsung Galaxy A15 5G 6GB RAM,Blue Black,6GB+128GB
+39657,Samsung Galaxy A15 5G 6GB RAM,Blue Black,8GB+128GB
+39657,Samsung Galaxy A15 5G 6GB RAM,Blue Black,8GB+256GB
+39657,Samsung Galaxy A15 5G 6GB RAM,Blue,4GB+128GB
 39657,Samsung Galaxy A15 5G 6GB RAM,Blue,6GB+128GB
-39657,Samsung Galaxy A15 5G 6GB RAM,Smartphone Yellow,6GB+128GB
+39657,Samsung Galaxy A15 5G 6GB RAM,Blue,8GB+128GB
+39657,Samsung Galaxy A15 5G 6GB RAM,Blue,8GB+256GB
+39657,Samsung Galaxy A15 5G 6GB RAM,Yellow,4GB+128GB
+39657,Samsung Galaxy A15 5G 6GB RAM,Yellow,6GB+128GB
+39657,Samsung Galaxy A15 5G 6GB RAM,Yellow,8GB+128GB
+39657,Samsung Galaxy A15 5G 6GB RAM,Yellow,8GB+256GB
 38627,Samsung Galaxy A16 5G,Blue Black,6GB+128GB
 38627,Samsung Galaxy A16 5G,Blue Black,8GB+128GB
 38627,Samsung Galaxy A16 5G,Blue Black,8GB+256GB
@@ -2669,23 +2644,67 @@ model_id,product_name,colour,ram_rom
 38627,Samsung Galaxy A16 5G,Light Green,6GB+128GB
 38627,Samsung Galaxy A16 5G,Light Green,8GB+128GB
 38627,Samsung Galaxy A16 5G,Light Green,8GB+256GB
-36882,Samsung Galaxy A23 5G,Light Blue,6GB+128GB
-36882,Samsung Galaxy A23 5G,Light Blue,8GB+128GB
-36882,Samsung Galaxy A23 5G,Orange,6GB+128GB
-36882,Samsung Galaxy A23 5G,Orange,8GB+128GB
-38578,Samsung Galaxy A23 5G 8GB RAM,Awesome Black,8GB+128GB
-38578,Samsung Galaxy A23 5G 8GB RAM,Awesome Black,8GB+256
-38578,Samsung Galaxy A23 5G 8GB RAM,Awesome Peach,8GB+128GB
-38578,Samsung Galaxy A23 5G 8GB RAM,Awesome Peach,8GB+256
-38578,Samsung Galaxy A23 5G 8GB RAM,Awesome Mint,8GB+128GB
-38578,Samsung Galaxy A23 5G 8GB RAM,Awesome Mint,8GB+256
-38578,Samsung Galaxy A23 5G 8GB RAM,Awesome White,8GB+128GB
-38578,Samsung Galaxy A23 5G 8GB RAM,Awesome White,8GB+256
-38678,Samsung Galaxy A25 5G,Smartphone Light Blue,8GB+128GB
+36882,Samsung Galaxy A23 5G,Light Blue,4GB + 64GB
+36882,Samsung Galaxy A23 5G,Light Blue,6GB + 64GB
+36882,Samsung Galaxy A23 5G,Light Blue,4GB + 128GB
+36882,Samsung Galaxy A23 5G,Light Blue,6GB + 128GB
+36882,Samsung Galaxy A23 5G,Light Blue,8GB + 128GB
+36882,Samsung Galaxy A23 5G,Silver,4GB + 64GB
+36882,Samsung Galaxy A23 5G,Silver,6GB + 64GB
+36882,Samsung Galaxy A23 5G,Silver,4GB + 128GB
+36882,Samsung Galaxy A23 5G,Silver,6GB + 128GB
+36882,Samsung Galaxy A23 5G,Silver,8GB + 128GB
+36882,Samsung Galaxy A23 5G,Peach,4GB + 64GB
+36882,Samsung Galaxy A23 5G,Peach,6GB + 64GB
+36882,Samsung Galaxy A23 5G,Peach,4GB + 128GB
+36882,Samsung Galaxy A23 5G,Peach,6GB + 128GB
+36882,Samsung Galaxy A23 5G,Peach,8GB + 128GB
+36882,Samsung Galaxy A23 5G,Black,4GB + 64GB
+36882,Samsung Galaxy A23 5G,Black,6GB + 64GB
+36882,Samsung Galaxy A23 5G,Black,4GB + 128GB
+36882,Samsung Galaxy A23 5G,Black,6GB + 128GB
+36882,Samsung Galaxy A23 5G,Black,8GB + 128GB
+36882,Samsung Galaxy A23 5G,White,4GB + 64GB
+36882,Samsung Galaxy A23 5G,White,6GB + 64GB
+36882,Samsung Galaxy A23 5G,White,4GB + 128GB
+36882,Samsung Galaxy A23 5G,White,6GB + 128GB
+36882,Samsung Galaxy A23 5G,White,8GB + 128GB
+38578,Samsung Galaxy A23 5G 8GB RAM,Light Blue,4GB + 64GB
+38578,Samsung Galaxy A23 5G 8GB RAM,Light Blue,6GB + 64GB
+38578,Samsung Galaxy A23 5G 8GB RAM,Light Blue,4GB + 128GB
+38578,Samsung Galaxy A23 5G 8GB RAM,Light Blue,6GB + 128GB
+38578,Samsung Galaxy A23 5G 8GB RAM,Light Blue,8GB + 128GB
+38578,Samsung Galaxy A23 5G 8GB RAM,Silver,4GB + 64GB
+38578,Samsung Galaxy A23 5G 8GB RAM,Silver,6GB + 64GB
+38578,Samsung Galaxy A23 5G 8GB RAM,Silver,4GB + 128GB
+38578,Samsung Galaxy A23 5G 8GB RAM,Silver,6GB + 128GB
+38578,Samsung Galaxy A23 5G 8GB RAM,Silver,8GB + 128GB
+38578,Samsung Galaxy A23 5G 8GB RAM,Peach,4GB + 64GB
+38578,Samsung Galaxy A23 5G 8GB RAM,Peach,6GB + 64GB
+38578,Samsung Galaxy A23 5G 8GB RAM,Peach,4GB + 128GB
+38578,Samsung Galaxy A23 5G 8GB RAM,Peach,6GB + 128GB
+38578,Samsung Galaxy A23 5G 8GB RAM,Peach,8GB + 128GB
+38578,Samsung Galaxy A23 5G 8GB RAM,Black,4GB + 64GB
+38578,Samsung Galaxy A23 5G 8GB RAM,Black,6GB + 64GB
+38578,Samsung Galaxy A23 5G 8GB RAM,Black,4GB + 128GB
+38578,Samsung Galaxy A23 5G 8GB RAM,Black,6GB + 128GB
+38578,Samsung Galaxy A23 5G 8GB RAM,Black,8GB + 128GB
+38578,Samsung Galaxy A23 5G 8GB RAM,White,4GB + 64GB
+38578,Samsung Galaxy A23 5G 8GB RAM,White,6GB + 64GB
+38578,Samsung Galaxy A23 5G 8GB RAM,White,4GB + 128GB
+38578,Samsung Galaxy A23 5G 8GB RAM,White,6GB + 128GB
+38578,Samsung Galaxy A23 5G 8GB RAM,White,8GB + 128GB
 38678,Samsung Galaxy A25 5G,Blue Black,8GB+128GB
+38678,Samsung Galaxy A25 5G,Blue Black,8GB+256GB
+38678,Samsung Galaxy A25 5G,Light Blue,8GB+128GB
+38678,Samsung Galaxy A25 5G,Light Blue,8GB+256GB
 38678,Samsung Galaxy A25 5G,Yellow,8GB+128GB
+38678,Samsung Galaxy A25 5G,Yellow,8GB+256GB
+39545,Samsung Galaxy A25 5G 256GB,Blue Black,8GB+128GB
 39545,Samsung Galaxy A25 5G 256GB,Blue Black,8GB+256GB
+39545,Samsung Galaxy A25 5G 256GB,Light Blue,8GB+128GB
 39545,Samsung Galaxy A25 5G 256GB,Light Blue,8GB+256GB
+39545,Samsung Galaxy A25 5G 256GB,Yellow,8GB+128GB
 39545,Samsung Galaxy A25 5G 256GB,Yellow,8GB+256GB
 40736,Samsung Galaxy A26,Awesome Black,8GB+128GB
 40736,Samsung Galaxy A26,Awesome Black,8GB+256GB
@@ -2725,27 +2744,24 @@ model_id,product_name,colour,ram_rom
 36830,Samsung Galaxy A54 5G,Awesome Violet,8GB+256GB
 36830,Samsung Galaxy A54 5G,Awesome Graphite,8GB+128GB
 36830,Samsung Galaxy A54 5G,Awesome Graphite,8GB+256GB
-38829,Samsung Galaxy A54 5G 256GB,Awesome Graphite,6GB+256GB
-38829,Samsung Galaxy A54 5G 256GB,Awesome White,6GB+256GB
-38829,Samsung Galaxy A54 5G 256GB,Awesome Lime,6GB+256GB
+38829,Samsung Galaxy A54 5G 256GB,Awesome Lime,8GB+128GB
+38829,Samsung Galaxy A54 5G 256GB,Awesome Lime,8GB+256GB
+38829,Samsung Galaxy A54 5G 256GB,Awesome Violet,8GB+128GB
+38829,Samsung Galaxy A54 5G 256GB,Awesome Violet,8GB+256GB
+38829,Samsung Galaxy A54 5G 256GB,Awesome Graphite,8GB+128GB
+38829,Samsung Galaxy A54 5G 256GB,Awesome Graphite,8GB+256GB
 37611,Samsung Galaxy A55 5G,Awesome Iceblue,8GB+128GB
 37611,Samsung Galaxy A55 5G,Awesome Iceblue,8GB+256GB
 37611,Samsung Galaxy A55 5G,Awesome Iceblue,12GB+256GB
-37611,Samsung Galaxy A55 5G,Awesome Lemon,8GB+128GB
-37611,Samsung Galaxy A55 5G,Awesome Lemon,8GB+256GB
-37611,Samsung Galaxy A55 5G,Awesome Lemon,12GB+256GB
-37611,Samsung Galaxy A55 5G,Awesome Lilac,8GB+128GB
-37611,Samsung Galaxy A55 5G,Awesome Lilac,8GB+256GB
-37611,Samsung Galaxy A55 5G,Awesome Lilac,12GB+256GB
 37611,Samsung Galaxy A55 5G,Awesome Navy,8GB+128GB
 37611,Samsung Galaxy A55 5G,Awesome Navy,8GB+256GB
 37611,Samsung Galaxy A55 5G,Awesome Navy,12GB+256GB
-38701,Samsung Galaxy A56 5G,Awsome Olive,8GB+256GG
+38701,Samsung Galaxy A56 5G,Awsome Olive,8GB+128GB
+38701,Samsung Galaxy A56 5G,Awsome Olive,8GB+256GB
 38701,Samsung Galaxy A56 5G,Awsome Olive,12GB+256GB
-38701,Samsung Galaxy A56 5G,Awsome Graphite,8GB+256GG
+38701,Samsung Galaxy A56 5G,Awsome Graphite,8GB+128GB
+38701,Samsung Galaxy A56 5G,Awsome Graphite,8GB+256GB
 38701,Samsung Galaxy A56 5G,Awsome Graphite,12GB+256GB
-38701,Samsung Galaxy A56 5G,Awsome Lightgray,8GB+256GG
-38701,Samsung Galaxy A56 5G,Awsome Lightgray,12GB+256GB
 38520,Samsung Galaxy F04,Opal Green,4GB+64GB
 38520,Samsung Galaxy F04,Jade Purple,4GB+64GB
 40673,Samsung Galaxy F06 5G,Bahama Blue,4GB+64GB
@@ -2760,8 +2776,11 @@ model_id,product_name,colour,ram_rom
 38808,Samsung Galaxy F14 5G,O.M.G. Black,6GB+128GB
 38808,Samsung Galaxy F14 5G,G.O.A.T. Green,4GB+128GB
 38808,Samsung Galaxy F14 5G,G.O.A.T. Green,6GB+128GB
+38853,Samsung Galaxy F14 5G 6GB RAM,B.A.E. Purple,4GB+128GB
 38853,Samsung Galaxy F14 5G 6GB RAM,B.A.E. Purple,6GB+128GB
+38853,Samsung Galaxy F14 5G 6GB RAM,O.M.G. Black,4GB+128GB
 38853,Samsung Galaxy F14 5G 6GB RAM,O.M.G. Black,6GB+128GB
+38853,Samsung Galaxy F14 5G 6GB RAM,G.O.A.T. Green,4GB+128GB
 38853,Samsung Galaxy F14 5G 6GB RAM,G.O.A.T. Green,6GB+128GB
 38309,Samsung Galaxy F15,Black,4GB+128GB
 38309,Samsung Galaxy F15,Black,6GB+128GB
@@ -2813,10 +2832,18 @@ model_id,product_name,colour,ram_rom
 39822,Samsung Galaxy F55 5G,Apricot Crush,8GB+128GB
 39822,Samsung Galaxy F55 5G,Apricot Crush,8GB+256GB
 39822,Samsung Galaxy F55 5G,Apricot Crush,12GB+256GB
-39923,Samsung Galaxy F55 5G 12GB RAM,Black,12GB+256GB
-39923,Samsung Galaxy F55 5G 12GB RAM,Orange,12GB+256GB
-39922,Samsung Galaxy F55 5G 256GB,Black,12GB+256GB
-39922,Samsung Galaxy F55 5G 256GB,Orange,12GB+256GB
+39923,Samsung Galaxy F55 5G 12GB RAM,Raisin Black,8GB+128GB
+39923,Samsung Galaxy F55 5G 12GB RAM,Raisin Black,8GB+256GB
+39923,Samsung Galaxy F55 5G 12GB RAM,Raisin Black,12GB+256GB
+39923,Samsung Galaxy F55 5G 12GB RAM,Apricot Crush,8GB+128GB
+39923,Samsung Galaxy F55 5G 12GB RAM,Apricot Crush,8GB+256GB
+39923,Samsung Galaxy F55 5G 12GB RAM,Apricot Crush,12GB+256GB
+39922,Samsung Galaxy F55 5G 256GB,Raisin Black,8GB+128GB
+39922,Samsung Galaxy F55 5G 256GB,Raisin Black,8GB+256GB
+39922,Samsung Galaxy F55 5G 256GB,Raisin Black,12GB+256GB
+39922,Samsung Galaxy F55 5G 256GB,Apricot Crush,8GB+128GB
+39922,Samsung Galaxy F55 5G 256GB,Apricot Crush,8GB+256GB
+39922,Samsung Galaxy F55 5G 256GB,Apricot Crush,12GB+256GB
 40994,Samsung Galaxy F56 5G,Green,8GB+128GB
 40994,Samsung Galaxy F56 5G,Green,8GB+256GB
 40994,Samsung Galaxy F56 5G,Violet,8GB+128GB
@@ -2891,166 +2918,372 @@ model_id,product_name,colour,ram_rom
 36959,Samsung Galaxy S23 5G,Green,8GB+256GB
 36959,Samsung Galaxy S23 5G,Lavender,8GB+128GB
 36959,Samsung Galaxy S23 5G,Lavender,8GB+256GB
-38609,Samsung Galaxy S23 5G 256GB,Phantom Black,8GB+256GB
+38609,Samsung Galaxy S23 5G 256GB,Cream,8GB+128GB
 38609,Samsung Galaxy S23 5G 256GB,Cream,8GB+256GB
+38609,Samsung Galaxy S23 5G 256GB,Phantom Black,8GB+128GB
+38609,Samsung Galaxy S23 5G 256GB,Phantom Black,8GB+256GB
+38609,Samsung Galaxy S23 5G 256GB,Green,8GB+128GB
 38609,Samsung Galaxy S23 5G 256GB,Green,8GB+256GB
+38609,Samsung Galaxy S23 5G 256GB,Lavender,8GB+128GB
 38609,Samsung Galaxy S23 5G 256GB,Lavender,8GB+256GB
-38609,Samsung Galaxy S23 5G 256GB,Graphite,8GB+256GB
-38609,Samsung Galaxy S23 5G 256GB,Lime,8GB+256GB
-37457,Samsung Galaxy S23 FE,Purple,8GB+128GB
-37457,Samsung Galaxy S23 FE,Mint,8GB+128GB
-37457,Samsung Galaxy S23 FE,Indigo,8GB+128GB
-37457,Samsung Galaxy S23 FE,Tangerine,8GB+128GB
-37457,Samsung Galaxy S23 FE,Blue,8GB+128GB
-37457,Samsung Galaxy S23 FE,Graphite,8GB+128GB
-37457,Samsung Galaxy S23 FE,Cream,8GB+128GB
-39360,Samsung Galaxy S23 FE 5G 256GB,Mint,8GB+256GB
-39360,Samsung Galaxy S23 FE 5G 256GB,Indigo,8GB+256GB
-39360,Samsung Galaxy S23 FE 5G 256GB,Tangerine,8GB+256GB
-39360,Samsung Galaxy S23 FE 5G 256GB,GB Storage Purple,8GB+256GB
-39360,Samsung Galaxy S23 FE 5G 256GB,Blue,8GB+256GB
+37457,Samsung Galaxy S23 FE,Mint,8GB RAM + 128GB
+37457,Samsung Galaxy S23 FE,Mint,8GB RAM + 256GB
+37457,Samsung Galaxy S23 FE,Cream,8GB RAM + 128GB
+37457,Samsung Galaxy S23 FE,Cream,8GB RAM + 256GB
+37457,Samsung Galaxy S23 FE,Graphite,8GB RAM + 128GB
+37457,Samsung Galaxy S23 FE,Graphite,8GB RAM + 256GB
+37457,Samsung Galaxy S23 FE,Purple,8GB RAM + 128GB
+37457,Samsung Galaxy S23 FE,Purple,8GB RAM + 256GB
+37457,Samsung Galaxy S23 FE,Indigo,8GB RAM + 128GB
+37457,Samsung Galaxy S23 FE,Indigo,8GB RAM + 256GB
+37457,Samsung Galaxy S23 FE,Tangerine,8GB RAM + 128GB
+37457,Samsung Galaxy S23 FE,Tangerine,8GB RAM + 256GB
 39360,Samsung Galaxy S23 FE 5G 256GB,Graphite,8GB+256GB
-39360,Samsung Galaxy S23 FE 5G 256GB,Cream,8GB+256GB
-36960,Samsung Galaxy S23 Plus 5G,Cream,8GB+512GB
-36960,Samsung Galaxy S23 Plus 5G,Phantom Black,8GB+512GB
-38610,Samsung Galaxy S23 Plus 5G 512GB,Space Grey,8GB+256
-38610,Samsung Galaxy S23 Plus 5G 512GB,Space Grey,8GB+512GB
-38610,Samsung Galaxy S23 Plus 5G 512GB,Gold,8GB+256
-38610,Samsung Galaxy S23 Plus 5G 512GB,Gold,8GB+512GB
-38610,Samsung Galaxy S23 Plus 5G 512GB,Silver,8GB+256
-38610,Samsung Galaxy S23 Plus 5G 512GB,Silver,8GB+512GB
-36961,Samsung Galaxy S23 Ultra 5G,Green,12GB+256GB
-36961,Samsung Galaxy S23 Ultra 5G,Green,12GB+512GB
-36961,Samsung Galaxy S23 Ultra 5G,Storage Red,12GB+256GB
-36961,Samsung Galaxy S23 Ultra 5G,Storage Red,12GB+512GB
-36961,Samsung Galaxy S23 Ultra 5G,Phantom Black,12GB+256GB
-36961,Samsung Galaxy S23 Ultra 5G,Phantom Black,12GB+512GB
-36961,Samsung Galaxy S23 Ultra 5G,Purple,12GB+256GB
-36961,Samsung Galaxy S23 Ultra 5G,Purple,12GB+512GB
-36961,Samsung Galaxy S23 Ultra 5G,Lime,12GB+256GB
-36961,Samsung Galaxy S23 Ultra 5G,Lime,12GB+512GB
-36961,Samsung Galaxy S23 Ultra 5G,Graphite,12GB+256GB
-36961,Samsung Galaxy S23 Ultra 5G,Graphite,12GB+512GB
-36961,Samsung Galaxy S23 Ultra 5G,Cream,12GB+256GB
-36961,Samsung Galaxy S23 Ultra 5G,Cream,12GB+512GB
-36961,Samsung Galaxy S23 Ultra 5G,Sky Blue,12GB+256GB
-36961,Samsung Galaxy S23 Ultra 5G,Sky Blue,12GB+512GB
-38612,Samsung Galaxy S23 Ultra 5G 1TB,Lime,12GB+1024GB
-38612,Samsung Galaxy S23 Ultra 5G 1TB,Graphite,12GB+1024GB
-38612,Samsung Galaxy S23 Ultra 5G 1TB,Green,12GB+1024GB
-38612,Samsung Galaxy S23 Ultra 5G 1TB,Phantom Black,12GB+1024GB
-38612,Samsung Galaxy S23 Ultra 5G 1TB,Sky Blue,12GB+1024GB
-38612,Samsung Galaxy S23 Ultra 5G 1TB,Lavender,12GB+1024GB
-38612,Samsung Galaxy S23 Ultra 5G 1TB,Cream,12GB+1024GB
-38612,Samsung Galaxy S23 Ultra 5G 1TB,Red,12GB+1024GB
-38611,Samsung Galaxy S23 Ultra 5G 512GB,Phantom Black,12GB+512GB
-38611,Samsung Galaxy S23 Ultra 5G 512GB,Green,12GB+512GB
-38611,Samsung Galaxy S23 Ultra 5G 512GB,Cream,12GB+512GB
-38611,Samsung Galaxy S23 Ultra 5G 512GB,Lavender,12GB+512GB
-38611,Samsung Galaxy S23 Ultra 5G 512GB,Graphite,12GB+512GB
-38611,Samsung Galaxy S23 Ultra 5G 512GB,Sky Blue,12GB+512GB
-38611,Samsung Galaxy S23 Ultra 5G 512GB,Lime,12GB+512GB
-38611,Samsung Galaxy S23 Ultra 5G 512GB,Red,12GB+512GB
-38611,Samsung Galaxy S23 Ultra 5G 512GB,BMW M Edition,12GB+512GB
-37467,Samsung Galaxy S24 5G,Marble Gray,8GB+128GB
-37467,Samsung Galaxy S24 5G,Onyx Black,8GB+128GB
-37467,Samsung Galaxy S24 5G,Cobalt Violet,8GB+128GB
-37467,Samsung Galaxy S24 5G,Sapphire Blue,8GB+128GB
-37467,Samsung Galaxy S24 5G,Amber Yellow,8GB+128GB
-39846,Samsung Galaxy S24 5G 128GB,Amber Yellow,8GB+128GB
-39846,Samsung Galaxy S24 5G 128GB,Amber Yellow,8GB+256GB
-39846,Samsung Galaxy S24 5G 128GB,Cobalt Violet,8GB+128GB
-39846,Samsung Galaxy S24 5G 128GB,Cobalt Violet,8GB+256GB
-39846,Samsung Galaxy S24 5G 128GB,Onyx Black,8GB+128GB
-39846,Samsung Galaxy S24 5G 128GB,Onyx Black,8GB+256GB
-39846,Samsung Galaxy S24 5G 128GB,Marble Gray,8GB+128GB
-39846,Samsung Galaxy S24 5G 128GB,Marble Gray,8GB+256GB
-39588,Samsung Galaxy S24 5G 512GB,Onyx Black,8GB+512GB
-39588,Samsung Galaxy S24 5G 512GB,Marble Grey,8GB+512GB
-39588,Samsung Galaxy S24 5G 512GB,Cobalt Violet,8GB+512GB
-39588,Samsung Galaxy S24 5G 512GB,Amber Yellow,8GB+512GB
-39588,Samsung Galaxy S24 5G 512GB,Jade Green,8GB+512GB
-39588,Samsung Galaxy S24 5G 512GB,Sandstone Orange,8GB+512GB
-39588,Samsung Galaxy S24 5G 512GB,Sapphire Blue,8GB+512GB
-40246,Samsung Galaxy S24 FE 256GB,Blue,8GB+128GB
-40246,Samsung Galaxy S24 FE 256GB,Blue,8GB+256GB
-40246,Samsung Galaxy S24 FE 256GB,Graphite,8GB+128GB
-40246,Samsung Galaxy S24 FE 256GB,Graphite,8GB+256GB
-40246,Samsung Galaxy S24 FE 256GB,Mint,8GB+128GB
-40246,Samsung Galaxy S24 FE 256GB,Mint,8GB+256GB
-37485,Samsung Galaxy S24 Plus 5G,Onyx Black,8GB+512GB
-37485,Samsung Galaxy S24 Plus 5G,Cobalt Violet,8GB+512GB
-37485,Samsung Galaxy S24 Plus 5G,Amber Yellow,8GB+512GB
-37485,Samsung Galaxy S24 Plus 5G,Gray,8GB+512GB
-39589,Samsung Galaxy S24 Plus 5G,Amber Yellow,8GB+128GB
-39589,Samsung Galaxy S24 Plus 5G,Amber Yellow,8GB+256GB
-39589,Samsung Galaxy S24 Plus 5G,Cobalt Violet,8GB+128GB
-39589,Samsung Galaxy S24 Plus 5G,Cobalt Violet,8GB+256GB
-39589,Samsung Galaxy S24 Plus 5G,Onyx Black,8GB+128GB
-39589,Samsung Galaxy S24 Plus 5G,Onyx Black,8GB+256GB
-39589,Samsung Galaxy S24 Plus 5G,Marble Gray,8GB+128GB
-39589,Samsung Galaxy S24 Plus 5G,Marble Gray,8GB+256GB
-37438,Samsung Galaxy S24 Ultra,Titanium Orange,12GB+256GB
-37438,Samsung Galaxy S24 Ultra,Titanium Orange,12GB+512GB
-37438,Samsung Galaxy S24 Ultra,Titanium Orange,12GB+1024GB
-37438,Samsung Galaxy S24 Ultra,Titanium Green,12GB+256GB
-37438,Samsung Galaxy S24 Ultra,Titanium Green,12GB+512GB
-37438,Samsung Galaxy S24 Ultra,Titanium Green,12GB+1024GB
-37438,Samsung Galaxy S24 Ultra,Titanium Blue,12GB+256GB
-37438,Samsung Galaxy S24 Ultra,Titanium Blue,12GB+512GB
-37438,Samsung Galaxy S24 Ultra,Titanium Blue,12GB+1024GB
-37438,Samsung Galaxy S24 Ultra,Titanium Yellow,12GB+256GB
-37438,Samsung Galaxy S24 Ultra,Titanium Yellow,12GB+512GB
-37438,Samsung Galaxy S24 Ultra,Titanium Yellow,12GB+1024GB
-37438,Samsung Galaxy S24 Ultra,Titanium Violet,12GB+256GB
-37438,Samsung Galaxy S24 Ultra,Titanium Violet,12GB+512GB
-37438,Samsung Galaxy S24 Ultra,Titanium Violet,12GB+1024GB
-37438,Samsung Galaxy S24 Ultra,Titanium Gray,12GB+256GB
-37438,Samsung Galaxy S24 Ultra,Titanium Gray,12GB+512GB
-37438,Samsung Galaxy S24 Ultra,Titanium Gray,12GB+1024GB
-37438,Samsung Galaxy S24 Ultra,Titanium Black,12GB+256GB
-37438,Samsung Galaxy S24 Ultra,Titanium Black,12GB+512GB
-37438,Samsung Galaxy S24 Ultra,Titanium Black,12GB+1024GB
-40823,Samsung Galaxy S25 128GB,Silver,12GB+128GB
-40823,Samsung Galaxy S25 128GB,Blue Black,12GB+128GB
-40823,Samsung Galaxy S25 128GB,Navy,12GB+128GB
-40823,Samsung Galaxy S25 128GB,Mint,12GB+128GB
-40823,Samsung Galaxy S25 128GB,Coral Red,12GB+128GB
-40823,Samsung Galaxy S25 128GB,Pink Gold,12GB+128GB
-40823,Samsung Galaxy S25 128GB,Icy Blue,12GB+128GB
+39360,Samsung Galaxy S23 FE 5G 256GB,Graphite,8 GB + 128 GB
+39360,Samsung Galaxy S23 FE 5G 256GB,Mint,8GB+256GB
+39360,Samsung Galaxy S23 FE 5G 256GB,Mint,8 GB + 128 GB
+39360,Samsung Galaxy S23 FE 5G 256GB,Purple,8GB+256GB
+39360,Samsung Galaxy S23 FE 5G 256GB,Purple,8 GB + 128 GB
+36960,Samsung Galaxy S23 Plus 5G,Phantom Black,8GB RAM + 256GB
+36960,Samsung Galaxy S23 Plus 5G,Phantom Black,8GB RAM + 512GB
+36960,Samsung Galaxy S23 Plus 5G,Cream,8GB RAM + 256GB
+36960,Samsung Galaxy S23 Plus 5G,Cream,8GB RAM + 512GB
+36960,Samsung Galaxy S23 Plus 5G,Green,8GB RAM + 256GB
+36960,Samsung Galaxy S23 Plus 5G,Green,8GB RAM + 512GB
+36960,Samsung Galaxy S23 Plus 5G,Lavender,8GB RAM + 256GB
+36960,Samsung Galaxy S23 Plus 5G,Lavender,8GB RAM + 512GB
+36960,Samsung Galaxy S23 Plus 5G,Graphite,8GB RAM + 256GB
+36960,Samsung Galaxy S23 Plus 5G,Graphite,8GB RAM + 512GB
+36960,Samsung Galaxy S23 Plus 5G,Lime,8GB RAM + 256GB
+36960,Samsung Galaxy S23 Plus 5G,Lime,8GB RAM + 512GB
+38610,Samsung Galaxy S23 Plus 5G 512GB,Phantom Black,8GB RAM + 256GB
+38610,Samsung Galaxy S23 Plus 5G 512GB,Phantom Black,8GB RAM + 512GB
+38610,Samsung Galaxy S23 Plus 5G 512GB,Cream,8GB RAM + 256GB
+38610,Samsung Galaxy S23 Plus 5G 512GB,Cream,8GB RAM + 512GB
+38610,Samsung Galaxy S23 Plus 5G 512GB,Green,8GB RAM + 256GB
+38610,Samsung Galaxy S23 Plus 5G 512GB,Green,8GB RAM + 512GB
+38610,Samsung Galaxy S23 Plus 5G 512GB,Lavender,8GB RAM + 256GB
+38610,Samsung Galaxy S23 Plus 5G 512GB,Lavender,8GB RAM + 512GB
+38610,Samsung Galaxy S23 Plus 5G 512GB,Graphite,8GB RAM + 256GB
+38610,Samsung Galaxy S23 Plus 5G 512GB,Graphite,8GB RAM + 512GB
+38610,Samsung Galaxy S23 Plus 5G 512GB,Lime,8GB RAM + 256GB
+38610,Samsung Galaxy S23 Plus 5G 512GB,Lime,8GB RAM + 512GB
+36961,Samsung Galaxy S23 Ultra 5G,Phantom Black,12GB RAM + 256GB
+36961,Samsung Galaxy S23 Ultra 5G,Phantom Black,12GB RAM + 512GB
+36961,Samsung Galaxy S23 Ultra 5G,Phantom Black,12GB RAM + 1TB
+36961,Samsung Galaxy S23 Ultra 5G,Green,12GB RAM + 256GB
+36961,Samsung Galaxy S23 Ultra 5G,Green,12GB RAM + 512GB
+36961,Samsung Galaxy S23 Ultra 5G,Green,12GB RAM + 1TB
+36961,Samsung Galaxy S23 Ultra 5G,Cream,12GB RAM + 256GB
+36961,Samsung Galaxy S23 Ultra 5G,Cream,12GB RAM + 512GB
+36961,Samsung Galaxy S23 Ultra 5G,Cream,12GB RAM + 1TB
+36961,Samsung Galaxy S23 Ultra 5G,Lavender,12GB RAM + 256GB
+36961,Samsung Galaxy S23 Ultra 5G,Lavender,12GB RAM + 512GB
+36961,Samsung Galaxy S23 Ultra 5G,Lavender,12GB RAM + 1TB
+36961,Samsung Galaxy S23 Ultra 5G,Graphite,12GB RAM + 256GB
+36961,Samsung Galaxy S23 Ultra 5G,Graphite,12GB RAM + 512GB
+36961,Samsung Galaxy S23 Ultra 5G,Graphite,12GB RAM + 1TB
+36961,Samsung Galaxy S23 Ultra 5G,Sky Blue,12GB RAM + 256GB
+36961,Samsung Galaxy S23 Ultra 5G,Sky Blue,12GB RAM + 512GB
+36961,Samsung Galaxy S23 Ultra 5G,Sky Blue,12GB RAM + 1TB
+36961,Samsung Galaxy S23 Ultra 5G,Lime,12GB RAM + 256GB
+36961,Samsung Galaxy S23 Ultra 5G,Lime,12GB RAM + 512GB
+36961,Samsung Galaxy S23 Ultra 5G,Lime,12GB RAM + 1TB
+36961,Samsung Galaxy S23 Ultra 5G,Red,12GB RAM + 256GB
+36961,Samsung Galaxy S23 Ultra 5G,Red,12GB RAM + 512GB
+36961,Samsung Galaxy S23 Ultra 5G,Red,12GB RAM + 1TB
+36961,Samsung Galaxy S23 Ultra 5G,BMW M Edition,12GB RAM + 256GB
+36961,Samsung Galaxy S23 Ultra 5G,BMW M Edition,12GB RAM + 512GB
+36961,Samsung Galaxy S23 Ultra 5G,BMW M Edition,12GB RAM + 1TB
+38612,Samsung Galaxy S23 Ultra 5G 1TB,Phantom Black,8GB RAM + 256GB
+38612,Samsung Galaxy S23 Ultra 5G 1TB,Phantom Black,12GB RAM + 256GB
+38612,Samsung Galaxy S23 Ultra 5G 1TB,Phantom Black,12GB RAM + 512GB
+38612,Samsung Galaxy S23 Ultra 5G 1TB,Phantom Black,12GB RAM + 1TB
+38612,Samsung Galaxy S23 Ultra 5G 1TB,Green,8GB RAM + 256GB
+38612,Samsung Galaxy S23 Ultra 5G 1TB,Green,12GB RAM + 256GB
+38612,Samsung Galaxy S23 Ultra 5G 1TB,Green,12GB RAM + 512GB
+38612,Samsung Galaxy S23 Ultra 5G 1TB,Green,12GB RAM + 1TB
+38612,Samsung Galaxy S23 Ultra 5G 1TB,Cream,8GB RAM + 256GB
+38612,Samsung Galaxy S23 Ultra 5G 1TB,Cream,12GB RAM + 256GB
+38612,Samsung Galaxy S23 Ultra 5G 1TB,Cream,12GB RAM + 512GB
+38612,Samsung Galaxy S23 Ultra 5G 1TB,Cream,12GB RAM + 1TB
+38612,Samsung Galaxy S23 Ultra 5G 1TB,Lavender,8GB RAM + 256GB
+38612,Samsung Galaxy S23 Ultra 5G 1TB,Lavender,12GB RAM + 256GB
+38612,Samsung Galaxy S23 Ultra 5G 1TB,Lavender,12GB RAM + 512GB
+38612,Samsung Galaxy S23 Ultra 5G 1TB,Lavender,12GB RAM + 1TB
+38612,Samsung Galaxy S23 Ultra 5G 1TB,Graphite,8GB RAM + 256GB
+38612,Samsung Galaxy S23 Ultra 5G 1TB,Graphite,12GB RAM + 256GB
+38612,Samsung Galaxy S23 Ultra 5G 1TB,Graphite,12GB RAM + 512GB
+38612,Samsung Galaxy S23 Ultra 5G 1TB,Graphite,12GB RAM + 1TB
+38612,Samsung Galaxy S23 Ultra 5G 1TB,Sky Blue,8GB RAM + 256GB
+38612,Samsung Galaxy S23 Ultra 5G 1TB,Sky Blue,12GB RAM + 256GB
+38612,Samsung Galaxy S23 Ultra 5G 1TB,Sky Blue,12GB RAM + 512GB
+38612,Samsung Galaxy S23 Ultra 5G 1TB,Sky Blue,12GB RAM + 1TB
+38612,Samsung Galaxy S23 Ultra 5G 1TB,Lime,8GB RAM + 256GB
+38612,Samsung Galaxy S23 Ultra 5G 1TB,Lime,12GB RAM + 256GB
+38612,Samsung Galaxy S23 Ultra 5G 1TB,Lime,12GB RAM + 512GB
+38612,Samsung Galaxy S23 Ultra 5G 1TB,Lime,12GB RAM + 1TB
+38612,Samsung Galaxy S23 Ultra 5G 1TB,Red,8GB RAM + 256GB
+38612,Samsung Galaxy S23 Ultra 5G 1TB,Red,12GB RAM + 256GB
+38612,Samsung Galaxy S23 Ultra 5G 1TB,Red,12GB RAM + 512GB
+38612,Samsung Galaxy S23 Ultra 5G 1TB,Red,12GB RAM + 1TB
+38612,Samsung Galaxy S23 Ultra 5G 1TB,BMW M Edition,8GB RAM + 256GB
+38612,Samsung Galaxy S23 Ultra 5G 1TB,BMW M Edition,12GB RAM + 256GB
+38612,Samsung Galaxy S23 Ultra 5G 1TB,BMW M Edition,12GB RAM + 512GB
+38612,Samsung Galaxy S23 Ultra 5G 1TB,BMW M Edition,12GB RAM + 1TB
+38611,Samsung Galaxy S23 Ultra 5G 512GB,Phantom Black,8GB RAM + 256GB
+38611,Samsung Galaxy S23 Ultra 5G 512GB,Phantom Black,12GB RAM + 256GB
+38611,Samsung Galaxy S23 Ultra 5G 512GB,Phantom Black,12GB RAM + 512GB
+38611,Samsung Galaxy S23 Ultra 5G 512GB,Phantom Black,12GB RAM + 1TB
+38611,Samsung Galaxy S23 Ultra 5G 512GB,Green,8GB RAM + 256GB
+38611,Samsung Galaxy S23 Ultra 5G 512GB,Green,12GB RAM + 256GB
+38611,Samsung Galaxy S23 Ultra 5G 512GB,Green,12GB RAM + 512GB
+38611,Samsung Galaxy S23 Ultra 5G 512GB,Green,12GB RAM + 1TB
+38611,Samsung Galaxy S23 Ultra 5G 512GB,Cream,8GB RAM + 256GB
+38611,Samsung Galaxy S23 Ultra 5G 512GB,Cream,12GB RAM + 256GB
+38611,Samsung Galaxy S23 Ultra 5G 512GB,Cream,12GB RAM + 512GB
+38611,Samsung Galaxy S23 Ultra 5G 512GB,Cream,12GB RAM + 1TB
+38611,Samsung Galaxy S23 Ultra 5G 512GB,Lavender,8GB RAM + 256GB
+38611,Samsung Galaxy S23 Ultra 5G 512GB,Lavender,12GB RAM + 256GB
+38611,Samsung Galaxy S23 Ultra 5G 512GB,Lavender,12GB RAM + 512GB
+38611,Samsung Galaxy S23 Ultra 5G 512GB,Lavender,12GB RAM + 1TB
+38611,Samsung Galaxy S23 Ultra 5G 512GB,Graphite,8GB RAM + 256GB
+38611,Samsung Galaxy S23 Ultra 5G 512GB,Graphite,12GB RAM + 256GB
+38611,Samsung Galaxy S23 Ultra 5G 512GB,Graphite,12GB RAM + 512GB
+38611,Samsung Galaxy S23 Ultra 5G 512GB,Graphite,12GB RAM + 1TB
+38611,Samsung Galaxy S23 Ultra 5G 512GB,Sky Blue,8GB RAM + 256GB
+38611,Samsung Galaxy S23 Ultra 5G 512GB,Sky Blue,12GB RAM + 256GB
+38611,Samsung Galaxy S23 Ultra 5G 512GB,Sky Blue,12GB RAM + 512GB
+38611,Samsung Galaxy S23 Ultra 5G 512GB,Sky Blue,12GB RAM + 1TB
+38611,Samsung Galaxy S23 Ultra 5G 512GB,Lime,8GB RAM + 256GB
+38611,Samsung Galaxy S23 Ultra 5G 512GB,Lime,12GB RAM + 256GB
+38611,Samsung Galaxy S23 Ultra 5G 512GB,Lime,12GB RAM + 512GB
+38611,Samsung Galaxy S23 Ultra 5G 512GB,Lime,12GB RAM + 1TB
+38611,Samsung Galaxy S23 Ultra 5G 512GB,Red,8GB RAM + 256GB
+38611,Samsung Galaxy S23 Ultra 5G 512GB,Red,12GB RAM + 256GB
+38611,Samsung Galaxy S23 Ultra 5G 512GB,Red,12GB RAM + 512GB
+38611,Samsung Galaxy S23 Ultra 5G 512GB,Red,12GB RAM + 1TB
+38611,Samsung Galaxy S23 Ultra 5G 512GB,BMW M Edition,8GB RAM + 256GB
+38611,Samsung Galaxy S23 Ultra 5G 512GB,BMW M Edition,12GB RAM + 256GB
+38611,Samsung Galaxy S23 Ultra 5G 512GB,BMW M Edition,12GB RAM + 512GB
+38611,Samsung Galaxy S23 Ultra 5G 512GB,BMW M Edition,12GB RAM + 1TB
+37467,Samsung Galaxy S24 5G,Onyx Black,8GB RAM + 128GB
+37467,Samsung Galaxy S24 5G,Onyx Black,8GB RAM + 256GB
+37467,Samsung Galaxy S24 5G,Onyx Black,12GB RAM + 256GB
+37467,Samsung Galaxy S24 5G,Onyx Black,8GB RAM + 512GB
+37467,Samsung Galaxy S24 5G,Marble Grey,8GB RAM + 128GB
+37467,Samsung Galaxy S24 5G,Marble Grey,8GB RAM + 256GB
+37467,Samsung Galaxy S24 5G,Marble Grey,12GB RAM + 256GB
+37467,Samsung Galaxy S24 5G,Marble Grey,8GB RAM + 512GB
+37467,Samsung Galaxy S24 5G,Cobalt Violet,8GB RAM + 128GB
+37467,Samsung Galaxy S24 5G,Cobalt Violet,8GB RAM + 256GB
+37467,Samsung Galaxy S24 5G,Cobalt Violet,12GB RAM + 256GB
+37467,Samsung Galaxy S24 5G,Cobalt Violet,8GB RAM + 512GB
+37467,Samsung Galaxy S24 5G,Amber Yellow,8GB RAM + 128GB
+37467,Samsung Galaxy S24 5G,Amber Yellow,8GB RAM + 256GB
+37467,Samsung Galaxy S24 5G,Amber Yellow,12GB RAM + 256GB
+37467,Samsung Galaxy S24 5G,Amber Yellow,8GB RAM + 512GB
+37467,Samsung Galaxy S24 5G,Jade Green,8GB RAM + 128GB
+37467,Samsung Galaxy S24 5G,Jade Green,8GB RAM + 256GB
+37467,Samsung Galaxy S24 5G,Jade Green,12GB RAM + 256GB
+37467,Samsung Galaxy S24 5G,Jade Green,8GB RAM + 512GB
+37467,Samsung Galaxy S24 5G,Sandstone Orange,8GB RAM + 128GB
+37467,Samsung Galaxy S24 5G,Sandstone Orange,8GB RAM + 256GB
+37467,Samsung Galaxy S24 5G,Sandstone Orange,12GB RAM + 256GB
+37467,Samsung Galaxy S24 5G,Sandstone Orange,8GB RAM + 512GB
+37467,Samsung Galaxy S24 5G,Sapphire Blue,8GB RAM + 128GB
+37467,Samsung Galaxy S24 5G,Sapphire Blue,8GB RAM + 256GB
+37467,Samsung Galaxy S24 5G,Sapphire Blue,12GB RAM + 256GB
+37467,Samsung Galaxy S24 5G,Sapphire Blue,8GB RAM + 512GB
+39846,Samsung Galaxy S24 5G 128GB,Onyx Black,8GB RAM + 128GB
+39846,Samsung Galaxy S24 5G 128GB,Onyx Black,8GB RAM + 256GB
+39846,Samsung Galaxy S24 5G 128GB,Onyx Black,12GB RAM + 256GB
+39846,Samsung Galaxy S24 5G 128GB,Onyx Black,8GB RAM + 512GB
+39846,Samsung Galaxy S24 5G 128GB,Marble Grey,8GB RAM + 128GB
+39846,Samsung Galaxy S24 5G 128GB,Marble Grey,8GB RAM + 256GB
+39846,Samsung Galaxy S24 5G 128GB,Marble Grey,12GB RAM + 256GB
+39846,Samsung Galaxy S24 5G 128GB,Marble Grey,8GB RAM + 512GB
+39846,Samsung Galaxy S24 5G 128GB,Cobalt Violet,8GB RAM + 128GB
+39846,Samsung Galaxy S24 5G 128GB,Cobalt Violet,8GB RAM + 256GB
+39846,Samsung Galaxy S24 5G 128GB,Cobalt Violet,12GB RAM + 256GB
+39846,Samsung Galaxy S24 5G 128GB,Cobalt Violet,8GB RAM + 512GB
+39846,Samsung Galaxy S24 5G 128GB,Amber Yellow,8GB RAM + 128GB
+39846,Samsung Galaxy S24 5G 128GB,Amber Yellow,8GB RAM + 256GB
+39846,Samsung Galaxy S24 5G 128GB,Amber Yellow,12GB RAM + 256GB
+39846,Samsung Galaxy S24 5G 128GB,Amber Yellow,8GB RAM + 512GB
+39846,Samsung Galaxy S24 5G 128GB,Jade Green,8GB RAM + 128GB
+39846,Samsung Galaxy S24 5G 128GB,Jade Green,8GB RAM + 256GB
+39846,Samsung Galaxy S24 5G 128GB,Jade Green,12GB RAM + 256GB
+39846,Samsung Galaxy S24 5G 128GB,Jade Green,8GB RAM + 512GB
+39846,Samsung Galaxy S24 5G 128GB,Sandstone Orange,8GB RAM + 128GB
+39846,Samsung Galaxy S24 5G 128GB,Sandstone Orange,8GB RAM + 256GB
+39846,Samsung Galaxy S24 5G 128GB,Sandstone Orange,12GB RAM + 256GB
+39846,Samsung Galaxy S24 5G 128GB,Sandstone Orange,8GB RAM + 512GB
+39846,Samsung Galaxy S24 5G 128GB,Sapphire Blue,8GB RAM + 128GB
+39846,Samsung Galaxy S24 5G 128GB,Sapphire Blue,8GB RAM + 256GB
+39846,Samsung Galaxy S24 5G 128GB,Sapphire Blue,12GB RAM + 256GB
+39846,Samsung Galaxy S24 5G 128GB,Sapphire Blue,8GB RAM + 512GB
+39588,Samsung Galaxy S24 5G 512GB,Onyx Black,8GB RAM + 128GB
+39588,Samsung Galaxy S24 5G 512GB,Onyx Black,8GB RAM + 256GB
+39588,Samsung Galaxy S24 5G 512GB,Onyx Black,12GB RAM + 256GB
+39588,Samsung Galaxy S24 5G 512GB,Onyx Black,8GB RAM + 512GB
+39588,Samsung Galaxy S24 5G 512GB,Marble Grey,8GB RAM + 128GB
+39588,Samsung Galaxy S24 5G 512GB,Marble Grey,8GB RAM + 256GB
+39588,Samsung Galaxy S24 5G 512GB,Marble Grey,12GB RAM + 256GB
+39588,Samsung Galaxy S24 5G 512GB,Marble Grey,8GB RAM + 512GB
+39588,Samsung Galaxy S24 5G 512GB,Cobalt Violet,8GB RAM + 128GB
+39588,Samsung Galaxy S24 5G 512GB,Cobalt Violet,8GB RAM + 256GB
+39588,Samsung Galaxy S24 5G 512GB,Cobalt Violet,12GB RAM + 256GB
+39588,Samsung Galaxy S24 5G 512GB,Cobalt Violet,8GB RAM + 512GB
+39588,Samsung Galaxy S24 5G 512GB,Amber Yellow,8GB RAM + 128GB
+39588,Samsung Galaxy S24 5G 512GB,Amber Yellow,8GB RAM + 256GB
+39588,Samsung Galaxy S24 5G 512GB,Amber Yellow,12GB RAM + 256GB
+39588,Samsung Galaxy S24 5G 512GB,Amber Yellow,8GB RAM + 512GB
+39588,Samsung Galaxy S24 5G 512GB,Jade Green,8GB RAM + 128GB
+39588,Samsung Galaxy S24 5G 512GB,Jade Green,8GB RAM + 256GB
+39588,Samsung Galaxy S24 5G 512GB,Jade Green,12GB RAM + 256GB
+39588,Samsung Galaxy S24 5G 512GB,Jade Green,8GB RAM + 512GB
+39588,Samsung Galaxy S24 5G 512GB,Sandstone Orange,8GB RAM + 128GB
+39588,Samsung Galaxy S24 5G 512GB,Sandstone Orange,8GB RAM + 256GB
+39588,Samsung Galaxy S24 5G 512GB,Sandstone Orange,12GB RAM + 256GB
+39588,Samsung Galaxy S24 5G 512GB,Sandstone Orange,8GB RAM + 512GB
+39588,Samsung Galaxy S24 5G 512GB,Sapphire Blue,8GB RAM + 128GB
+39588,Samsung Galaxy S24 5G 512GB,Sapphire Blue,8GB RAM + 256GB
+39588,Samsung Galaxy S24 5G 512GB,Sapphire Blue,12GB RAM + 256GB
+39588,Samsung Galaxy S24 5G 512GB,Sapphire Blue,8GB RAM + 512GB
+40246,Samsung Galaxy S24 FE 256GB,Blue,8GB RAM + 128GB
+40246,Samsung Galaxy S24 FE 256GB,Blue,8GB RAM + 256GB
+40246,Samsung Galaxy S24 FE 256GB,Blue,8GB RAM + 512GB
+40246,Samsung Galaxy S24 FE 256GB,Graphite,8GB RAM + 128GB
+40246,Samsung Galaxy S24 FE 256GB,Graphite,8GB RAM + 256GB
+40246,Samsung Galaxy S24 FE 256GB,Graphite,8GB RAM + 512GB
+40246,Samsung Galaxy S24 FE 256GB,Gray,8GB RAM + 128GB
+40246,Samsung Galaxy S24 FE 256GB,Gray,8GB RAM + 256GB
+40246,Samsung Galaxy S24 FE 256GB,Gray,8GB RAM + 512GB
+40246,Samsung Galaxy S24 FE 256GB,Mint,8GB RAM + 128GB
+40246,Samsung Galaxy S24 FE 256GB,Mint,8GB RAM + 256GB
+40246,Samsung Galaxy S24 FE 256GB,Mint,8GB RAM + 512GB
+40246,Samsung Galaxy S24 FE 256GB,Yellow,8GB RAM + 128GB
+40246,Samsung Galaxy S24 FE 256GB,Yellow,8GB RAM + 256GB
+40246,Samsung Galaxy S24 FE 256GB,Yellow,8GB RAM + 512GB
+37485,Samsung Galaxy S24 Plus 5G,Onyx Black,12GB RAM + 256GB
+37485,Samsung Galaxy S24 Plus 5G,Onyx Black,12GB RAM + 512GB
+37485,Samsung Galaxy S24 Plus 5G,Marble Grey,12GB RAM + 256GB
+37485,Samsung Galaxy S24 Plus 5G,Marble Grey,12GB RAM + 512GB
+37485,Samsung Galaxy S24 Plus 5G,Cobalt Violet,12GB RAM + 256GB
+37485,Samsung Galaxy S24 Plus 5G,Cobalt Violet,12GB RAM + 512GB
+37485,Samsung Galaxy S24 Plus 5G,Amber Yellow,12GB RAM + 256GB
+37485,Samsung Galaxy S24 Plus 5G,Amber Yellow,12GB RAM + 512GB
+37485,Samsung Galaxy S24 Plus 5G,Jade Green,12GB RAM + 256GB
+37485,Samsung Galaxy S24 Plus 5G,Jade Green,12GB RAM + 512GB
+37485,Samsung Galaxy S24 Plus 5G,Sandstone Orange,12GB RAM + 256GB
+37485,Samsung Galaxy S24 Plus 5G,Sandstone Orange,12GB RAM + 512GB
+37485,Samsung Galaxy S24 Plus 5G,Sapphire Blue,12GB RAM + 256GB
+37485,Samsung Galaxy S24 Plus 5G,Sapphire Blue,12GB RAM + 512GB
+39589,Samsung Galaxy S24 Plus 5G,Onyx Black,12GB RAM + 256GB
+39589,Samsung Galaxy S24 Plus 5G,Onyx Black,12GB RAM + 512GB
+39589,Samsung Galaxy S24 Plus 5G,Marble Grey,12GB RAM + 256GB
+39589,Samsung Galaxy S24 Plus 5G,Marble Grey,12GB RAM + 512GB
+39589,Samsung Galaxy S24 Plus 5G,Cobalt Violet,12GB RAM + 256GB
+39589,Samsung Galaxy S24 Plus 5G,Cobalt Violet,12GB RAM + 512GB
+39589,Samsung Galaxy S24 Plus 5G,Amber Yellow,12GB RAM + 256GB
+39589,Samsung Galaxy S24 Plus 5G,Amber Yellow,12GB RAM + 512GB
+39589,Samsung Galaxy S24 Plus 5G,Jade Green,12GB RAM + 256GB
+39589,Samsung Galaxy S24 Plus 5G,Jade Green,12GB RAM + 512GB
+39589,Samsung Galaxy S24 Plus 5G,Sandstone Orange,12GB RAM + 256GB
+39589,Samsung Galaxy S24 Plus 5G,Sandstone Orange,12GB RAM + 512GB
+39589,Samsung Galaxy S24 Plus 5G,Sapphire Blue,12GB RAM + 256GB
+39589,Samsung Galaxy S24 Plus 5G,Sapphire Blue,12GB RAM + 512GB
+37438,Samsung Galaxy S24 Ultra,Titanium Orange,12GB RAM + 256GB
+37438,Samsung Galaxy S24 Ultra,Titanium Orange,12GB RAM + 512GB
+37438,Samsung Galaxy S24 Ultra,Titanium Orange,12GB RAM + 1TB
+37438,Samsung Galaxy S24 Ultra,Titanium Green,12GB RAM + 256GB
+37438,Samsung Galaxy S24 Ultra,Titanium Green,12GB RAM + 512GB
+37438,Samsung Galaxy S24 Ultra,Titanium Green,12GB RAM + 1TB
+37438,Samsung Galaxy S24 Ultra,Titanium Blue,12GB RAM + 256GB
+37438,Samsung Galaxy S24 Ultra,Titanium Blue,12GB RAM + 512GB
+37438,Samsung Galaxy S24 Ultra,Titanium Blue,12GB RAM + 1TB
+37438,Samsung Galaxy S24 Ultra,Titanium Yellow,12GB RAM + 256GB
+37438,Samsung Galaxy S24 Ultra,Titanium Yellow,12GB RAM + 512GB
+37438,Samsung Galaxy S24 Ultra,Titanium Yellow,12GB RAM + 1TB
+37438,Samsung Galaxy S24 Ultra,Titanium Violet,12GB RAM + 256GB
+37438,Samsung Galaxy S24 Ultra,Titanium Violet,12GB RAM + 512GB
+37438,Samsung Galaxy S24 Ultra,Titanium Violet,12GB RAM + 1TB
+37438,Samsung Galaxy S24 Ultra,Titanium Gray,12GB RAM + 256GB
+37438,Samsung Galaxy S24 Ultra,Titanium Gray,12GB RAM + 512GB
+37438,Samsung Galaxy S24 Ultra,Titanium Gray,12GB RAM + 1TB
+37438,Samsung Galaxy S24 Ultra,Titanium Black,12GB RAM + 256GB
+37438,Samsung Galaxy S24 Ultra,Titanium Black,12GB RAM + 512GB
+37438,Samsung Galaxy S24 Ultra,Titanium Black,12GB RAM + 1TB
+40823,Samsung Galaxy S25 128GB,Icy Blue,12GB RAM + 128GB
+40823,Samsung Galaxy S25 128GB,Icy Blue,12GB RAM + 256GB
+40823,Samsung Galaxy S25 128GB,Icy Blue,12GB RAM + 512GB
+40823,Samsung Galaxy S25 128GB,Mint,12GB RAM + 128GB
+40823,Samsung Galaxy S25 128GB,Mint,12GB RAM + 256GB
+40823,Samsung Galaxy S25 128GB,Mint,12GB RAM + 512GB
+40823,Samsung Galaxy S25 128GB,Navy,12GB RAM + 128GB
+40823,Samsung Galaxy S25 128GB,Navy,12GB RAM + 256GB
+40823,Samsung Galaxy S25 128GB,Navy,12GB RAM + 512GB
+40823,Samsung Galaxy S25 128GB,Silver Shadow,12GB RAM + 128GB
+40823,Samsung Galaxy S25 128GB,Silver Shadow,12GB RAM + 256GB
+40823,Samsung Galaxy S25 128GB,Silver Shadow,12GB RAM + 512GB
+40823,Samsung Galaxy S25 128GB,Pink Gold,12GB RAM + 128GB
+40823,Samsung Galaxy S25 128GB,Pink Gold,12GB RAM + 256GB
+40823,Samsung Galaxy S25 128GB,Pink Gold,12GB RAM + 512GB
+40823,Samsung Galaxy S25 128GB,Coral Red,12GB RAM + 128GB
+40823,Samsung Galaxy S25 128GB,Coral Red,12GB RAM + 256GB
+40823,Samsung Galaxy S25 128GB,Coral Red,12GB RAM + 512GB
+40823,Samsung Galaxy S25 128GB,Blue Black,12GB RAM + 128GB
+40823,Samsung Galaxy S25 128GB,Blue Black,12GB RAM + 256GB
+40823,Samsung Galaxy S25 128GB,Blue Black,12GB RAM + 512GB
+40997,Samsung Galaxy S25 Edge,Titanium Icyblue,12GB+256GB
+40997,Samsung Galaxy S25 Edge,Titanium Icyblue,12GB+512GB
 40997,Samsung Galaxy S25 Edge,Titanium Silver,12GB+256GB
 40997,Samsung Galaxy S25 Edge,Titanium Silver,12GB+512GB
 40997,Samsung Galaxy S25 Edge,Titanium Jetblack,12GB+256GB
 40997,Samsung Galaxy S25 Edge,Titanium Jetblack,12GB+512GB
-38702,Samsung Galaxy S25 Plus,Blueblack,12GB+128GB
-38702,Samsung Galaxy S25 Plus,Blueblack,12GB+256GB
-38702,Samsung Galaxy S25 Plus,Blueblack,12GB+512GB
-38702,Samsung Galaxy S25 Plus,Coralred,12GB+128GB
-38702,Samsung Galaxy S25 Plus,Coralred,12GB+256GB
-38702,Samsung Galaxy S25 Plus,Coralred,12GB+512GB
-38702,Samsung Galaxy S25 Plus,Pinkgold,12GB+128GB
-38702,Samsung Galaxy S25 Plus,Pinkgold,12GB+256GB
-38702,Samsung Galaxy S25 Plus,Pinkgold,12GB+512GB
-38702,Samsung Galaxy S25 Plus,Navy,12GB+128GB
+38702,Samsung Galaxy S25 Plus,Icy Blue,12GB+256GB
+38702,Samsung Galaxy S25 Plus,Icy Blue,12GB+512GB
+38702,Samsung Galaxy S25 Plus,Mint,12GB+256GB
+38702,Samsung Galaxy S25 Plus,Mint,12GB+512GB
 38702,Samsung Galaxy S25 Plus,Navy,12GB+256GB
 38702,Samsung Galaxy S25 Plus,Navy,12GB+512GB
-38702,Samsung Galaxy S25 Plus,Silver Shadow,12GB+128GB
 38702,Samsung Galaxy S25 Plus,Silver Shadow,12GB+256GB
 38702,Samsung Galaxy S25 Plus,Silver Shadow,12GB+512GB
-40600,Samsung Galaxy S25 Ultra 1TB,Titanium Gray,12GB+1024GB
-40600,Samsung Galaxy S25 Ultra 1TB,Titanium Gray,16GB+1024GB
-40600,Samsung Galaxy S25 Ultra 1TB,Titanium Silverblue,12GB+1024GB
-40600,Samsung Galaxy S25 Ultra 1TB,Titanium Silverblue,16GB+1024GB
-40600,Samsung Galaxy S25 Ultra 1TB,Titanium Whitesilver,12GB+1024GB
-40600,Samsung Galaxy S25 Ultra 1TB,Titanium Whitesilver,16GB+1024GB
-40600,Samsung Galaxy S25 Ultra 1TB,Titanium Black,12GB+1024GB
-40600,Samsung Galaxy S25 Ultra 1TB,Titanium Black,16GB+1024GB
-40600,Samsung Galaxy S25 Ultra 1TB,Titanium Jadegreen,12GB+1024GB
-40600,Samsung Galaxy S25 Ultra 1TB,Titanium Jadegreen,16GB+1024GB
-40600,Samsung Galaxy S25 Ultra 1TB,Titanium Jetblack,12GB+1024GB
-40600,Samsung Galaxy S25 Ultra 1TB,Titanium Jetblack,16GB+1024GB
-40600,Samsung Galaxy S25 Ultra 1TB,Titanium Pinkgold,12GB+1024GB
-40600,Samsung Galaxy S25 Ultra 1TB,Titanium Pinkgold,16GB+1024GB
+38702,Samsung Galaxy S25 Plus,Pink Gold,12GB+256GB
+38702,Samsung Galaxy S25 Plus,Pink Gold,12GB+512GB
+38702,Samsung Galaxy S25 Plus,Coral Red,12GB+256GB
+38702,Samsung Galaxy S25 Plus,Coral Red,12GB+512GB
+38702,Samsung Galaxy S25 Plus,Blue Black,12GB+256GB
+38702,Samsung Galaxy S25 Plus,Blue Black,12GB+512GB
+40600,Samsung Galaxy S25 Ultra 1TB,Titanium Silver Blue,12GB RAM + 256GB
+40600,Samsung Galaxy S25 Ultra 1TB,Titanium Silver Blue,12GB RAM + 512GB
+40600,Samsung Galaxy S25 Ultra 1TB,Titanium Silver Blue,12GB RAM + 1TB
+40600,Samsung Galaxy S25 Ultra 1TB,Titanium Silver Blue,16GB RAM +1TB
+40600,Samsung Galaxy S25 Ultra 1TB,Titanium Black,12GB RAM + 256GB
+40600,Samsung Galaxy S25 Ultra 1TB,Titanium Black,12GB RAM + 512GB
+40600,Samsung Galaxy S25 Ultra 1TB,Titanium Black,12GB RAM + 1TB
+40600,Samsung Galaxy S25 Ultra 1TB,Titanium Black,16GB RAM +1TB
+40600,Samsung Galaxy S25 Ultra 1TB,Titanium White Silver,12GB RAM + 256GB
+40600,Samsung Galaxy S25 Ultra 1TB,Titanium White Silver,12GB RAM + 512GB
+40600,Samsung Galaxy S25 Ultra 1TB,Titanium White Silver,12GB RAM + 1TB
+40600,Samsung Galaxy S25 Ultra 1TB,Titanium White Silver,16GB RAM +1TB
+40600,Samsung Galaxy S25 Ultra 1TB,Titanium Gray,12GB RAM + 256GB
+40600,Samsung Galaxy S25 Ultra 1TB,Titanium Gray,12GB RAM + 512GB
+40600,Samsung Galaxy S25 Ultra 1TB,Titanium Gray,12GB RAM + 1TB
+40600,Samsung Galaxy S25 Ultra 1TB,Titanium Gray,16GB RAM +1TB
+40600,Samsung Galaxy S25 Ultra 1TB,Titanium Jade Green,12GB RAM + 256GB
+40600,Samsung Galaxy S25 Ultra 1TB,Titanium Jade Green,12GB RAM + 512GB
+40600,Samsung Galaxy S25 Ultra 1TB,Titanium Jade Green,12GB RAM + 1TB
+40600,Samsung Galaxy S25 Ultra 1TB,Titanium Jade Green,16GB RAM +1TB
+40600,Samsung Galaxy S25 Ultra 1TB,Titanium Jet Black,12GB RAM + 256GB
+40600,Samsung Galaxy S25 Ultra 1TB,Titanium Jet Black,12GB RAM + 512GB
+40600,Samsung Galaxy S25 Ultra 1TB,Titanium Jet Black,12GB RAM + 1TB
+40600,Samsung Galaxy S25 Ultra 1TB,Titanium Jet Black,16GB RAM +1TB
+40600,Samsung Galaxy S25 Ultra 1TB,Titanium Pink Gold,12GB RAM + 256GB
+40600,Samsung Galaxy S25 Ultra 1TB,Titanium Pink Gold,12GB RAM + 512GB
+40600,Samsung Galaxy S25 Ultra 1TB,Titanium Pink Gold,12GB RAM + 1TB
+40600,Samsung Galaxy S25 Ultra 1TB,Titanium Pink Gold,16GB RAM +1TB
 39459,Samsung Galaxy Xcover 7,Black,6GB+128GB
 37752,Samsung Galaxy Z Flip5,Mint,8GB+256GB
 37752,Samsung Galaxy Z Flip5,Mint,8GB+512GB
@@ -3068,39 +3301,48 @@ model_id,product_name,colour,ram_rom
 37752,Samsung Galaxy Z Flip5,Green,8GB+512GB
 37752,Samsung Galaxy Z Flip5,Yellow,8GB+256GB
 37752,Samsung Galaxy Z Flip5,Yellow,8GB+512GB
-38355,Samsung Galaxy Z Flip6,Crafted Black,12GB+256GB
-38355,Samsung Galaxy Z Flip6,Crafted Black,12GB+512GB
-38355,Samsung Galaxy Z Flip6,White,12GB+256GB
-38355,Samsung Galaxy Z Flip6,White,12GB+512GB
-38355,Samsung Galaxy Z Flip6,Peach,12GB+256GB
-38355,Samsung Galaxy Z Flip6,Peach,12GB+512GB
-38355,Samsung Galaxy Z Flip6,Blue,12GB+256GB
-38355,Samsung Galaxy Z Flip6,Blue,12GB+512GB
-38355,Samsung Galaxy Z Flip6,Mint,12GB+256GB
-38355,Samsung Galaxy Z Flip6,Mint,12GB+512GB
-38355,Samsung Galaxy Z Flip6,Silver Shadow,12GB+256GB
-38355,Samsung Galaxy Z Flip6,Silver Shadow,12GB+512GB
-40020,Samsung Galaxy Z Flip6 5G 512GB,Silver,12GB+128GB
-40020,Samsung Galaxy Z Flip6 5G 512GB,Silver,12GB+256GB
-40020,Samsung Galaxy Z Flip6 5G 512GB,Silver,12GB+256GB
-40020,Samsung Galaxy Z Flip6 5G 512GB,Mint Green,12GB+128GB
-40020,Samsung Galaxy Z Flip6 5G 512GB,Mint Green,12GB+256GB
-40020,Samsung Galaxy Z Flip6 5G 512GB,Mint Green,12GB+256GB
-40020,Samsung Galaxy Z Flip6 5G 512GB,Black,12GB+128GB
-40020,Samsung Galaxy Z Flip6 5G 512GB,Black,12GB+256GB
-40020,Samsung Galaxy Z Flip6 5G 512GB,Black,12GB+256GB
-40020,Samsung Galaxy Z Flip6 5G 512GB,Blue,12GB+128GB
-40020,Samsung Galaxy Z Flip6 5G 512GB,Blue,12GB+256GB
-40020,Samsung Galaxy Z Flip6 5G 512GB,Blue,12GB+256GB
-40020,Samsung Galaxy Z Flip6 5G 512GB,Yellow,12GB+128GB
-40020,Samsung Galaxy Z Flip6 5G 512GB,Yellow,12GB+256GB
-40020,Samsung Galaxy Z Flip6 5G 512GB,Yellow,12GB+256GB
-40020,Samsung Galaxy Z Flip6 5G 512GB,White,12GB+128GB
-40020,Samsung Galaxy Z Flip6 5G 512GB,White,12GB+256GB
-40020,Samsung Galaxy Z Flip6 5G 512GB,White,12GB+256GB
-40020,Samsung Galaxy Z Flip6 5G 512GB,Peach,12GB+128GB
-40020,Samsung Galaxy Z Flip6 5G 512GB,Peach,12GB+256GB
-40020,Samsung Galaxy Z Flip6 5G 512GB,Peach,12GB+256GB
+38355,Samsung Galaxy Z Flip6,Yellow,12GB RAM + 128GB
+38355,Samsung Galaxy Z Flip6,Yellow,12GB RAM + 256GB
+38355,Samsung Galaxy Z Flip6,Yellow,12GB RAM + 512GB
+38355,Samsung Galaxy Z Flip6,Silver Shadow,12GB RAM + 128GB
+38355,Samsung Galaxy Z Flip6,Silver Shadow,12GB RAM + 256GB
+38355,Samsung Galaxy Z Flip6,Silver Shadow,12GB RAM + 512GB
+38355,Samsung Galaxy Z Flip6,Mint,12GB RAM + 128GB
+38355,Samsung Galaxy Z Flip6,Mint,12GB RAM + 256GB
+38355,Samsung Galaxy Z Flip6,Mint,12GB RAM + 512GB
+38355,Samsung Galaxy Z Flip6,Blue,12GB RAM + 128GB
+38355,Samsung Galaxy Z Flip6,Blue,12GB RAM + 256GB
+38355,Samsung Galaxy Z Flip6,Blue,12GB RAM + 512GB
+38355,Samsung Galaxy Z Flip6,Black,12GB RAM + 128GB
+38355,Samsung Galaxy Z Flip6,Black,12GB RAM + 256GB
+38355,Samsung Galaxy Z Flip6,Black,12GB RAM + 512GB
+38355,Samsung Galaxy Z Flip6,White,12GB RAM + 128GB
+38355,Samsung Galaxy Z Flip6,White,12GB RAM + 256GB
+38355,Samsung Galaxy Z Flip6,White,12GB RAM + 512GB
+38355,Samsung Galaxy Z Flip6,Peach,12GB RAM + 128GB
+38355,Samsung Galaxy Z Flip6,Peach,12GB RAM + 256GB
+38355,Samsung Galaxy Z Flip6,Peach,12GB RAM + 512GB
+40020,Samsung Galaxy Z Flip6 5G 512GB,Yellow,12GB RAM + 128GB
+40020,Samsung Galaxy Z Flip6 5G 512GB,Yellow,12GB RAM + 256GB
+40020,Samsung Galaxy Z Flip6 5G 512GB,Yellow,12GB RAM + 512GB
+40020,Samsung Galaxy Z Flip6 5G 512GB,Silver Shadow,12GB RAM + 128GB
+40020,Samsung Galaxy Z Flip6 5G 512GB,Silver Shadow,12GB RAM + 256GB
+40020,Samsung Galaxy Z Flip6 5G 512GB,Silver Shadow,12GB RAM + 512GB
+40020,Samsung Galaxy Z Flip6 5G 512GB,Mint,12GB RAM + 128GB
+40020,Samsung Galaxy Z Flip6 5G 512GB,Mint,12GB RAM + 256GB
+40020,Samsung Galaxy Z Flip6 5G 512GB,Mint,12GB RAM + 512GB
+40020,Samsung Galaxy Z Flip6 5G 512GB,Blue,12GB RAM + 128GB
+40020,Samsung Galaxy Z Flip6 5G 512GB,Blue,12GB RAM + 256GB
+40020,Samsung Galaxy Z Flip6 5G 512GB,Blue,12GB RAM + 512GB
+40020,Samsung Galaxy Z Flip6 5G 512GB,Black,12GB RAM + 128GB
+40020,Samsung Galaxy Z Flip6 5G 512GB,Black,12GB RAM + 256GB
+40020,Samsung Galaxy Z Flip6 5G 512GB,Black,12GB RAM + 512GB
+40020,Samsung Galaxy Z Flip6 5G 512GB,White,12GB RAM + 128GB
+40020,Samsung Galaxy Z Flip6 5G 512GB,White,12GB RAM + 256GB
+40020,Samsung Galaxy Z Flip6 5G 512GB,White,12GB RAM + 512GB
+40020,Samsung Galaxy Z Flip6 5G 512GB,Peach,12GB RAM + 128GB
+40020,Samsung Galaxy Z Flip6 5G 512GB,Peach,12GB RAM + 256GB
+40020,Samsung Galaxy Z Flip6 5G 512GB,Peach,12GB RAM + 512GB
 37766,Samsung Galaxy Z Fold5,Ice Blue,12GB+256GB
 37766,Samsung Galaxy Z Fold5,Ice Blue,12GB+512GB
 37766,Samsung Galaxy Z Fold5,Phantom Black,12GB+256GB
@@ -3109,31 +3351,36 @@ model_id,product_name,colour,ram_rom
 37766,Samsung Galaxy Z Fold5,Cream,12GB+512GB
 37766,Samsung Galaxy Z Fold5,Gray,12GB+256GB
 37766,Samsung Galaxy Z Fold5,Gray,12GB+512GB
-38308,Samsung Galaxy Z Fold6,Crafted Black,12GB+256GB
-38308,Samsung Galaxy Z Fold6,Crafted Black,12GB+512GB
-38308,Samsung Galaxy Z Fold6,Crafted Black,12GB+1024GB
-38308,Samsung Galaxy Z Fold6,White,12GB+256GB
-38308,Samsung Galaxy Z Fold6,White,12GB+512GB
-38308,Samsung Galaxy Z Fold6,White,12GB+1024GB
-38308,Samsung Galaxy Z Fold6,Silver Shadow,12GB+256GB
-38308,Samsung Galaxy Z Fold6,Silver Shadow,12GB+512GB
-38308,Samsung Galaxy Z Fold6,Silver Shadow,12GB+1024GB
-38308,Samsung Galaxy Z Fold6,Pink,12GB+256GB
-38308,Samsung Galaxy Z Fold6,Pink,12GB+512GB
-38308,Samsung Galaxy Z Fold6,Pink,12GB+1024GB
-38308,Samsung Galaxy Z Fold6,Navy,12GB+256GB
-38308,Samsung Galaxy Z Fold6,Navy,12GB+512GB
-38308,Samsung Galaxy Z Fold6,Navy,12GB+1024GB
-40021,Samsung Galaxy Z Fold6 5G 512GB,Navy,12GB+512GB
-40021,Samsung Galaxy Z Fold6 5G 512GB,Navy,12GB+1024GB
-40021,Samsung Galaxy Z Fold6 5G 512GB,Silver Shadow,12GB+512GB
-40021,Samsung Galaxy Z Fold6 5G 512GB,Silver Shadow,12GB+1024GB
-40021,Samsung Galaxy Z Fold6 5G 512GB,Pink,12GB+512GB
-40021,Samsung Galaxy Z Fold6 5G 512GB,Pink,12GB+1024GB
-40021,Samsung Galaxy Z Fold6 5G 512GB,Black,12GB+512GB
-40021,Samsung Galaxy Z Fold6 5G 512GB,Black,12GB+1024GB
-40021,Samsung Galaxy Z Fold6 5G 512GB,White,12GB+512GB
-40021,Samsung Galaxy Z Fold6 5G 512GB,White,12GB+1024GB
+38308,Samsung Galaxy Z Fold6,Navy,12GB RAM + 256GB
+38308,Samsung Galaxy Z Fold6,Navy,12GB RAM +  512GB
+38308,Samsung Galaxy Z Fold6,Navy,12GB RAM +1TB
+38308,Samsung Galaxy Z Fold6,Silver Shadow,12GB RAM + 256GB
+38308,Samsung Galaxy Z Fold6,Silver Shadow,12GB RAM +  512GB
+38308,Samsung Galaxy Z Fold6,Silver Shadow,12GB RAM +1TB
+38308,Samsung Galaxy Z Fold6,Pink,12GB RAM + 256GB
+38308,Samsung Galaxy Z Fold6,Pink,12GB RAM +  512GB
+38308,Samsung Galaxy Z Fold6,Pink,12GB RAM +1TB
+38308,Samsung Galaxy Z Fold6,Black,12GB RAM + 256GB
+38308,Samsung Galaxy Z Fold6,Black,12GB RAM +  512GB
+38308,Samsung Galaxy Z Fold6,Black,12GB RAM +1TB
+38308,Samsung Galaxy Z Fold6,White,12GB RAM + 256GB
+38308,Samsung Galaxy Z Fold6,White,12GB RAM +  512GB
+38308,Samsung Galaxy Z Fold6,White,12GB RAM +1TB
+40021,Samsung Galaxy Z Fold6 5G 512GB,Navy,12GB RAM + 256GB
+40021,Samsung Galaxy Z Fold6 5G 512GB,Navy,12GB RAM +  512GB
+40021,Samsung Galaxy Z Fold6 5G 512GB,Navy,12GB RAM +1TB
+40021,Samsung Galaxy Z Fold6 5G 512GB,Silver Shadow,12GB RAM + 256GB
+40021,Samsung Galaxy Z Fold6 5G 512GB,Silver Shadow,12GB RAM +  512GB
+40021,Samsung Galaxy Z Fold6 5G 512GB,Silver Shadow,12GB RAM +1TB
+40021,Samsung Galaxy Z Fold6 5G 512GB,Pink,12GB RAM + 256GB
+40021,Samsung Galaxy Z Fold6 5G 512GB,Pink,12GB RAM +  512GB
+40021,Samsung Galaxy Z Fold6 5G 512GB,Pink,12GB RAM +1TB
+40021,Samsung Galaxy Z Fold6 5G 512GB,Black,12GB RAM + 256GB
+40021,Samsung Galaxy Z Fold6 5G 512GB,Black,12GB RAM +  512GB
+40021,Samsung Galaxy Z Fold6 5G 512GB,Black,12GB RAM +1TB
+40021,Samsung Galaxy Z Fold6 5G 512GB,White,12GB RAM + 256GB
+40021,Samsung Galaxy Z Fold6 5G 512GB,White,12GB RAM +  512GB
+40021,Samsung Galaxy Z Fold6 5G 512GB,White,12GB RAM +1TB
 40389,Saregama Carvaan Don Lite M23,Black,32MB
 40389,Saregama Carvaan Don Lite M23,Orange,32MB
 40389,Saregama Carvaan Don Lite M23,Blue,32MB
@@ -3190,16 +3437,14 @@ model_id,product_name,colour,ram_rom
 39580,Snexian Rock Z,Blue,8MB+8MB
 39580,Snexian Rock Z,Pink,8MB+8MB
 39751,Snexian Rock Z Max,Light Pink,32MB
-38324,Tecno Camon 20,Predawn Black,8GB+256GB
-38324,Tecno Camon 20,Serenity Blue,8GB+256GB
-38324,Tecno Camon 20,Glacier,8GB+256GB
-38324,Tecno Camon 20,Art Edition,8GB+256GB
+38324,Tecno Camon 20,Predawn Black,8GB RAM + 256GB
+38324,Tecno Camon 20,Glacier Glow,8GB RAM + 256GB
+38324,Tecno Camon 20,Serenity Blue,8GB RAM + 256GB
 39333,Tecno Camon 20 Avocado Art Edition,Cool Green,8GB+256GB
-37578,Tecno Camon 20 Premier,Serenity Blue,8GB+8GB+512GB
-37578,Tecno Camon 20 Premier,Dark Welkin,8GB+8GB+512GB
+37578,Tecno Camon 20 Premier,Dark Welkin,8GB+512GB
+37578,Tecno Camon 20 Premier,Serenity Blue,8GB+512GB
 38354,Tecno Camon 20 Pro,Predawn Black,8GB+256GB
 38354,Tecno Camon 20 Pro,Serenity Blue,8GB+256GB
-38354,Tecno Camon 20 Pro,Glacier Glow,8GB+256GB
 39682,Tecno Camon 30 5G,Iceland Basaltic Dark,8GB+256GB
 39682,Tecno Camon 30 5G,Iceland Basaltic Dark,8GB+512GB
 39682,Tecno Camon 30 5G,Iceland Basaltic Dark,12GB+512GB
@@ -3209,12 +3454,17 @@ model_id,product_name,colour,ram_rom
 39682,Tecno Camon 30 5G,Emerald Lake Green,8GB+256GB
 39682,Tecno Camon 30 5G,Emerald Lake Green,8GB+512GB
 39682,Tecno Camon 30 5G,Emerald Lake Green,12GB+512GB
-39900,Tecno Camon 30 5G 512GB,Iceland Basaltic Dark,24GB+512GB
-39900,Tecno Camon 30 5G 512GB,Alps Snowy Silver,24GB+512GB
-39900,Tecno Camon 30 5G 512GB,Loewe,24GB+512GB
-39510,Tecno Camon 30 Premier 5G,LOEWE Edition,12GB+512GB
-39510,Tecno Camon 30 Premier 5G,Hawaii Lava Black,12GB+512GB
-39510,Tecno Camon 30 Premier 5G,Alps Snowy Silver,12GB+512GB
+39900,Tecno Camon 30 5G 512GB,Iceland Basaltic Dark,8GB+256GB
+39900,Tecno Camon 30 5G 512GB,Iceland Basaltic Dark,8GB+512GB
+39900,Tecno Camon 30 5G 512GB,Iceland Basaltic Dark,12GB+512GB
+39900,Tecno Camon 30 5G 512GB,Uyuni Salt White,8GB+256GB
+39900,Tecno Camon 30 5G 512GB,Uyuni Salt White,8GB+512GB
+39900,Tecno Camon 30 5G 512GB,Uyuni Salt White,12GB+512GB
+39900,Tecno Camon 30 5G 512GB,Emerald Lake Green,8GB+256GB
+39900,Tecno Camon 30 5G 512GB,Emerald Lake Green,8GB+512GB
+39900,Tecno Camon 30 5G 512GB,Emerald Lake Green,12GB+512GB
+39510,Tecno Camon 30 Premier 5G,Blue,12GB+512GB
+39510,Tecno Camon 30 Premier 5G,black,12GB+512GB
 39091,Tecno Phantom V Flip,Mystic Dawn,8GB+256GB
 39091,Tecno Phantom V Flip,Iconic Black,8GB+256GB
 40213,Tecno Phantom V Flip 2,Travertine Green,8GB+256GB
@@ -3223,19 +3473,12 @@ model_id,product_name,colour,ram_rom
 38617,Tecno Phantom V Fold,BLACK,12GB+512
 38617,Tecno Phantom V Fold,WHITE,12GB+256
 38617,Tecno Phantom V Fold,WHITE,12GB+512
-38227,Tecno Phantom X2,Stardust Grey,8GB+256GB
-38227,Tecno Phantom X2,Moonlight Silver,8GB+256GB
-38478,Tecno Phantom X2 Pro,Stardust Grey,12GB + 256GB
+38227,Tecno Phantom X2,Stardust Gray,8GB+256GB
+38227,Tecno Phantom X2,Moonlight Silve,8GB+256GB
+38478,Tecno Phantom X2 Pro,Stardust Gray,12GB + 256GB
 38478,Tecno Phantom X2 Pro,Mars Orange,12GB + 256GB
-38679,Tecno Pop 7 Pro 3GB RAM,Endless Black,3GB+32GB
-38679,Tecno Pop 7 Pro 3GB RAM,Endless Black,3GB+64GB
-38679,Tecno Pop 7 Pro 3GB RAM,Endless Black,4GB+64
-38679,Tecno Pop 7 Pro 3GB RAM,Uyuni Blue,3GB+32GB
-38679,Tecno Pop 7 Pro 3GB RAM,Uyuni Blue,3GB+64GB
-38679,Tecno Pop 7 Pro 3GB RAM,Uyuni Blue,4GB+64
-38679,Tecno Pop 7 Pro 3GB RAM,Nebula purple,3GB+32GB
-38679,Tecno Pop 7 Pro 3GB RAM,Nebula purple,3GB+64GB
-38679,Tecno Pop 7 Pro 3GB RAM,Nebula purple,4GB+64
+38679,Tecno Pop 7 Pro 3GB RAM,Turquoise Cyan,3GB+64GB
+38679,Tecno Pop 7 Pro 3GB RAM,Atlantic Blue,3GB+64GB
 39428,Tecno Pop 8,Mystery White,2GB+64GB
 39428,Tecno Pop 8,Mystery White,3GB+64GB
 39428,Tecno Pop 8,Mystery White,4GB+64GB
@@ -3308,14 +3551,18 @@ model_id,product_name,colour,ram_rom
 37507,Tecno Spark 10C,Green,4GB+64GB
 37507,Tecno Spark 10C,Green,4GB+128GB
 37507,Tecno Spark 10C,Green,8GB+128GB
-39896,Tecno Spark 20 Pro 5G,Startrail Black,16GB+256GB
-39896,Tecno Spark 20 Pro 5G,Glossy White,16GB+256GB
-39896,Tecno Spark 20 Pro 5G,Neon Green,16GB+256GB
-40004,Tecno Spark 20 Pro 5G 256GB,Moonlight Black,4GB+128GB
-40004,Tecno Spark 20 Pro 5G 256GB,Frosty Ivory,4GB+128GB
-40004,Tecno Spark 20 Pro 5G 256GB,Sunset Blush,4GB+128GB
-40004,Tecno Spark 20 Pro 5G 256GB,Magic Skin,4GB+128GB
-40004,Tecno Spark 20 Pro 5G 256GB,Green,4GB+128GB
+39896,Tecno Spark 20 Pro 5G,Startrail Black,8GB RAM + 128GB
+39896,Tecno Spark 20 Pro 5G,Startrail Black,8GB RAM + 256GB
+39896,Tecno Spark 20 Pro 5G,Glossy White,8GB RAM + 128GB
+39896,Tecno Spark 20 Pro 5G,Glossy White,8GB RAM + 256GB
+39896,Tecno Spark 20 Pro 5G,Neon Green,8GB RAM + 128GB
+39896,Tecno Spark 20 Pro 5G,Neon Green,8GB RAM + 256GB
+40004,Tecno Spark 20 Pro 5G 256GB,Startrail Black,8GB RAM + 128GB
+40004,Tecno Spark 20 Pro 5G 256GB,Startrail Black,8GB RAM + 256GB
+40004,Tecno Spark 20 Pro 5G 256GB,Glossy White,8GB RAM + 128GB
+40004,Tecno Spark 20 Pro 5G 256GB,Glossy White,8GB RAM + 256GB
+40004,Tecno Spark 20 Pro 5G 256GB,Neon Green,8GB RAM + 128GB
+40004,Tecno Spark 20 Pro 5G 256GB,Neon Green,8GB RAM + 256GB
 40201,Tecno Spark 30C,Azure Sky,8GB+128GB
 40201,Tecno Spark 30C,Azure Sky,12GB+128GB
 40201,Tecno Spark 30C,Azure Sky,8GB+256GB
@@ -3525,14 +3772,30 @@ model_id,product_name,colour,ram_rom
 40268,vivo X200,Cosmos Black,16GB+512GB
 40269,vivo X200 Pro,Titanium Gray,16GB+512GB
 40269,vivo X200 Pro,Cosmos Black,16GB+512GB
-37710,vivo X90 5G,Asteroid Black,8GB+256GB
-37710,vivo X90 5G,Asteroid Black,12GB+256GB
-37710,vivo X90 5G,Breeze Blue,8GB+256GB
-37710,vivo X90 5G,Breeze Blue,12GB+256GB
-38954,vivo X90 5G 12GB RAM,Asteroid Black,8GB+256GB
-38954,vivo X90 5G 12GB RAM,Asteroid Black,12GB+256GB
-38954,vivo X90 5G 12GB RAM,Breeze Blue,8GB+256GB
-38954,vivo X90 5G 12GB RAM,Breeze Blue,12GB+256GB
+37710,vivo X90 5G,Asteroid Black,8GB RAM + 128GB
+37710,vivo X90 5G,Asteroid Black,8GB RAM + 256GB
+37710,vivo X90 5G,Asteroid Black,12GB RAM +256GB
+37710,vivo X90 5G,Asteroid Black,12GB RAM + 512GB
+37710,vivo X90 5G,Breeze Blue,8GB RAM + 128GB
+37710,vivo X90 5G,Breeze Blue,8GB RAM + 256GB
+37710,vivo X90 5G,Breeze Blue,12GB RAM +256GB
+37710,vivo X90 5G,Breeze Blue,12GB RAM + 512GB
+37710,vivo X90 5G,Red,8GB RAM + 128GB
+37710,vivo X90 5G,Red,8GB RAM + 256GB
+37710,vivo X90 5G,Red,12GB RAM +256GB
+37710,vivo X90 5G,Red,12GB RAM + 512GB
+38954,vivo X90 5G 12GB RAM,Asteroid Black,8GB RAM + 128GB
+38954,vivo X90 5G 12GB RAM,Asteroid Black,8GB RAM + 256GB
+38954,vivo X90 5G 12GB RAM,Asteroid Black,12GB RAM +256GB
+38954,vivo X90 5G 12GB RAM,Asteroid Black,12GB RAM + 512GB
+38954,vivo X90 5G 12GB RAM,Breeze Blue,8GB RAM + 128GB
+38954,vivo X90 5G 12GB RAM,Breeze Blue,8GB RAM + 256GB
+38954,vivo X90 5G 12GB RAM,Breeze Blue,12GB RAM +256GB
+38954,vivo X90 5G 12GB RAM,Breeze Blue,12GB RAM + 512GB
+38954,vivo X90 5G 12GB RAM,Red,8GB RAM + 128GB
+38954,vivo X90 5G 12GB RAM,Red,8GB RAM + 256GB
+38954,vivo X90 5G 12GB RAM,Red,12GB RAM +256GB
+38954,vivo X90 5G 12GB RAM,Red,12GB RAM + 512GB
 37496,vivo X90 Pro,Legendary Black,12GB+256GB
 38935,vivo Y02T,Sunset Gold,4GB+64GB
 38935,vivo Y02T,Cosmic Grey,4GB+64GB
@@ -3881,33 +4144,33 @@ model_id,product_name,colour,ram_rom
 37091,Xiaomi Redmi Note 12 Pro 5G,Onyx Black,6GB+128GB
 37091,Xiaomi Redmi Note 12 Pro 5G,Onyx Black,8GB+128GB
 37091,Xiaomi Redmi Note 12 Pro 5G,Onyx Black,8GB+256GB
-39254,Xiaomi Redmi Note 12 Pro 5G 12GB RAM,Polar White,6GB+128GB
-39254,Xiaomi Redmi Note 12 Pro 5G 12GB RAM,Polar White,8GB+128GB
-39254,Xiaomi Redmi Note 12 Pro 5G 12GB RAM,Polar White,8GB+256GB
-39254,Xiaomi Redmi Note 12 Pro 5G 12GB RAM,Midnight Black,6GB+128GB
-39254,Xiaomi Redmi Note 12 Pro 5G 12GB RAM,Midnight Black,8GB+128GB
-39254,Xiaomi Redmi Note 12 Pro 5G 12GB RAM,Midnight Black,8GB+256GB
-39254,Xiaomi Redmi Note 12 Pro 5G 12GB RAM,Sky Blue,6GB+128GB
-39254,Xiaomi Redmi Note 12 Pro 5G 12GB RAM,Sky Blue,8GB+128GB
-39254,Xiaomi Redmi Note 12 Pro 5G 12GB RAM,Sky Blue,8GB+256GB
-38532,Xiaomi Redmi Note 12 Pro 5G 256GB,polar white,6GB+128GB
-38532,Xiaomi Redmi Note 12 Pro 5G 256GB,polar white,8GB+128GB
-38532,Xiaomi Redmi Note 12 Pro 5G 256GB,polar white,8GB+256GB
-38532,Xiaomi Redmi Note 12 Pro 5G 256GB,midnight black,6GB+128GB
-38532,Xiaomi Redmi Note 12 Pro 5G 256GB,midnight black,8GB+128GB
-38532,Xiaomi Redmi Note 12 Pro 5G 256GB,midnight black,8GB+256GB
-38532,Xiaomi Redmi Note 12 Pro 5G 256GB,sky blue,6GB+128GB
-38532,Xiaomi Redmi Note 12 Pro 5G 256GB,sky blue,8GB+128GB
-38532,Xiaomi Redmi Note 12 Pro 5G 256GB,sky blue,8GB+256GB
-38531,Xiaomi Redmi Note 12 Pro 5G 8GB RAM,Polar White,6GB+128GB
-38531,Xiaomi Redmi Note 12 Pro 5G 8GB RAM,Polar White,8GB+128
-38531,Xiaomi Redmi Note 12 Pro 5G 8GB RAM,Polar White,8GB+256
-38531,Xiaomi Redmi Note 12 Pro 5G 8GB RAM,Midnight black,6GB+128GB
-38531,Xiaomi Redmi Note 12 Pro 5G 8GB RAM,Midnight black,8GB+128
-38531,Xiaomi Redmi Note 12 Pro 5G 8GB RAM,Midnight black,8GB+256
-38531,Xiaomi Redmi Note 12 Pro 5G 8GB RAM,Sky Blue,6GB+128GB
-38531,Xiaomi Redmi Note 12 Pro 5G 8GB RAM,Sky Blue,8GB+128
-38531,Xiaomi Redmi Note 12 Pro 5G 8GB RAM,Sky Blue,8GB+256
+39254,Xiaomi Redmi Note 12 Pro 5G 12GB RAM,Stardust Purple,6GB+128GB
+39254,Xiaomi Redmi Note 12 Pro 5G 12GB RAM,Stardust Purple,8GB+128GB
+39254,Xiaomi Redmi Note 12 Pro 5G 12GB RAM,Stardust Purple,8GB+256GB
+39254,Xiaomi Redmi Note 12 Pro 5G 12GB RAM,Frosted Blue,6GB+128GB
+39254,Xiaomi Redmi Note 12 Pro 5G 12GB RAM,Frosted Blue,8GB+128GB
+39254,Xiaomi Redmi Note 12 Pro 5G 12GB RAM,Frosted Blue,8GB+256GB
+39254,Xiaomi Redmi Note 12 Pro 5G 12GB RAM,Onyx Black,6GB+128GB
+39254,Xiaomi Redmi Note 12 Pro 5G 12GB RAM,Onyx Black,8GB+128GB
+39254,Xiaomi Redmi Note 12 Pro 5G 12GB RAM,Onyx Black,8GB+256GB
+38532,Xiaomi Redmi Note 12 Pro 5G 256GB,Stardust Purple,6GB+128GB
+38532,Xiaomi Redmi Note 12 Pro 5G 256GB,Stardust Purple,8GB+128GB
+38532,Xiaomi Redmi Note 12 Pro 5G 256GB,Stardust Purple,8GB+256GB
+38532,Xiaomi Redmi Note 12 Pro 5G 256GB,Frosted Blue,6GB+128GB
+38532,Xiaomi Redmi Note 12 Pro 5G 256GB,Frosted Blue,8GB+128GB
+38532,Xiaomi Redmi Note 12 Pro 5G 256GB,Frosted Blue,8GB+256GB
+38532,Xiaomi Redmi Note 12 Pro 5G 256GB,Onyx Black,6GB+128GB
+38532,Xiaomi Redmi Note 12 Pro 5G 256GB,Onyx Black,8GB+128GB
+38532,Xiaomi Redmi Note 12 Pro 5G 256GB,Onyx Black,8GB+256GB
+38531,Xiaomi Redmi Note 12 Pro 5G 8GB RAM,Stardust Purple,6GB+128GB
+38531,Xiaomi Redmi Note 12 Pro 5G 8GB RAM,Stardust Purple,8GB+128
+38531,Xiaomi Redmi Note 12 Pro 5G 8GB RAM,Stardust Purple,8GB+256
+38531,Xiaomi Redmi Note 12 Pro 5G 8GB RAM,Frosted Blue,6GB+128GB
+38531,Xiaomi Redmi Note 12 Pro 5G 8GB RAM,Frosted Blue,8GB+128
+38531,Xiaomi Redmi Note 12 Pro 5G 8GB RAM,Frosted Blue,8GB+256
+38531,Xiaomi Redmi Note 12 Pro 5G 8GB RAM,Onyx Black,6GB+128GB
+38531,Xiaomi Redmi Note 12 Pro 5G 8GB RAM,Onyx Black,8GB+128
+38531,Xiaomi Redmi Note 12 Pro 5G 8GB RAM,Onyx Black,8GB+256
 37423,Xiaomi Redmi Note 12 Pro Plus 5G,Arctic White,8GB+256GB
 37423,Xiaomi Redmi Note 12 Pro Plus 5G,Arctic White,12GB+256GB
 37423,Xiaomi Redmi Note 12 Pro Plus 5G,Iceberg Blue,8GB+256GB
@@ -3940,42 +4203,63 @@ model_id,product_name,colour,ram_rom
 37677,Xiaomi Redmi Note 13,Prism Gold,8GB+256GB
 37677,Xiaomi Redmi Note 13,Prism Gold,12GB+256GB
 37677,Xiaomi Redmi Note 13,Prism Gold,12GB+512GB
-37414,Xiaomi Redmi Note 13 Pro,coral purple,8GB+128GB
-37414,Xiaomi Redmi Note 13 Pro,coral purple,8GB+256GB
-37414,Xiaomi Redmi Note 13 Pro,coral purple,12GB+256GB
-37414,Xiaomi Redmi Note 13 Pro,Arctic white,8GB+128GB
-37414,Xiaomi Redmi Note 13 Pro,Arctic white,8GB+256GB
-37414,Xiaomi Redmi Note 13 Pro,Arctic white,12GB+256GB
-37414,Xiaomi Redmi Note 13 Pro,midnight black,8GB+128GB
-37414,Xiaomi Redmi Note 13 Pro,midnight black,8GB+256GB
-37414,Xiaomi Redmi Note 13 Pro,midnight black,12GB+256GB
-37430,Xiaomi Redmi Note 13 Pro Plus 5G,Fushion White,8GB+256GB
-37430,Xiaomi Redmi Note 13 Pro Plus 5G,Fushion White,12GB+256GB
-37430,Xiaomi Redmi Note 13 Pro Plus 5G,Fushion White,12GB+512GB
-37430,Xiaomi Redmi Note 13 Pro Plus 5G,Fushion Black,8GB+256GB
-37430,Xiaomi Redmi Note 13 Pro Plus 5G,Fushion Black,12GB+256GB
-37430,Xiaomi Redmi Note 13 Pro Plus 5G,Fushion Black,12GB+512GB
-37430,Xiaomi Redmi Note 13 Pro Plus 5G,Fushion Purple,8GB+256GB
-37430,Xiaomi Redmi Note 13 Pro Plus 5G,Fushion Purple,12GB+256GB
-37430,Xiaomi Redmi Note 13 Pro Plus 5G,Fushion Purple,12GB+512GB
-39565,Xiaomi Redmi Note 13 Pro Plus 5G 12GB RAM,Midnight Black,8GB+128GB
-39565,Xiaomi Redmi Note 13 Pro Plus 5G 12GB RAM,Midnight Black,8GB+256GB
-39565,Xiaomi Redmi Note 13 Pro Plus 5G 12GB RAM,Midnight Black,12GB+256GB
-39565,Xiaomi Redmi Note 13 Pro Plus 5G 12GB RAM,Moonlight White,8GB+128GB
-39565,Xiaomi Redmi Note 13 Pro Plus 5G 12GB RAM,Moonlight White,8GB+256GB
-39565,Xiaomi Redmi Note 13 Pro Plus 5G 12GB RAM,Moonlight White,12GB+256GB
-39565,Xiaomi Redmi Note 13 Pro Plus 5G 12GB RAM,Aurora Purple,8GB+128GB
-39565,Xiaomi Redmi Note 13 Pro Plus 5G 12GB RAM,Aurora Purple,8GB+256GB
-39565,Xiaomi Redmi Note 13 Pro Plus 5G 12GB RAM,Aurora Purple,12GB+256GB
-39566,Xiaomi Redmi Note 13 Pro Plus 5G 512GB,Midnight Black,8GB+128GB
-39566,Xiaomi Redmi Note 13 Pro Plus 5G 512GB,Midnight Black,8GB+256GB
-39566,Xiaomi Redmi Note 13 Pro Plus 5G 512GB,Midnight Black,12GB+256GB
-39566,Xiaomi Redmi Note 13 Pro Plus 5G 512GB,Moonlight White,8GB+128GB
-39566,Xiaomi Redmi Note 13 Pro Plus 5G 512GB,Moonlight White,8GB+256GB
-39566,Xiaomi Redmi Note 13 Pro Plus 5G 512GB,Moonlight White,12GB+256GB
-39566,Xiaomi Redmi Note 13 Pro Plus 5G 512GB,Aurora Purple,8GB+128GB
-39566,Xiaomi Redmi Note 13 Pro Plus 5G 512GB,Aurora Purple,8GB+256GB
-39566,Xiaomi Redmi Note 13 Pro Plus 5G 512GB,Aurora Purple,12GB+256GB
+37414,Xiaomi Redmi Note 13 Pro,Midnight Black,8GB RAM + 128GB
+37414,Xiaomi Redmi Note 13 Pro,Midnight Black,8GB RAM + 256GB
+37414,Xiaomi Redmi Note 13 Pro,Midnight Black,12GB RAM + 256GB
+37414,Xiaomi Redmi Note 13 Pro,Midnight Black,12GB RAM + 512GB
+37414,Xiaomi Redmi Note 13 Pro,Midnight Black,16GB RAM + 512GB
+37414,Xiaomi Redmi Note 13 Pro,Aurora Purple (Coral Purple),8GB RAM + 128GB
+37414,Xiaomi Redmi Note 13 Pro,Aurora Purple (Coral Purple),8GB RAM + 256GB
+37414,Xiaomi Redmi Note 13 Pro,Aurora Purple (Coral Purple),12GB RAM + 256GB
+37414,Xiaomi Redmi Note 13 Pro,Aurora Purple (Coral Purple),12GB RAM + 512GB
+37414,Xiaomi Redmi Note 13 Pro,Aurora Purple (Coral Purple),16GB RAM + 512GB
+37414,Xiaomi Redmi Note 13 Pro,Ocean Teal,8GB RAM + 128GB
+37414,Xiaomi Redmi Note 13 Pro,Ocean Teal,8GB RAM + 256GB
+37414,Xiaomi Redmi Note 13 Pro,Ocean Teal,12GB RAM + 256GB
+37414,Xiaomi Redmi Note 13 Pro,Ocean Teal,12GB RAM + 512GB
+37414,Xiaomi Redmi Note 13 Pro,Ocean Teal,16GB RAM + 512GB
+37414,Xiaomi Redmi Note 13 Pro,Arctic White,8GB RAM + 128GB
+37414,Xiaomi Redmi Note 13 Pro,Arctic White,8GB RAM + 256GB
+37414,Xiaomi Redmi Note 13 Pro,Arctic White,12GB RAM + 256GB
+37414,Xiaomi Redmi Note 13 Pro,Arctic White,12GB RAM + 512GB
+37414,Xiaomi Redmi Note 13 Pro,Arctic White,16GB RAM + 512GB
+37414,Xiaomi Redmi Note 13 Pro,Olive Green,8GB RAM + 128GB
+37414,Xiaomi Redmi Note 13 Pro,Olive Green,8GB RAM + 256GB
+37414,Xiaomi Redmi Note 13 Pro,Olive Green,12GB RAM + 256GB
+37414,Xiaomi Redmi Note 13 Pro,Olive Green,12GB RAM + 512GB
+37414,Xiaomi Redmi Note 13 Pro,Olive Green,16GB RAM + 512GB
+37414,Xiaomi Redmi Note 13 Pro,Scarlet Red,8GB RAM + 128GB
+37414,Xiaomi Redmi Note 13 Pro,Scarlet Red,8GB RAM + 256GB
+37414,Xiaomi Redmi Note 13 Pro,Scarlet Red,12GB RAM + 256GB
+37414,Xiaomi Redmi Note 13 Pro,Scarlet Red,12GB RAM + 512GB
+37414,Xiaomi Redmi Note 13 Pro,Scarlet Red,16GB RAM + 512GB
+37430,Xiaomi Redmi Note 13 Pro Plus 5G,Fusion white,8GB+256GB
+37430,Xiaomi Redmi Note 13 Pro Plus 5G,Fusion white,12GB+256GB
+37430,Xiaomi Redmi Note 13 Pro Plus 5G,Fusion white,12GB+512GB
+37430,Xiaomi Redmi Note 13 Pro Plus 5G,Fusion Purple,8GB+256GB
+37430,Xiaomi Redmi Note 13 Pro Plus 5G,Fusion Purple,12GB+256GB
+37430,Xiaomi Redmi Note 13 Pro Plus 5G,Fusion Purple,12GB+512GB
+37430,Xiaomi Redmi Note 13 Pro Plus 5G,Fusion black,8GB+256GB
+37430,Xiaomi Redmi Note 13 Pro Plus 5G,Fusion black,12GB+256GB
+37430,Xiaomi Redmi Note 13 Pro Plus 5G,Fusion black,12GB+512GB
+39565,Xiaomi Redmi Note 13 Pro Plus 5G 12GB RAM,Fusion white,8GB+128GB
+39565,Xiaomi Redmi Note 13 Pro Plus 5G 12GB RAM,Fusion white,8GB+256GB
+39565,Xiaomi Redmi Note 13 Pro Plus 5G 12GB RAM,Fusion white,12GB+256GB
+39565,Xiaomi Redmi Note 13 Pro Plus 5G 12GB RAM,Fusion Purple,8GB+128GB
+39565,Xiaomi Redmi Note 13 Pro Plus 5G 12GB RAM,Fusion Purple,8GB+256GB
+39565,Xiaomi Redmi Note 13 Pro Plus 5G 12GB RAM,Fusion Purple,12GB+256GB
+39565,Xiaomi Redmi Note 13 Pro Plus 5G 12GB RAM,Fusion black,8GB+128GB
+39565,Xiaomi Redmi Note 13 Pro Plus 5G 12GB RAM,Fusion black,8GB+256GB
+39565,Xiaomi Redmi Note 13 Pro Plus 5G 12GB RAM,Fusion black,12GB+256GB
+39566,Xiaomi Redmi Note 13 Pro Plus 5G 512GB,Fusion white,8GB+128GB
+39566,Xiaomi Redmi Note 13 Pro Plus 5G 512GB,Fusion white,8GB+256GB
+39566,Xiaomi Redmi Note 13 Pro Plus 5G 512GB,Fusion white,12GB+256GB
+39566,Xiaomi Redmi Note 13 Pro Plus 5G 512GB,Fusion Purple,8GB+128GB
+39566,Xiaomi Redmi Note 13 Pro Plus 5G 512GB,Fusion Purple,8GB+256GB
+39566,Xiaomi Redmi Note 13 Pro Plus 5G 512GB,Fusion Purple,12GB+256GB
+39566,Xiaomi Redmi Note 13 Pro Plus 5G 512GB,Fusion black,8GB+128GB
+39566,Xiaomi Redmi Note 13 Pro Plus 5G 512GB,Fusion black,8GB+256GB
+39566,Xiaomi Redmi Note 13 Pro Plus 5G 512GB,Fusion black,12GB+256GB
 39836,Xiaomi Redmi Note 13 Pro Plus 5G World Champions Edition,Victory Blue,8GB+128GB
 39836,Xiaomi Redmi Note 13 Pro Plus 5G World Champions Edition,Victory Blue,8GB+256GB
 38655,Xiaomi Redmi Note 14 5G,Ivy Green,8GB+128GB
@@ -3995,6 +4279,9 @@ model_id,product_name,colour,ram_rom
 38779,Xiaomi Redmi Note 14 Pro 5G,Titan Black,8GB+128GB
 38779,Xiaomi Redmi Note 14 Pro 5G,Titan Black,8GB+256GB
 38779,Xiaomi Redmi Note 14 Pro 5G,Titan Black,12GB+512GB
+38779,Xiaomi Redmi Note 14 Pro 5G,Champagne Gold,8GB+128GB
+38779,Xiaomi Redmi Note 14 Pro 5G,Champagne Gold,8GB+256GB
+38779,Xiaomi Redmi Note 14 Pro 5G,Champagne Gold,12GB+512GB
 40478,Xiaomi Redmi Note 14 Pro Plus 512GB,Titan Black,8 GB + 128 GB
 40478,Xiaomi Redmi Note 14 Pro Plus 512GB,Titan Black,8 GB + 256 GB
 40478,Xiaomi Redmi Note 14 Pro Plus 512GB,Titan Black,12 GB + 512 GB
@@ -4061,8 +4348,14 @@ model_id,product_name,colour,ram_rom
 41117,Lava Storm Lite,Cosmic Titanium,4GB + 128GB
 41121,Lava Storm Play,Dune Titanium,6GB + 128GB
 41121,Lava Storm Play,Frosty Blue,6GB + 128GB
+40949,Motorola Edge 60,Pantone Gibraltar Sea,8GB + 256GB
 40949,Motorola Edge 60,Pantone Gibraltar Sea,12GB + 256GB
+40949,Motorola Edge 60,Pantone Gibraltar Sea,8GB + 512GB
+40949,Motorola Edge 60,Pantone Gibraltar Sea,12GB + 512GB
+40949,Motorola Edge 60,Pantone Shamrock,8GB + 256GB
 40949,Motorola Edge 60,Pantone Shamrock,12GB + 256GB
+40949,Motorola Edge 60,Pantone Shamrock,8GB + 512GB
+40949,Motorola Edge 60,Pantone Shamrock,12GB + 512GB
 41009,OnePlus 13s,Green Silk,12 GB + 256 GB
 41009,OnePlus 13s,Green Silk,12 GB + 512 GB
 41009,OnePlus 13s,Black Velvet,12 GB + 256 GB
@@ -4169,21 +4462,30 @@ model_id,product_name,colour,ram_rom
 41091,Samsung Galaxy Z Fold7,Silver Shadow,12GB+256GB
 41091,Samsung Galaxy Z Fold7,Silver Shadow,12GB+512GB
 41091,Samsung Galaxy Z Fold7,Silver Shadow,16GB+ 1024GB
-41161,Tecno Pova 7 5G,Hyper Titanium,16GB* (8GB + 8GB Extended) + 256GB
-41161,Tecno Pova 7 5G,Hyper Titanium,16GB* (8GB + 8GB Extended) + 128GB
-41161,Tecno Pova 7 5G,Magic Silver,16GB* (8GB + 8GB Extended) + 256GB
-41161,Tecno Pova 7 5G,Magic Silver,16GB* (8GB + 8GB Extended) + 128GB
-41161,Tecno Pova 7 5G,Geek Black,16GB* (8GB + 8GB Extended) + 256GB
-41161,Tecno Pova 7 5G,Geek Black,16GB* (8GB + 8GB Extended) + 128GB
-41162,Tecno Pova 7 Pro 5G,Geek Black,24GB* (12GB + 12GB Extended) + 256GB
-41162,Tecno Pova 7 Pro 5G,Geek Black,16GB* (8GB + 8GB Extended) + 256GB
-41162,Tecno Pova 7 Pro 5G,Geek Black,16GB* (8GB + 8GB Extended) + 128GB
-41162,Tecno Pova 7 Pro 5G,Dynamic Grey,24GB* (12GB + 12GB Extended) + 256GB
-41162,Tecno Pova 7 Pro 5G,Dynamic Grey,16GB* (8GB + 8GB Extended) + 256GB
-41162,Tecno Pova 7 Pro 5G,Dynamic Grey,16GB* (8GB + 8GB Extended) + 128GB
-41162,Tecno Pova 7 Pro 5G,Neon Cyan,24GB* (12GB + 12GB Extended) + 256GB
-41162,Tecno Pova 7 Pro 5G,Neon Cyan,16GB* (8GB + 8GB Extended) + 256GB
-41162,Tecno Pova 7 Pro 5G,Neon Cyan,16GB* (8GB + 8GB Extended) + 128GB
+41161,Tecno Pova 7 5G,Hyper Titanium,"16GB* (8GB + 8GB Extended) + 256GB
+
+16GB* (8GB + 8GB Extended) + 128GB"
+41161,Tecno Pova 7 5G,Magic Silver,"16GB* (8GB + 8GB Extended) + 256GB
+
+16GB* (8GB + 8GB Extended) + 128GB"
+41161,Tecno Pova 7 5G,Geek Black,"16GB* (8GB + 8GB Extended) + 256GB
+
+16GB* (8GB + 8GB Extended) + 128GB"
+41162,Tecno Pova 7 Pro 5G,Geek Black,"24GB* (12GB + 12GB Extended) + 256GB
+
+16GB* (8GB + 8GB Extended) + 256GB
+
+16GB* (8GB + 8GB Extended) + 128GB"
+41162,Tecno Pova 7 Pro 5G,Dynamic Grey,"24GB* (12GB + 12GB Extended) + 256GB
+
+16GB* (8GB + 8GB Extended) + 256GB
+
+16GB* (8GB + 8GB Extended) + 128GB"
+41162,Tecno Pova 7 Pro 5G,Neon Cyan,"24GB* (12GB + 12GB Extended) + 256GB
+
+16GB* (8GB + 8GB Extended) + 256GB
+
+16GB* (8GB + 8GB Extended) + 128GB"
 41129,vivo T4 Lite,Prism Blue,4GB+128GB
 41129,vivo T4 Lite,Prism Blue,6GB+128GB
 41129,vivo T4 Lite,Prism Blue,8GB+256GB
