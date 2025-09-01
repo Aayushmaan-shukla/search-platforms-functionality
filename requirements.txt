@@ -1,0 +1,6 @@
+undetected-chromedriver
+selenium
+pandas
+requests
+beautifulsoup4
+Pillow

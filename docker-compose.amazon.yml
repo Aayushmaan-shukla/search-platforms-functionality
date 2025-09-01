@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  amazon-scraper:
+    build:
+      context: .
+      dockerfile: Dockerfile.amazon
+    container_name: amazon-mobile-scraper
+    volumes:
+      # Mount current directory to preserve outputs
+      - ./:/app
+      # Mount a specific data volume for persistent storage
+      - amazon_data:/app/data
+    environment:
+      - PYTHONUNBUFFERED=1
+      - PYTHONPATH=/app
+    restart: unless-stopped
+    # Run in headless mode by default
+    command: ["python3", "enhanced_amazon_mobile_scraper.py", "--headless"]
+
+volumes:
+  amazon_data:
+    driver: local
