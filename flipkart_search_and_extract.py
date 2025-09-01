@@ -25,6 +25,9 @@ OUTPUT_JSON_PATH = os.path.join(os.path.dirname(__file__), 'flipkart_product_lin
 OUTPUT_CSV_PATH = os.path.join(os.path.dirname(__file__), 'flipkart_product_links_and_names.csv')
 PROGRESS_FILE = os.path.join(os.path.dirname(__file__), 'flipkart_progress.json')
 TEMP_OUTPUT_FILE = os.path.join(os.path.dirname(__file__), 'flipkart_temp_output.json')
+BACKUP_DIR = os.path.join(os.path.dirname(__file__), 'backups')
+BACKUP_INTERVAL = 100  # Create backup every 100 rows
+MAX_RETRIES = 2  # Maximum retries before creating backup on error
 
 # Proxy configuration
 PROXYSCRAPE_API_KEY = "wvm4z69kf54pc9rod7ck"
@@ -42,6 +45,8 @@ current_proxy = None
 proxy_list = []
 proxy_rotation_count = 0
 use_proxy_mode = False  # Flag to track if we need to use proxies due to errors
+backup_count = 0  # Track backup count for cleanup
+last_backup_file = None  # Track last backup file for cleanup
 
 def get_proxy_list() -> List[str]:
     """Fetch fresh proxy list from ProxyScrape API"""
@@ -167,11 +172,14 @@ def create_driver_with_proxy(headless: bool = False) -> uc.Chrome:
 def signal_handler(signum, frame):
     """Handle keyboard interrupt (Ctrl+C) gracefully"""
     global current_progress, all_records, driver
-    print(f"\n\nKeyboard interrupt detected! Saving progress...")
+    print(f"\n\nKeyboard interrupt detected! Saving progress and creating backup...")
     
     if all_records:
         save_progress(current_progress, all_records)
+        # Create emergency backup
+        backup_path = create_backup(all_records, current_progress)
         print(f"Progress saved! Completed {current_progress}/{total_queries} queries.")
+        print(f"Emergency backup created: {backup_path}")
         print(f"Temporary data saved to {TEMP_OUTPUT_FILE}")
     
     if driver:
@@ -182,6 +190,51 @@ def signal_handler(signum, frame):
     
     print("Script terminated safely. You can resume later by running the same command.")
     sys.exit(0)
+
+def create_backup_dir():
+    """Create backup directory if it doesn't exist"""
+    if not os.path.exists(BACKUP_DIR):
+        os.makedirs(BACKUP_DIR)
+        logging.info(f"Created backup directory: {BACKUP_DIR}")
+
+def create_backup(records: List[Dict], completed_count: int) -> str:
+    """Create backup file and return the backup file path"""
+    global backup_count, last_backup_file
+    
+    create_backup_dir()
+    
+    timestamp = time.strftime("%Y%m%d_%H%M%S")
+    backup_filename = f"flipkart_backup_{completed_count}_{timestamp}.json"
+    backup_path = os.path.join(BACKUP_DIR, backup_filename)
+    
+    # Save backup with atomic structure (each CSV row = separate JSON entry)
+    atomic_records = []
+    for record in records:
+        atomic_records.append({
+            'model_id': record['model_id'],
+            'product_name': record['product_name'],
+            'color': record['colour'],  # Rename to 'color' as requested
+            'variant': record['ram_rom'],  # Rename to 'variant' as requested
+            'url': record['url'],
+            'product_name_via_url': record['product_name_via_url']
+        })
+    
+    with open(backup_path, 'w', encoding='utf-8') as f:
+        json.dump(atomic_records, f, ensure_ascii=False, indent=2)
+    
+    backup_count += 1
+    logging.info(f"Backup created: {backup_path} ({len(atomic_records)} records)")
+    
+    # Clean up previous backup if it exists
+    if last_backup_file and os.path.exists(last_backup_file):
+        try:
+            os.remove(last_backup_file)
+            logging.info(f"Previous backup cleaned up: {last_backup_file}")
+        except Exception as e:
+            logging.warning(f"Could not clean up previous backup {last_backup_file}: {e}")
+    
+    last_backup_file = backup_path
+    return backup_path
 
 def save_progress(completed_count: int, records: List[Dict]):
     """Save current progress and data to temporary files"""
@@ -198,6 +251,10 @@ def save_progress(completed_count: int, records: List[Dict]):
     # Save temporary data
     with open(TEMP_OUTPUT_FILE, 'w', encoding='utf-8') as f:
         json.dump(records, f, ensure_ascii=False, indent=2)
+    
+    # Create backup every 100 rows
+    if completed_count > 0 and completed_count % BACKUP_INTERVAL == 0:
+        create_backup(records, completed_count)
 
 def load_progress() -> tuple[int, List[Dict]]:
     """Load previous progress and data if available"""
@@ -360,7 +417,7 @@ def take_debug_screenshot(driver, filename: str):
     except Exception as e:
         logging.error('Failed to take debug screenshot: %s', str(e))
 
-def perform_search_and_extract_links(driver, query: str, max_retries: int = 3, headless: bool = False) -> List[str]:
+def perform_search_and_extract_links(driver, query: str, max_retries: int = MAX_RETRIES, headless: bool = False) -> List[str]:
     for attempt in range(max_retries):
         try:
             logging.info('Search attempt %d/%d for query: %s', attempt + 1, max_retries, query)
@@ -515,7 +572,7 @@ def _load_flipkart_helper():
     return module
 
 
-def extract_product_name_via_existing_helper(driver, url: str, max_retries: int = 2) -> Optional[str]:
+def extract_product_name_via_existing_helper(driver, url: str, max_retries: int = MAX_RETRIES) -> Optional[str]:
     module = _load_flipkart_helper()
     # Use minimal helper as requested
     extract_product_name_via_url_minimal = getattr(module, 'extract_product_name_via_url_minimal')
@@ -559,7 +616,7 @@ def extract_product_name_via_existing_helper(driver, url: str, max_retries: int 
     return None
 
 
-def visit_links_and_collect_names(driver, links: List[str], max_retries: int = 3) -> List[Dict[str, str]]:
+def visit_links_and_collect_names(driver, links: List[str], max_retries: int = MAX_RETRIES) -> List[Dict[str, str]]:
     collected: List[Dict[str, str]] = []
     for link in links:
         name = None
@@ -613,48 +670,32 @@ def visit_links_and_collect_names(driver, links: List[str], max_retries: int = 3
 
 
 def save_outputs(records: List[Dict], output_json_path: str, output_csv_path: str):
-    # Group by model_id, product_name, colour, and ram_rom
-    grouped_data = defaultdict(lambda: defaultdict(lambda: defaultdict(lambda: defaultdict(list))))
-    
+    # Create atomic JSON structure - each CSV row becomes a separate JSON entry
+    atomic_json = []
     for record in records:
-        model_id = record['model_id']
-        product_name = record['product_name']
-        colour = record['colour']
-        ram_rom = record['ram_rom']
-        
-        grouped_data[model_id][product_name][colour][ram_rom].append({
+        atomic_json.append({
+            'model_id': record['model_id'],
+            'product_name': record['product_name'],
+            'color': record['colour'],  # Rename to 'color' as requested
+            'variant': record['ram_rom'],  # Rename to 'variant' as requested
             'url': record['url'],
             'product_name_via_url': record['product_name_via_url']
         })
     
-    # Convert to final JSON structure matching the required format
-    final_json = []
-    for model_id, products in grouped_data.items():
-        for product_name, colours in products.items():
-            for colour, ram_roms in colours.items():
-                for ram_rom, flipkart_names in ram_roms.items():
-                    final_json.append({
-                        'model_id': model_id,
-                        'product_name': product_name,
-                        'colour': colour,
-                        'ram_rom': ram_rom,
-                        'flipkart_names': flipkart_names
-                    })
-    
-    # Save JSON
+    # Save atomic JSON
     with open(output_json_path, 'w', encoding='utf-8') as jf:
-        json.dump(final_json, jf, ensure_ascii=False, indent=2)
+        json.dump(atomic_json, jf, ensure_ascii=False, indent=2)
     
-    # Save CSV
+    # Save CSV with updated field names
     with open(output_csv_path, 'w', encoding='utf-8', newline='') as cf:
-        writer = csv.DictWriter(cf, fieldnames=['model_id', 'product_name', 'colour', 'ram_rom', 'url', 'product_name_via_url'])
+        writer = csv.DictWriter(cf, fieldnames=['model_id', 'product_name', 'color', 'variant', 'url', 'product_name_via_url'])
         writer.writeheader()
         for record in records:
             writer.writerow({
                 'model_id': record['model_id'],
                 'product_name': record['product_name'],
-                'colour': record['colour'],
-                'ram_rom': record['ram_rom'],
+                'color': record['colour'],
+                'variant': record['ram_rom'],
                 'url': record['url'],
                 'product_name_via_url': record['product_name_via_url']
             })
@@ -726,26 +767,47 @@ def main():
                 # Use proxy only if we've encountered network errors
                 driver = renew_chrome_session(driver, headless=args.headless, use_proxy=use_proxy_mode)
             
-            # Extract links directly without saving HTML
-            links = perform_search_and_extract_links(driver, query, headless=args.headless)
-            print(f'   Found {len(links)} links')
-            
-            if links:
-                results = visit_links_and_collect_names(driver, links)
-                for r in results:
-                    r.update({
-                        'model_id': query_data['model_id'],
-                        'product_name': query_data['product_name'],
-                        'colour': query_data['colour'],
-                        'ram_rom': query_data['ram_rom']
-                    })
-                all_records.extend(results)
+            try:
+                # Extract links directly without saving HTML
+                links = perform_search_and_extract_links(driver, query, headless=args.headless)
+                print(f'   Found {len(links)} links')
                 
-                # Save progress after each successful query
-                save_progress(idx, all_records)
-                print(f'   Progress saved: {idx}/{total_queries} completed')
-            else:
-                print(f'   No links found for query: {query}')
+                if links:
+                    results = visit_links_and_collect_names(driver, links)
+                    for r in results:
+                        r.update({
+                            'model_id': query_data['model_id'],
+                            'product_name': query_data['product_name'],
+                            'colour': query_data['colour'],
+                            'ram_rom': query_data['ram_rom']
+                        })
+                    all_records.extend(results)
+                    
+                    # Save progress after each successful query
+                    save_progress(idx, all_records)
+                    print(f'   Progress saved: {idx}/{total_queries} completed')
+                else:
+                    print(f'   No links found for query: {query}')
+                    
+            except Exception as query_error:
+                logging.error(f'Error processing query {idx}: {query_error}')
+                # Create backup on query error after MAX_RETRIES attempts
+                if all_records:
+                    backup_path = create_backup(all_records, idx)
+                    print(f'   Error backup created: {backup_path}')
+                
+                # Check if we should continue or stop
+                error_str = str(query_error).lower()
+                critical_errors = ['connection error', 'http connection pool', 'timeout', 'proxy', 'network error']
+                
+                if any(keyword in error_str for keyword in critical_errors):
+                    print(f'   Critical network error detected. Creating final backup and stopping...')
+                    if all_records:
+                        final_backup = create_backup(all_records, idx)
+                        print(f'   Final backup created: {final_backup}')
+                    break
+                else:
+                    print(f'   Non-critical error, continuing with next query...')
         
         # Generate and display extraction report
         extraction_report = generate_extraction_report(all_records)
@@ -770,19 +832,28 @@ def main():
         
         # Final save and cleanup
         save_outputs(all_records, OUTPUT_JSON_PATH, OUTPUT_CSV_PATH)
+        
+        # Create final backup
+        if all_records:
+            final_backup = create_backup(all_records, total_queries)
+            print(f'Final backup created: {final_backup}')
+        
         cleanup_temp_files()
         print(f'Saved outputs to {OUTPUT_JSON_PATH} and {OUTPUT_CSV_PATH}')
         print(f'Successfully completed all {total_queries} queries!')
+        print(f'Total backups created: {backup_count}')
         
     except KeyboardInterrupt:
         # This should be handled by signal_handler, but just in case
         pass
     except Exception as e:
         print(f"Error occurred: {e}")
-        # Save progress even on error
+        # Save progress and create backup on error
         if all_records:
             save_progress(current_progress, all_records)
+            backup_path = create_backup(all_records, current_progress)
             print(f"Progress saved due to error. Completed {current_progress}/{total_queries} queries.")
+            print(f"Emergency backup created: {backup_path}")
     finally:
         if driver:
             try:
