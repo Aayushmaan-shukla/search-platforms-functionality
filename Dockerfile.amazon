@@ -52,8 +52,23 @@ RUN mkdir -p data
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONPATH=/app
 
+# Memory optimization settings
+ENV MALLOC_ARENA_MAX=2
+ENV MALLOC_MMAP_THRESHOLD_=131072
+ENV MALLOC_TRIM_THRESHOLD_=131072
+ENV MALLOC_TOP_PAD_=131072
+ENV MALLOC_MMAP_MAX_=65536
+
+# Chrome optimization
+ENV CHROME_NO_SANDBOX=true
+ENV CHROME_DISABLE_GPU=true
+
 # Expose port if needed for future API functionality
 EXPOSE 5000
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
+  CMD python3 -c "import os; exit(0 if os.path.exists('scraping_progress.json') else 1)"
 
 # Default command - run the Amazon scraper in headless mode
 CMD ["python3", "enhanced_amazon_mobile_scraper.py", "--headless"]

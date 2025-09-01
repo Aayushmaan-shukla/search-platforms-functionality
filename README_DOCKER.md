@@ -74,10 +74,32 @@ The Docker setup mounts the current directory to `/app` in the container, which 
 ## Output Files
 
 The scraper generates the following files:
-- `amazon_mobile_results.json` - Main results in JSON format
-- `amazon_mobile_results.csv` - Results in CSV format
+- `amazon_mobile_results.json` - Main results in JSON format (atomic structure - each CSV row = one JSON entry)
+- `amazon_mobile_results.csv` - Results in CSV format with color and variant columns
 - `scraping_progress.json` - Progress tracking for resuming interrupted runs
+- `amazon_mobile_results_backup_*.json` - Backup files created every 100 rows and on errors
 - `screenshots/` - Debug screenshots (if issues occur)
+
+## JSON Structure
+
+The new JSON structure ensures atomicity - each CSV row becomes a separate JSON entry:
+
+```json
+[
+  {
+    "product_name": "iPhone 15",
+    "colour": "Blue",
+    "ram_rom": "128GB",
+    "model_id": "12345",
+    "amazon_links": [
+      {
+        "url": "https://amazon.in/...",
+        "product_name_via_url": "iPhone 15 Blue 128GB"
+      }
+    ]
+  }
+]
+```
 
 ## Monitoring
 
@@ -138,3 +160,21 @@ docker run -v $(pwd):/app amazon-scraper python3 enhanced_amazon_mobile_scraper.
 - It includes random delays between requests
 - Proxy rotation helps avoid IP-based rate limiting
 - Consider running during off-peak hours for better performance
+- Backup files are created every 100 rows for data safety
+- Automatic retry mechanism (max 2 attempts) for connection errors
+
+## Resource Management
+
+### Container Resource Limits
+- **Memory Limit**: 1.5GB (reservation: 800MB)
+- **CPU Limit**: 1.0 core (reservation: 0.5 core)
+- **Estimated Processing Time**: 10-30 seconds per row
+- **Full Dataset (4218 rows)**: ~12-35 hours
+
+### Without Volume Mounts
+- **Data Loss Risk**: All data lost on container restart
+- **Storage Usage**: ~50-200MB for full dataset
+- **Memory Usage**: ~450-830MB peak
+- **Backup Strategy**: Backups stored in container (lost on restart)
+
+See `RESOURCE_ANALYSIS.md` for detailed resource analysis.

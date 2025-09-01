@@ -15,6 +15,22 @@ services:
       - PYTHONUNBUFFERED=1
       - PYTHONPATH=/app
     restart: unless-stopped
+    # Resource limits for container
+    deploy:
+      resources:
+        limits:
+          memory: 1.5G
+          cpus: '1.0'
+        reservations:
+          memory: 800M
+          cpus: '0.5'
+    # Health check configuration
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import os; exit(0 if os.path.exists('scraping_progress.json') else 1)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
     # Run in headless mode by default
     command: ["python3", "enhanced_amazon_mobile_scraper.py", "--headless"]
 
