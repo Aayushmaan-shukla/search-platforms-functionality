@@ -18,19 +18,22 @@ import os
 from datetime import datetime
 import requests
 
-class CromaMobileScrapper:  
+class CromaMobileScraper:
     def __init__(self, headless=False):
         self.driver = None
         self.wait = None
-        self.results = {}
+        self.results = []  # Changed to list for atomic entries
         self.headless = headless
-        self.progress_file = "scraping_progress.json"
+        self.progress_file = "croma_scraping_progress.json"
         self.screenshot_dir = "screenshots"
         self.proxy_api_key = "wvm4z69kf54pc9rod7ck"
         self.proxy_base_url = "https://proxyscrape.com/v2/?request=get&protocol=http&timeout=10000&country=all&ssl=all&anonymity=all"
         self.current_proxy = None
         self.rows_processed = 0
         self.session_change_threshold = 5
+        self.backup_threshold = 100  # Create backup every 100 rows
+        self.error_retry_count = 0
+        self.max_retries = 2
         self.setup_driver()
         self.load_progress()
         
@@ -183,9 +186,9 @@ class CromaMobileScrapper:
             if os.path.exists(self.progress_file):
                 with open(self.progress_file, 'r', encoding='utf-8') as f:
                     progress_data = json.load(f)
-                    self.results = progress_data.get('results', {})
+                    self.results = progress_data.get('results', [])
                     self.last_processed_index = progress_data.get('last_processed_index', -1)
-                    print(f"Loaded progress: {len(self.results)} models already processed")
+                    print(f"Loaded progress: {len(self.results)} entries already processed")
                     print(f"Resuming from index: {self.last_processed_index + 1}")
                 return True
         except Exception as e:
@@ -204,9 +207,65 @@ class CromaMobileScrapper:
             }
             with open(self.progress_file, 'w', encoding='utf-8') as f:
                 json.dump(progress_data, f, indent=2, ensure_ascii=False)
-            print(f"Progress saved: {len(self.results)} models processed")
+            print(f"Progress saved: {len(self.results)} entries processed")
         except Exception as e:
             print(f"Error saving progress: {e}")
+    
+    def create_backup(self):
+        """Create backup file and delete previous backup"""
+        try:
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            backup_file = f"croma_mobile_results_backup_{timestamp}.json"
+            
+            # Save current results to backup
+            with open(backup_file, 'w', encoding='utf-8') as f:
+                json.dump(self.results, f, indent=2, ensure_ascii=False)
+            
+            print(f"Backup created: {backup_file}")
+            
+            # Find and delete previous backup files
+            backup_files = [f for f in os.listdir('.') if f.startswith('croma_mobile_results_backup_') and f.endswith('.json')]
+            backup_files.sort()
+            
+            # Keep only the latest backup, delete others
+            if len(backup_files) > 1:
+                for old_backup in backup_files[:-1]:
+                    try:
+                        os.remove(old_backup)
+                        print(f"Deleted old backup: {old_backup}")
+                    except Exception as e:
+                        print(f"Error deleting old backup {old_backup}: {e}")
+            
+            return backup_file
+            
+        except Exception as e:
+            print(f"Error creating backup: {e}")
+            return None
+    
+    def handle_error_with_backup(self, error_msg, search_query, index):
+        """Handle errors by creating backup and managing retries"""
+        print(f"Error occurred: {error_msg}")
+        
+        # Create backup on error
+        backup_file = self.create_backup()
+        if backup_file:
+            print(f"Backup created due to error: {backup_file}")
+        
+        # Take screenshot for debugging
+        self.take_screenshot("error_occurred", search_query, index)
+        
+        # Increment error retry count
+        self.error_retry_count += 1
+        
+        if self.error_retry_count >= self.max_retries:
+            print(f"Max retries ({self.max_retries}) reached. Skipping this entry.")
+            self.error_retry_count = 0  # Reset for next entry
+            return False
+        else:
+            print(f"Retry attempt {self.error_retry_count}/{self.max_retries}")
+            # Change session and proxy on error
+            self.change_session(change_proxy=True)
+            return True
     
     def take_screenshot(self, reason, search_query, index):
         """Take screenshot for debugging purposes"""
@@ -226,42 +285,6 @@ class CromaMobileScrapper:
             # Navigate to Croma.com
             self.driver.get("https://www.croma.com")
             time.sleep(random.uniform(2, 4))
-
-            # Handle location popup/modal if it appears (improved for Croma)
-            try:
-                # Wait for the popup to appear (up to 8 seconds)
-                popup_found = False
-                # Try to click 'Never allow' if present
-                try:
-                    never_allow_btn = WebDriverWait(self.driver, 8).until(
-                        EC.element_to_be_clickable((By.XPATH, "//button[contains(text(), 'Never allow') or contains(text(), 'Never Allow') or contains(text(), 'never allow') or contains(text(), 'NEVER ALLOW') or contains(text(), 'Allow while visiting the site') or contains(text(), 'Allow this time') or contains(text(), 'Allow')]"))
-                    )
-                    never_allow_btn.click()
-                    print("Location popup closed by clicking 'Never allow' or similar.")
-                    popup_found = True
-                    time.sleep(1)
-                except Exception:
-                    pass
-                # Try to click the close (X) button if still present
-                if not popup_found:
-                    try:
-                        close_btn = self.driver.find_element(By.XPATH, "//button[contains(@aria-label, 'close') or contains(@class, 'close') or contains(text(), '×') or contains(text(), '✕')]")
-                        close_btn.click()
-                        print("Location popup closed by clicking close button.")
-                        popup_found = True
-                        time.sleep(1)
-                    except Exception:
-                        pass
-                # Try sending ESC key to body as a last resort
-                if not popup_found:
-                    try:
-                        body = self.driver.find_element(By.TAG_NAME, 'body')
-                        body.send_keys(Keys.ESCAPE)
-                        print("Location popup closed by sending ESC key.")
-                    except Exception:
-                        print("No location popup/modal to close or error.")
-            except Exception as e:
-                print(f"No location popup/modal to close or error: {e}")
             
             # Find and fill the search box
             search_box = self.wait.until(
@@ -323,16 +346,13 @@ class CromaMobileScrapper:
         try:
             # Look for product links with the specified class pattern
             # Croma uses various class patterns for product links
-            # link_selectors = [
-            #     "a[class*='a-link-normal'][class*='s-line-clamp']",
-            #     "a[class*='a-link-normal'][class*='s-line-style']",
-            #     "a[class*='a-link-normal'][class*='a-text-normal']",
-            #     "h2 a",
-            #     ".s-result-item a[href*='/dp/']",
-            #     ".s-result-item a[href*='/gp/product/']"
-            # ]
-            
             link_selectors = [
+                # "a[class*='a-link-normal'][class*='s-line-clamp']",
+                # "a[class*='a-link-normal'][class*='s-link-style']",
+                # "a[class*='a-link-normal'][class*='a-text-normal']",
+                # "h2 a",
+                # ".s-result-item a[href*='/dp/']",
+                # ".s-result-item a[href*='/gp/product/']"
                 "li.product-item > div[data-testid='product-img'] > a",
                 "li.product-item h3.product-title > a"
             ]
@@ -415,12 +435,11 @@ class CromaMobileScrapper:
                     ram_rom = row['ram_rom']
                     model_id = str(row['model_id'])
                     
-                    search_query = f"{product_name},{colour},{ram_rom}"
+                    search_query = f"{product_name} {colour} {ram_rom}"
                     print(f"\n--- Processing {index + 1}/{len(df)}: {search_query} ---")
                     
-                    # Search on Croma (use space-separated version for actual search)
-                    search_query_for_croma = f"{product_name} {colour} {ram_rom}"
-                    if self.search_croma(search_query_for_croma):
+                    # Search on Croma
+                    if self.search_croma(search_query):
                         # Handle continue shopping button if it appears
                         # self.handle_continue_shopping()
                         
@@ -435,24 +454,43 @@ class CromaMobileScrapper:
                                     self.take_screenshot("blank_values", search_query, index)
                                     break
                             
-                            # Store results grouped by model_id (overwrite if same model_id)
-                            # This ensures we get the latest search results for each model
-                            self.results[model_id] = {
-                                'product_name': search_query,  # Store complete search query instead of just product_name
+                            # Create separate entry for each CSV row (atomic structure)
+                            entry = {
+                                'product_name': product_name,
+                                'colour': colour,
+                                'ram_rom': ram_rom,
                                 'model_id': model_id,
-                                'Croma_links': products
+                                'croma_links': products
                             }
                             
-                            print(f"Extracted {len(products)} Croma products for model {model_id}")
+                            # Add to results list (each row is a separate entry)
+                            self.results.append(entry)
+                            
+                            print(f"Extracted {len(products)} Croma products for entry {index + 1}")
                         else:
                             print("No Croma products found")
                             # Take screenshot for no products found
                             self.take_screenshot("no_products", search_query, index)
+                            
+                            # Still create an entry even if no products found
+                            entry = {
+                                'product_name': product_name,
+                                'colour': colour,
+                                'ram_rom': ram_rom,
+                                'model_id': model_id,
+                                'croma_links': []
+                            }
+                            self.results.append(entry)
                         
                         # Update progress and row counter
                         self.last_processed_index = index
                         self.rows_processed += 1
                         self.save_progress()
+                        
+                        # Create backup every 100 rows
+                        if self.rows_processed % self.backup_threshold == 0:
+                            print(f"\n--- Creating backup after {self.rows_processed} rows ---")
+                            self.create_backup()
                         
                         # Random delay between searches
                         delay = random.uniform(3, 7)
@@ -461,14 +499,50 @@ class CromaMobileScrapper:
                         
                     else:
                         print("Failed to search Croma")
-                        # Take screenshot for search failure
-                        self.take_screenshot("search_failed", search_query, index)
+                        # Handle search failure with backup and retry
+                        if self.handle_error_with_backup("Search failed", search_query, index):
+                            continue  # Retry
+                        else:
+                            # Max retries reached, create empty entry and continue
+                            entry = {
+                                'product_name': product_name,
+                                'colour': colour,
+                                'ram_rom': ram_rom,
+                                'model_id': model_id,
+                                'croma_links': []
+                            }
+                            self.results.append(entry)
+                            self.last_processed_index = index
+                            self.rows_processed += 1
+                            self.save_progress()
+                            continue
                 
                 except Exception as e:
-                    print(f"Error processing row {index + 1}: {e}")
-                    # Take screenshot for processing error
-                    self.take_screenshot("processing_error", search_query, index)
-                    continue
+                    error_msg = f"Error processing row {index + 1}: {e}"
+                    print(error_msg)
+                    
+                    # Check if it's a connection-related error
+                    if any(error_type in str(e).lower() for error_type in ['timeout', 'connection', 'pool', 'http', 'network']):
+                        if self.handle_error_with_backup(f"Connection error: {e}", search_query, index):
+                            continue  # Retry
+                        else:
+                            # Max retries reached, create empty entry and continue
+                            entry = {
+                                'product_name': product_name,
+                                'colour': colour,
+                                'ram_rom': ram_rom,
+                                'model_id': model_id,
+                                'croma_links': []
+                            }
+                            self.results.append(entry)
+                            self.last_processed_index = index
+                            self.rows_processed += 1
+                            self.save_progress()
+                            continue
+                    else:
+                        # Other errors - create backup and continue
+                        self.handle_error_with_backup(error_msg, search_query, index)
+                        continue
                     
         except KeyboardInterrupt:
             print("\nScraping interrupted by user. Saving progress...")
@@ -476,19 +550,17 @@ class CromaMobileScrapper:
             print("Progress saved. You can resume later by running the script again.")
             raise
     
-    def save_results(self, output_file="Croma_mobile_results.json"):
+    def save_results(self, output_file="croma_mobile_results.json"):
         """Save Croma results to JSON file"""
         
         if self.results:
             try:
-                # Convert results to list format as requested
-                results_list = list(self.results.values())
-                
+                # Results are already in list format
                 with open(output_file, 'w', encoding='utf-8') as f:
-                    json.dump(results_list, f, indent=2, ensure_ascii=False)
+                    json.dump(self.results, f, indent=2, ensure_ascii=False)
                 
                 print(f"Croma results saved to {output_file}")
-                print(f"Total models processed: {len(self.results)}")
+                print(f"Total entries processed: {len(self.results)}")
                 
                 # Also save as CSV for compatibility
                 csv_file = output_file.replace('.json', '.csv')
@@ -499,18 +571,22 @@ class CromaMobileScrapper:
         else:
             print("No Croma results to save")
     
-    def save_results_csv(self, output_file="Croma_mobile_results.csv"):
+    def save_results_csv(self, output_file="croma_mobile_results.csv"):
         """Save results in CSV format for compatibility"""
         try:
             csv_data = []
-            for model_data in self.results.values():
-                model_id = model_data['model_id']
-                product_name = model_data['product_name']  # This now contains the complete search query
+            for entry in self.results:
+                model_id = entry['model_id']
+                product_name = entry['product_name']
+                colour = entry['colour']
+                ram_rom = entry['ram_rom']
                 
-                for link in model_data['Croma_links']:
+                for link in entry['croma_links']:
                     csv_data.append({
                         'model_id': model_id,
-                        'product_name': product_name,  # Complete search query (e.g., "Ai+ Pulse,Black,4 GB + 64 GB")
+                        'product_name': product_name,
+                        'colour': colour,
+                        'ram_rom': ram_rom,
                         'url': link['url'],
                         'product_name_via_url': link['product_name_via_url']
                     })
@@ -535,7 +611,7 @@ def main():
     args = parser.parse_args()
     
     # Initialize scraper
-    scraper = CromaMobileScrapper(headless=args.headless)
+    scraper = CromaMobileScraper(headless=args.headless)
     
     try:
         # CSV file path
@@ -547,7 +623,7 @@ def main():
             return
         
         # Start Croma scraping (process all entries)
-        print("=== STARTING Croma SCRAPING ===")
+        print("=== STARTING AMAZON SCRAPING ===")
         print(f"Headless mode: {'Enabled' if args.headless else 'Disabled'}")
         scraper.scrape_permutations(csv_file)
         
