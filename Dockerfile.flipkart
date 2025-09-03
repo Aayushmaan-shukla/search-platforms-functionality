@@ -43,8 +43,8 @@ WORKDIR /app
 COPY requirements.txt .
 
 # Install Python dependencies in a single layer
-RUN pip install --no-cache-dir -r requirements.txt \
-    && pip install --no-cache-dir pandas
+RUN pip install --no-cache-dir -r requirements.txt 
+
 
 # Copy the Flipkart scraper and data files
 COPY flipkart_search_and_extract.py .

@@ -10,3 +10,4 @@ contextlib
 signal
 threading
 requests
+pandas
