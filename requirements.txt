@@ -6,7 +6,7 @@ beautifulsoup4
 Pillow
 psutil
 argparse
-contextlib 
+contextlib2
 signal
 threading
 requests
