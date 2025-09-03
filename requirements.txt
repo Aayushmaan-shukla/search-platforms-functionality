@@ -7,7 +7,6 @@ Pillow
 psutil
 argparse
 contextlib2
-signal
-threading
+signals
 requests
 pandas
