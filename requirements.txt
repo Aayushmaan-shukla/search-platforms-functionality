@@ -4,3 +4,9 @@ pandas
 requests
 beautifulsoup4
 Pillow
+psutil
+argparse
+contextlib 
+signal
+threading
+requests
