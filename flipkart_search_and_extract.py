@@ -880,11 +880,18 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
-from selenium.common.exceptions import TimeoutException, NoSuchElementException, ElementClickInterceptedException
+from selenium.common.exceptions import TimeoutException, NoSuchElementException, ElementClickInterceptedException, WebDriverException
 import pandas as pd
 import os
 from datetime import datetime
 import requests
+import logging
+import gc
+import psutil
+import threading
+import os
+import signal
+from contextlib import contextmanager
 
 class FlipkartMobileScraper:
     def __init__(self, headless=False):
@@ -901,89 +908,282 @@ class FlipkartMobileScraper:
         self.session_change_threshold = 5
         self.backup_threshold = 100  # Create backup every 100 rows
         self.error_retry_count = 0
-        self.max_retries = 2
+        self.max_retries = 5  # Increased to 5 retries as requested
+        self.max_connection_retries = 3  # Specific retries for connection errors
+        self.open_files_count = 0
+        self.max_open_files = 50  # Limit to prevent "too many open files" error
+        
+        # Thread management for Docker
+        self.thread_cleanup_threshold = 100  # Cleanup threads every 100 scrapes
+        self.initial_thread_count = threading.active_count()
+        self.thread_cleanup_count = 0
+        self.is_docker_env = self.detect_docker_environment()
+        
+        # Setup logging
+        self.setup_logging()
+        
+        # Create screenshots directory
+        os.makedirs(self.screenshot_dir, exist_ok=True)
+        
         self.setup_driver()
         self.load_progress()
-        
-    def get_proxy(self):
-        """Get a new proxy from proxyscrape"""
-        try:
-            url = f"{self.proxy_base_url}&apikey={self.proxy_api_key}"
-            response = requests.get(url, timeout=10)
-            if response.status_code == 200:
-                proxy = response.text.strip()
-                if proxy and ':' in proxy:
-                    print(f"New proxy obtained: {proxy[:20]}...")
-                    return proxy
-                else:
-                    print("Invalid proxy format received")
-            else:
-                print(f"Proxy API returned status code: {response.status_code}")
-        except requests.exceptions.Timeout:
-            print("Timeout getting proxy from API")
-        except requests.exceptions.ConnectionError:
-            print("Connection error getting proxy from API")
-        except Exception as e:
-            print(f"Error getting proxy: {e}")
-        
-        print("Falling back to no proxy")
-        return None
     
-    def setup_driver(self, use_proxy=True):
-        """Setup undetected Chrome driver with proxy support"""
+    def detect_docker_environment(self):
+        """Detect if running inside Docker container"""
+        try:
+            # Check for Docker-specific files and environment variables
+            docker_indicators = [
+                os.path.exists('/.dockerenv'),
+                os.path.exists('/proc/1/cgroup') and 'docker' in open('/proc/1/cgroup').read(),
+                os.environ.get('DOCKER_CONTAINER') == 'true',
+                os.environ.get('container') == 'docker'
+            ]
+            return any(docker_indicators)
+        except Exception:
+            return False
+    
+    def setup_logging(self):
+        """Setup logging configuration"""
+        logging.basicConfig(
+            level=logging.INFO,
+            format='%(asctime)s - %(levelname)s - %(message)s',
+            handlers=[
+                logging.FileHandler('flipkart_scraper.log'),
+                logging.StreamHandler()
+            ]
+        )
+        self.logger = logging.getLogger(__name__)
+        self.logger.info(f"Docker environment detected: {self.is_docker_env}")
+        self.logger.info(f"Initial thread count: {self.initial_thread_count}")
+    
+    @contextmanager
+    def managed_file_handle(self, file_path, mode='r'):
+        """Context manager to ensure file handles are properly closed"""
+        file_handle = None
+        try:
+            file_handle = open(file_path, mode, encoding='utf-8')
+            self.open_files_count += 1
+            yield file_handle
+        finally:
+            if file_handle:
+                file_handle.close()
+                self.open_files_count -= 1
+    
+    def check_system_resources(self):
+        """Check system resources and clean up if needed"""
+        try:
+            # Check open file descriptors
+            process = psutil.Process()
+            open_files = len(process.open_files())
+            
+            if open_files > self.max_open_files:
+                self.logger.warning(f"Too many open files detected: {open_files}. Cleaning up...")
+                gc.collect()  # Force garbage collection
+                time.sleep(1)
+                
+            # Check memory usage
+            memory_percent = psutil.virtual_memory().percent
+            if memory_percent > 85:
+                self.logger.warning(f"High memory usage: {memory_percent}%. Cleaning up...")
+                gc.collect()
+                time.sleep(1)
+            
+            # Check thread count (especially important in Docker)
+            current_thread_count = threading.active_count()
+            if self.is_docker_env and current_thread_count > self.initial_thread_count + 20:
+                self.logger.warning(f"High thread count detected: {current_thread_count}. Initial: {self.initial_thread_count}")
+                
+        except Exception as e:
+            self.logger.error(f"Error checking system resources: {e}")
+    
+    def cleanup_threads(self):
+        """Clean up threads to prevent exhaustion in Docker environment"""
+        if not self.is_docker_env:
+            return  # Only cleanup in Docker environment
+            
+        try:
+            current_thread_count = threading.active_count()
+            self.logger.info(f"Thread cleanup triggered. Current threads: {current_thread_count}, Initial: {self.initial_thread_count}")
+            
+            # Get list of all active threads for monitoring
+            active_threads = threading.enumerate()
+            scraper_threads = [t for t in active_threads if 'scraper' in t.name.lower() or 'chrome' in t.name.lower()]
+            
+            self.logger.info(f"Active scraper-related threads: {len(scraper_threads)}")
+            
+            # Force garbage collection to clean up any dead threads
+            gc.collect()
+            
+            # Wait a bit for threads to finish naturally
+            time.sleep(3)
+            
+            # Check if we can reduce thread count
+            new_thread_count = threading.active_count()
+            if new_thread_count < current_thread_count:
+                self.logger.info(f"Thread cleanup successful. Reduced from {current_thread_count} to {new_thread_count}")
+            else:
+                self.logger.warning(f"Thread cleanup had no effect. Still {new_thread_count} threads")
+                
+                # If thread count is still high, try more aggressive cleanup
+                if new_thread_count > self.initial_thread_count + 15:
+                    self.logger.warning("High thread count persists. Attempting aggressive cleanup...")
+                    self.aggressive_thread_cleanup()
+            
+            # Reset thread cleanup counter
+            self.thread_cleanup_count = 0
+            
+        except Exception as e:
+            self.logger.error(f"Error during thread cleanup: {e}")
+    
+    def aggressive_thread_cleanup(self):
+        """More aggressive thread cleanup for persistent high thread counts"""
+        try:
+            self.logger.info("Performing aggressive thread cleanup...")
+            
+            # Force multiple garbage collections
+            for _ in range(3):
+                gc.collect()
+                time.sleep(1)
+            
+            # Log final thread count
+            final_thread_count = threading.active_count()
+            self.logger.info(f"Aggressive cleanup completed. Final thread count: {final_thread_count}")
+            
+        except Exception as e:
+            self.logger.error(f"Error during aggressive thread cleanup: {e}")
+    
+    def should_cleanup_threads(self):
+        """Check if thread cleanup should be performed"""
+        return (self.is_docker_env and 
+                self.thread_cleanup_count >= self.thread_cleanup_threshold)
+    
+    def safe_driver_quit(self):
+        """Safely quit driver with proper error handling and thread cleanup"""
         try:
             if self.driver:
                 self.driver.quit()
-            
-            chrome_options = uc.ChromeOptions()
-            
-            if self.headless:
-                chrome_options.add_argument("--headless")
-                chrome_options.add_argument("--disable-gpu")
-                chrome_options.add_argument("--window-size=1920,1080")
-            
-            # Add proxy if available
-            if use_proxy and self.current_proxy:
-                chrome_options.add_argument(f'--proxy-server={self.current_proxy}')
-                print(f"Using proxy: {self.current_proxy[:20]}...")
-            
-            # Additional options for better undetection
-            chrome_options.add_argument("--no-sandbox")
-            chrome_options.add_argument("--disable-dev-shm-usage")
-            chrome_options.add_argument("--disable-blink-features=AutomationControlled")
-            chrome_options.add_argument("--disable-extensions")
-            chrome_options.add_argument("--disable-plugins")
-            chrome_options.add_argument("--disable-images")
-            chrome_options.add_argument("--disable-javascript")
-            chrome_options.add_argument("--disable-web-security")
-            chrome_options.add_argument("--allow-running-insecure-content")
-            chrome_options.add_argument("--disable-features=VizDisplayCompositor")
-            
-            # Random user agent
-            user_agents = [
-                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36",
-                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36",
-                "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-            ]
-            chrome_options.add_argument(f"--user-agent={random.choice(user_agents)}")
-            
-            # Create undetected Chrome driver
-            self.driver = uc.Chrome(options=chrome_options)
-            self.driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
-            self.wait = WebDriverWait(self.driver, 15)
-            
-            print("Chrome driver setup completed successfully")
-            
+                self.driver = None
+                self.wait = None
+                self.logger.info("Driver closed successfully")
         except Exception as e:
-            print(f"Error setting up Chrome driver: {e}")
-            # Fallback to regular Chrome if undetected fails
-            if "undetected" in str(e).lower():
-                print("Falling back to regular Chrome driver...")
-                self.setup_regular_chrome(use_proxy)
+            self.logger.error(f"Error closing driver: {e}")
+        finally:
+            # Force cleanup including threads
+            gc.collect()
+            time.sleep(1)
+            
+            # If in Docker, also cleanup threads
+            if self.is_docker_env:
+                self.cleanup_threads()
+        
+    def get_proxy(self):
+        """Get a new proxy from proxyscrape with retry logic"""
+        for attempt in range(self.max_connection_retries):
+            try:
+                url = f"{self.proxy_base_url}&apikey={self.proxy_api_key}"
+                response = requests.get(url, timeout=10)
+                if response.status_code == 200:
+                    proxy = response.text.strip()
+                    if proxy and ':' in proxy:
+                        self.logger.info(f"New proxy obtained: {proxy[:20]}...")
+                        return proxy
+                    else:
+                        self.logger.warning("Invalid proxy format received")
+                else:
+                    self.logger.warning(f"Proxy API returned status code: {response.status_code}")
+            except requests.exceptions.Timeout:
+                self.logger.warning(f"Timeout getting proxy from API (attempt {attempt + 1}/{self.max_connection_retries})")
+            except requests.exceptions.ConnectionError:
+                self.logger.warning(f"Connection error getting proxy from API (attempt {attempt + 1}/{self.max_connection_retries})")
+            except Exception as e:
+                self.logger.error(f"Error getting proxy (attempt {attempt + 1}/{self.max_connection_retries}): {e}")
+            
+            if attempt < self.max_connection_retries - 1:
+                time.sleep(2)  # Wait before retry
+        
+        self.logger.info("Falling back to no proxy after all retries failed")
+        return None
+    
+    def setup_driver(self, use_proxy=True):
+        """Setup undetected Chrome driver with proxy support and error handling"""
+        for attempt in range(self.max_connection_retries):
+            try:
+                # Safely close existing driver
+                self.safe_driver_quit()
+                
+                # Check system resources before creating new driver
+                self.check_system_resources()
+                
+                chrome_options = uc.ChromeOptions()
+                
+                if self.headless:
+                    chrome_options.add_argument("--headless")
+                    chrome_options.add_argument("--disable-gpu")
+                    chrome_options.add_argument("--window-size=1920,1080")
+                
+                # Add proxy if available
+                if use_proxy and self.current_proxy:
+                    chrome_options.add_argument(f'--proxy-server={self.current_proxy}')
+                    self.logger.info(f"Using proxy: {self.current_proxy[:20]}...")
+                
+                # Additional options for better undetection and resource management
+                chrome_options.add_argument("--no-sandbox")
+                chrome_options.add_argument("--disable-dev-shm-usage")
+                chrome_options.add_argument("--disable-blink-features=AutomationControlled")
+                chrome_options.add_argument("--disable-extensions")
+                chrome_options.add_argument("--disable-plugins")
+                chrome_options.add_argument("--disable-images")
+                chrome_options.add_argument("--disable-javascript")
+                chrome_options.add_argument("--disable-web-security")
+                chrome_options.add_argument("--allow-running-insecure-content")
+                chrome_options.add_argument("--disable-features=VizDisplayCompositor")
+                chrome_options.add_argument("--max_old_space_size=4096")  # Limit memory usage
+                chrome_options.add_argument("--disable-background-timer-throttling")
+                chrome_options.add_argument("--disable-renderer-backgrounding")
+                chrome_options.add_argument("--disable-backgrounding-occluded-windows")
+                
+                # Random user agent
+                user_agents = [
+                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36",
+                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36",
+                    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+                ]
+                chrome_options.add_argument(f"--user-agent={random.choice(user_agents)}")
+                
+                # Create undetected Chrome driver
+                self.driver = uc.Chrome(options=chrome_options)
+                self.driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
+                self.wait = WebDriverWait(self.driver, 15)
+                
+                self.logger.info("Chrome driver setup completed successfully")
+                return  # Success, exit retry loop
+                
+            except Exception as e:
+                self.logger.error(f"Error setting up Chrome driver (attempt {attempt + 1}/{self.max_connection_retries}): {e}")
+                
+                # Check if it's a connection-related error
+                if any(error_type in str(e).lower() for error_type in ['connection', 'timeout', 'network', 'max retries']):
+                    if attempt < self.max_connection_retries - 1:
+                        self.logger.info(f"Retrying driver setup in 3 seconds...")
+                        time.sleep(3)
+                        continue
+                
+                # Fallback to regular Chrome if undetected fails
+                if "undetected" in str(e).lower():
+                    self.logger.info("Falling back to regular Chrome driver...")
+                    try:
+                        self.setup_regular_chrome(use_proxy)
+                        return
+                    except Exception as fallback_error:
+                        self.logger.error(f"Regular Chrome driver also failed: {fallback_error}")
+                
+                if attempt == self.max_connection_retries - 1:
+                    self.logger.error("All driver setup attempts failed")
+                    raise
     
     def setup_regular_chrome(self, use_proxy=True):
-        """Fallback to regular Chrome driver"""
+        """Fallback to regular Chrome driver with error handling"""
         try:
             chrome_options = Options()
             chrome_options.add_argument("--no-sandbox")
@@ -991,6 +1191,7 @@ class FlipkartMobileScraper:
             chrome_options.add_argument("--disable-blink-features=AutomationControlled")
             chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
             chrome_options.add_experimental_option('useAutomationExtension', False)
+            chrome_options.add_argument("--max_old_space_size=4096")  # Limit memory usage
             
             if self.headless:
                 chrome_options.add_argument("--headless")
@@ -1010,23 +1211,23 @@ class FlipkartMobileScraper:
             self.driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
             self.wait = WebDriverWait(self.driver, 15)
             
-            print("Regular Chrome driver setup completed successfully")
+            self.logger.info("Regular Chrome driver setup completed successfully")
             
         except Exception as e:
-            print(f"Error setting up regular Chrome driver: {e}")
+            self.logger.error(f"Error setting up regular Chrome driver: {e}")
             raise
     
     def change_session(self, change_proxy=False):
         """Change Chrome session every 5 rows, optionally change proxy on errors"""
         try:
-            print("Changing Chrome session...")
+            self.logger.info("Changing Chrome session...")
             
             # Only get new proxy if explicitly requested (on errors)
             if change_proxy:
                 new_proxy = self.get_proxy()
                 if new_proxy:
                     self.current_proxy = new_proxy
-                    print(f"Switched to new proxy: {new_proxy[:20]}...")
+                    self.logger.info(f"Switched to new proxy: {new_proxy[:20]}...")
             
             # Setup new driver
             self.setup_driver(use_proxy=True)
@@ -1034,62 +1235,81 @@ class FlipkartMobileScraper:
             # Reset row counter
             self.rows_processed = 0
             
-            print("Chrome session changed successfully")
+            # If in Docker, perform thread cleanup during session change
+            if self.is_docker_env:
+                self.logger.info("Performing thread cleanup during session change...")
+                self.cleanup_threads()
+            
+            self.logger.info("Chrome session changed successfully")
             
         except Exception as e:
-            print(f"Error changing Chrome session: {e}")
+            self.logger.error(f"Error changing Chrome session: {e}")
             # Try without proxy if proxy fails
             try:
-                print("Trying without proxy...")
+                self.logger.info("Trying without proxy...")
                 self.current_proxy = None
                 self.setup_driver(use_proxy=False)
                 self.rows_processed = 0
-                print("Chrome session changed without proxy")
+                
+                # Thread cleanup even on fallback
+                if self.is_docker_env:
+                    self.cleanup_threads()
+                    
+                self.logger.info("Chrome session changed without proxy")
             except Exception as e2:
-                print(f"Failed to change session: {e2}")
+                self.logger.error(f"Failed to change session: {e2}")
+                raise
     
     def load_progress(self):
-        """Load progress from previous scraping session"""
+        """Load progress from previous scraping session with proper file handling"""
         try:
             if os.path.exists(self.progress_file):
-                with open(self.progress_file, 'r', encoding='utf-8') as f:
+                with self.managed_file_handle(self.progress_file, 'r') as f:
                     progress_data = json.load(f)
                     self.results = progress_data.get('results', [])
                     self.last_processed_index = progress_data.get('last_processed_index', -1)
-                    print(f"Loaded progress: {len(self.results)} entries already processed")
-                    print(f"Resuming from index: {self.last_processed_index + 1}")
+                    self.logger.info(f"Loaded progress: {len(self.results)} entries already processed")
+                    self.logger.info(f"Resuming from index: {self.last_processed_index + 1}")
                 return True
         except Exception as e:
-            print(f"Error loading progress: {e}")
+            self.logger.error(f"Error loading progress: {e}")
         
         self.last_processed_index = -1
         return False
     
     def save_progress(self):
-        """Save current progress to file"""
+        """Save current progress to file with proper error handling"""
         try:
             progress_data = {
                 'results': self.results,
                 'last_processed_index': self.last_processed_index,
                 'timestamp': datetime.now().isoformat()
             }
-            with open(self.progress_file, 'w', encoding='utf-8') as f:
+            with self.managed_file_handle(self.progress_file, 'w') as f:
                 json.dump(progress_data, f, indent=2, ensure_ascii=False)
-            print(f"Progress saved: {len(self.results)} entries processed")
+            self.logger.info(f"Progress saved: {len(self.results)} entries processed")
         except Exception as e:
-            print(f"Error saving progress: {e}")
+            self.logger.error(f"Error saving progress: {e}")
+            # Try to save to backup file if main file fails
+            try:
+                backup_file = f"{self.progress_file}.backup"
+                with self.managed_file_handle(backup_file, 'w') as f:
+                    json.dump(progress_data, f, indent=2, ensure_ascii=False)
+                self.logger.info(f"Progress saved to backup file: {backup_file}")
+            except Exception as backup_error:
+                self.logger.error(f"Failed to save backup progress: {backup_error}")
     
     def create_backup(self):
-        """Create backup file and delete previous backup"""
+        """Create backup file and delete previous backup with proper file handling"""
         try:
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
             backup_file = f"flipkart_mobile_results_backup_{timestamp}.json"
             
             # Save current results to backup
-            with open(backup_file, 'w', encoding='utf-8') as f:
+            with self.managed_file_handle(backup_file, 'w') as f:
                 json.dump(self.results, f, indent=2, ensure_ascii=False)
             
-            print(f"Backup created: {backup_file}")
+            self.logger.info(f"Backup created: {backup_file}")
             
             # Find and delete previous backup files
             backup_files = [f for f in os.listdir('.') if f.startswith('flipkart_mobile_results_backup_') and f.endswith('.json')]
@@ -1100,24 +1320,34 @@ class FlipkartMobileScraper:
                 for old_backup in backup_files[:-1]:
                     try:
                         os.remove(old_backup)
-                        print(f"Deleted old backup: {old_backup}")
+                        self.logger.info(f"Deleted old backup: {old_backup}")
                     except Exception as e:
-                        print(f"Error deleting old backup {old_backup}: {e}")
+                        self.logger.error(f"Error deleting old backup {old_backup}: {e}")
             
             return backup_file
             
         except Exception as e:
-            print(f"Error creating backup: {e}")
+            self.logger.error(f"Error creating backup: {e}")
             return None
     
     def handle_error_with_backup(self, error_msg, search_query, index):
-        """Handle errors by creating backup and managing retries"""
-        print(f"Error occurred: {error_msg}")
+        """Handle errors by creating backup and managing retries with comprehensive error handling"""
+        self.logger.error(f"Error occurred: {error_msg}")
+        
+        # Check if it's a critical error that requires immediate attention
+        critical_errors = ['max retries reached', 'too many open files', 'connection error', 'http connection pool', 'timeout', 'network error']
+        is_critical = any(error_type in error_msg.lower() for error_type in critical_errors)
+        
+        if is_critical:
+            self.logger.warning(f"Critical error detected: {error_msg}")
+            # Force cleanup on critical errors
+            self.check_system_resources()
+            gc.collect()
         
         # Create backup on error
         backup_file = self.create_backup()
         if backup_file:
-            print(f"Backup created due to error: {backup_file}")
+            self.logger.info(f"Backup created due to error: {backup_file}")
         
         # Take screenshot for debugging
         self.take_screenshot("error_occurred", search_query, index)
@@ -1126,25 +1356,37 @@ class FlipkartMobileScraper:
         self.error_retry_count += 1
         
         if self.error_retry_count >= self.max_retries:
-            print(f"Max retries ({self.max_retries}) reached. Skipping this entry.")
+            self.logger.error(f"Max retries ({self.max_retries}) reached. Skipping this entry.")
             self.error_retry_count = 0  # Reset for next entry
             return False
         else:
-            print(f"Retry attempt {self.error_retry_count}/{self.max_retries}")
-            # Change session and proxy on error
-            self.change_session(change_proxy=True)
+            self.logger.info(f"Retry attempt {self.error_retry_count}/{self.max_retries}")
+            
+            # For critical errors, change session and proxy
+            if is_critical:
+                try:
+                    self.change_session(change_proxy=True)
+                except Exception as session_error:
+                    self.logger.error(f"Failed to change session on critical error: {session_error}")
+                    # If session change fails, try to continue with current session
+                    pass
+            
             return True
     
     def take_screenshot(self, reason, search_query, index):
-        """Take screenshot for debugging purposes"""
+        """Take screenshot for debugging purposes with error handling"""
         try:
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
             filename = f"{self.screenshot_dir}/{reason}_{index}_{timestamp}.png"
-            self.driver.save_screenshot(filename)
-            print(f"Screenshot saved: {filename}")
-            return filename
+            if self.driver:
+                self.driver.save_screenshot(filename)
+                self.logger.info(f"Screenshot saved: {filename}")
+                return filename
+            else:
+                self.logger.warning("No driver available for screenshot")
+                return None
         except Exception as e:
-            print(f"Error taking screenshot: {e}")
+            self.logger.error(f"Error taking screenshot: {e}")
             return None
 
     def is_valid_product_url(self, url):
@@ -1203,36 +1445,71 @@ class FlipkartMobileScraper:
             return False
 
     def search_flipkart(self, search_query):
-        """Search for products on Flipkart.com"""
-        try:
-            # Navigate to Flipkart.com
-            self.driver.get("https://www.flipkart.com")
-            time.sleep(random.uniform(2, 4))
-            
-            # Find and fill the search box
-            search_box = self.wait.until(
-                EC.presence_of_element_located((By.CLASS_NAME, "Pke_EE"))
-            )
-            
-            # Clear and enter search query
-            search_box.clear()
-            search_box.send_keys(search_query)
-            time.sleep(random.uniform(1, 2))
-            
-            # Submit search
-            search_box.send_keys(Keys.RETURN)
-            time.sleep(random.uniform(3, 5))
-            
-            return True
-            
-        except Exception as e:
-            print(f"Error searching Flipkart: {e}")
-            # Check if it's a proxy/connection error
-            if any(error_type in str(e).lower() for error_type in ['timeout', 'connection', 'pool', 'http']):
-                print("Detected connection/proxy error, switching IP...")
-                self.change_session(change_proxy=True)  # Change proxy on error
-                return False
-            return False
+        """Search for products on Flipkart.com with comprehensive error handling"""
+        for attempt in range(self.max_retries):
+            try:
+                # Check system resources before each search
+                self.check_system_resources()
+                
+                # Navigate to Flipkart.com
+                self.driver.get("https://www.flipkart.com")
+                time.sleep(random.uniform(2, 4))
+                
+                # Find and fill the search box
+                search_box = self.wait.until(
+                    EC.presence_of_element_located((By.CLASS_NAME, "Pke_EE"))
+                )
+                
+                # Clear and enter search query
+                search_box.clear()
+                search_box.send_keys(search_query)
+                time.sleep(random.uniform(1, 2))
+                
+                # Submit search
+                search_box.send_keys(Keys.RETURN)
+                time.sleep(random.uniform(3, 5))
+                
+                return True
+                
+            except TimeoutException as e:
+                self.logger.warning(f"Timeout searching Flipkart (attempt {attempt + 1}/{self.max_retries}): {e}")
+                if attempt < self.max_retries - 1:
+                    time.sleep(3)
+                    continue
+                else:
+                    return False
+                    
+            except WebDriverException as e:
+                error_str = str(e).lower()
+                self.logger.error(f"WebDriver error searching Flipkart (attempt {attempt + 1}/{self.max_retries}): {e}")
+                
+                # Check if it's a connection-related error
+                if any(error_type in error_str for error_type in ['timeout', 'connection', 'pool', 'http', 'max retries', 'too many open files']):
+                    self.logger.warning("Detected connection/proxy error, switching IP...")
+                    try:
+                        self.change_session(change_proxy=True)
+                        if attempt < self.max_retries - 1:
+                            time.sleep(3)
+                            continue
+                    except Exception as session_error:
+                        self.logger.error(f"Failed to change session: {session_error}")
+                        return False
+                else:
+                    if attempt < self.max_retries - 1:
+                        time.sleep(3)
+                        continue
+                    else:
+                        return False
+                        
+            except Exception as e:
+                self.logger.error(f"Unexpected error searching Flipkart (attempt {attempt + 1}/{self.max_retries}): {e}")
+                if attempt < self.max_retries - 1:
+                    time.sleep(3)
+                    continue
+                else:
+                    return False
+        
+        return False
     
     # def handle_continue_shopping(self):
     #     """Handle 'Continue shopping' button if it appears"""
@@ -1536,16 +1813,22 @@ class FlipkartMobileScraper:
                         # Update progress and row counter
                         self.last_processed_index = index
                         self.rows_processed += 1
+                        self.thread_cleanup_count += 1  # Increment thread cleanup counter
                         self.save_progress()
                         
                         # Create backup every 100 rows
                         if self.rows_processed % self.backup_threshold == 0:
-                            print(f"\n--- Creating backup after {self.rows_processed} rows ---")
+                            self.logger.info(f"\n--- Creating backup after {self.rows_processed} rows ---")
                             self.create_backup()
+                        
+                        # Thread cleanup every 100 scrapes (Docker-specific)
+                        if self.should_cleanup_threads():
+                            self.logger.info(f"\n--- Thread cleanup after {self.thread_cleanup_count} scrapes ---")
+                            self.cleanup_threads()
                         
                         # Random delay between searches
                         delay = random.uniform(3, 7)
-                        print(f"Waiting {delay:.1f} seconds before next search...")
+                        self.logger.info(f"Waiting {delay:.1f} seconds before next search...")
                         time.sleep(delay)
                         
                     else:
@@ -1565,15 +1848,16 @@ class FlipkartMobileScraper:
                             self.results.append(entry)
                             self.last_processed_index = index
                             self.rows_processed += 1
+                            self.thread_cleanup_count += 1  # Increment thread cleanup counter
                             self.save_progress()
                             continue
                 
                 except Exception as e:
                     error_msg = f"Error processing row {index + 1}: {e}"
-                    print(error_msg)
+                    self.logger.error(error_msg)
                     
                     # Check if it's a connection-related error
-                    if any(error_type in str(e).lower() for error_type in ['timeout', 'connection', 'pool', 'http', 'network']):
+                    if any(error_type in str(e).lower() for error_type in ['timeout', 'connection', 'pool', 'http', 'network', 'max retries', 'too many open files']):
                         if self.handle_error_with_backup(f"Connection error: {e}", search_query, index):
                             continue  # Retry
                         else:
@@ -1588,42 +1872,70 @@ class FlipkartMobileScraper:
                             self.results.append(entry)
                             self.last_processed_index = index
                             self.rows_processed += 1
+                            self.thread_cleanup_count += 1  # Increment thread cleanup counter
                             self.save_progress()
                             continue
                     else:
                         # Other errors - create backup and continue
-                        self.handle_error_with_backup(error_msg, search_query, index)
-                        continue
+                        if self.handle_error_with_backup(error_msg, search_query, index):
+                            continue  # Retry
+                        else:
+                            # Max retries reached, create empty entry and continue
+                            entry = {
+                                'product_name': product_name,
+                                'colour': colour,
+                                'ram_rom': ram_rom,
+                                'model_id': model_id,
+                                'flipkart_links': []
+                            }
+                            self.results.append(entry)
+                            self.last_processed_index = index
+                            self.rows_processed += 1
+                            self.thread_cleanup_count += 1  # Increment thread cleanup counter
+                            self.save_progress()
+                            continue
                     
         except KeyboardInterrupt:
-            print("\nScraping interrupted by user. Saving progress...")
+            self.logger.info("\nScraping interrupted by user. Saving progress...")
             self.save_progress()
-            print("Progress saved. You can resume later by running the script again.")
+            self.logger.info("Progress saved. You can resume later by running the script again.")
+            raise
+        except Exception as e:
+            self.logger.error(f"Unexpected error in scraping process: {e}")
+            self.save_progress()
             raise
     
     def save_results(self, output_file="flipkart_mobile_results.json"):
-        """Save Flipkart results to JSON file"""
+        """Save Flipkart results to JSON file with proper error handling"""
         
         if self.results:
             try:
                 # Results are already in list format
-                with open(output_file, 'w', encoding='utf-8') as f:
+                with self.managed_file_handle(output_file, 'w') as f:
                     json.dump(self.results, f, indent=2, ensure_ascii=False)
                 
-                print(f"Flipkart results saved to {output_file}")
-                print(f"Total entries processed: {len(self.results)}")
+                self.logger.info(f"Flipkart results saved to {output_file}")
+                self.logger.info(f"Total entries processed: {len(self.results)}")
                 
                 # Also save as CSV for compatibility
                 csv_file = output_file.replace('.json', '.csv')
                 self.save_results_csv(csv_file)
                 
             except Exception as e:
-                print(f"Error saving Flipkart results: {e}")
+                self.logger.error(f"Error saving Flipkart results: {e}")
+                # Try to save to backup file
+                try:
+                    backup_file = f"{output_file}.backup"
+                    with self.managed_file_handle(backup_file, 'w') as f:
+                        json.dump(self.results, f, indent=2, ensure_ascii=False)
+                    self.logger.info(f"Results saved to backup file: {backup_file}")
+                except Exception as backup_error:
+                    self.logger.error(f"Failed to save backup results: {backup_error}")
         else:
-            print("No Flipkart results to save")
+            self.logger.info("No Flipkart results to save")
     
     def save_results_csv(self, output_file="flipkart_mobile_results.csv"):
-        """Save results in CSV format for compatibility"""
+        """Save results in CSV format for compatibility with proper error handling"""
         try:
             csv_data = []
             for entry in self.results:
@@ -1644,21 +1956,38 @@ class FlipkartMobileScraper:
             
             if csv_data:
                 df = pd.DataFrame(csv_data)
-                df.to_csv(output_file, index=False, encoding='utf-8')
-                print(f"CSV results also saved to {output_file}")
+                with self.managed_file_handle(output_file, 'w') as f:
+                    df.to_csv(f, index=False, encoding='utf-8')
+                self.logger.info(f"CSV results also saved to {output_file}")
         
         except Exception as e:
-            print(f"Error saving CSV results: {e}")
+            self.logger.error(f"Error saving CSV results: {e}")
     
     def close(self):
-        """Close the browser"""
-        if self.driver:
-            self.driver.quit()
+        """Close the browser and cleanup resources"""
+        try:
+            self.safe_driver_quit()
+            
+            # Final thread cleanup if in Docker
+            if self.is_docker_env:
+                self.logger.info("Performing final thread cleanup...")
+                self.cleanup_threads()
+            
+            # Final cleanup
+            gc.collect()
+            
+            # Log final thread count
+            final_thread_count = threading.active_count()
+            self.logger.info(f"Scraper closed successfully. Final thread count: {final_thread_count} (Initial: {self.initial_thread_count})")
+            
+        except Exception as e:
+            self.logger.error(f"Error closing scraper: {e}")
 
 def main():
     # Parse command line arguments
     parser = argparse.ArgumentParser(description='Flipkart Mobile Phone Scraper')
     parser.add_argument('--headless', action='store_true', help='Run in headless mode')
+    parser.add_argument('--log-level', default='INFO', help='Logging level (DEBUG, INFO, WARNING, ERROR)')
     args = parser.parse_args()
     
     # Initialize scraper
@@ -1670,21 +1999,27 @@ def main():
         
         # Check if file exists
         if not os.path.exists(csv_file):
-            print(f"CSV file not found: {csv_file}")
+            scraper.logger.error(f"CSV file not found: {csv_file}")
             return
         
         # Start Flipkart scraping (process all entries)
-        print("=== STARTING FLIPKART SCRAPING ===")
-        print(f"Headless mode: {'Enabled' if args.headless else 'Disabled'}")
+        scraper.logger.info("=== STARTING FLIPKART SCRAPING ===")
+        scraper.logger.info(f"Headless mode: {'Enabled' if args.headless else 'Disabled'}")
+        scraper.logger.info(f"Max retries: {scraper.max_retries}")
+        scraper.logger.info(f"Max connection retries: {scraper.max_connection_retries}")
+        scraper.logger.info(f"Docker environment: {scraper.is_docker_env}")
+        scraper.logger.info(f"Thread cleanup threshold: {scraper.thread_cleanup_threshold} scrapes")
+        scraper.logger.info(f"Initial thread count: {scraper.initial_thread_count}")
+        
         scraper.scrape_permutations(csv_file)
         
         # Save results
         scraper.save_results()
         
     except KeyboardInterrupt:
-        print("\nScraping interrupted by user")
+        scraper.logger.info("\nScraping interrupted by user")
     except Exception as e:
-        print(f"Unexpected error: {e}")
+        scraper.logger.error(f"Unexpected error: {e}")
     finally:
         scraper.close()
 
