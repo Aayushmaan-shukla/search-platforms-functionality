@@ -1,0 +1,107 @@
+FROM python:3.10-slim
+
+# Install system dependencies including Chrome
+RUN apt-get update && apt-get install -y \
+    wget \
+    gnupg \
+    unzip \
+    curl \
+    xvfb \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Google Chrome
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    wget gnupg ca-certificates unzip \
+    libnss3 libxss1 libasound2 \
+    libatk-bridge2.0-0 libgtk-3-0 libgbm1 libx11-xcb1 libxcomposite1 \
+    libxcursor1 libxdamage1 libxi6 libxtst6 libxrandr2 libxrender1 \
+    libdrm2 xdg-utils fonts-liberation && \
+    rm -rf /var/lib/apt/lists/* && \
+    wget -qO- https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor > /usr/share/keyrings/google.gpg && \
+    echo "deb [signed-by=/usr/share/keyrings/google.gpg arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list && \
+    apt-get update && apt-get install -y --no-install-recommends google-chrome-stable && \
+    rm -rf /var/lib/apt/lists/*
+
+# Set up Chrome environment variables
+ENV CHROME_BIN=/usr/bin/google-chrome
+ENV CHROME_PATH=/usr/bin/google-chrome
+
+# Set working directory
+WORKDIR /app
+
+# Copy requirements first for better caching
+COPY requirements.txt .
+
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the Amazon mobile scraper
+COPY enhanced_croma_mobile_scraper.py .
+
+# Copy the CSV file with permutations
+COPY expanded_permutations.csv .
+
+# Create directories for outputs
+RUN mkdir -p screenshots
+RUN mkdir -p data
+
+# Set environment variables for the scraper
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONPATH=/app
+
+# =============================================================================
+# MEMORY OPTIMIZATION SETTINGS
+# =============================================================================
+# These settings are optimized for running the Flipkart scraper in Docker
+# containers with limited memory resources. They help prevent memory leaks
+# and ensure efficient resource usage.
+
+# Memory optimization settings for better performance in containers
+ENV MALLOC_ARENA_MAX=2
+ENV MALLOC_MMAP_THRESHOLD_=131072
+ENV MALLOC_TRIM_THRESHOLD_=131072
+ENV MALLOC_TOP_PAD_=131072
+ENV MALLOC_MMAP_MAX_=65536
+
+# Python memory optimization
+ENV PYTHONHASHSEED=0
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+# Chrome optimization for containerized environment
+ENV CHROME_NO_SANDBOX=true
+ENV CHROME_DISABLE_GPU=true
+ENV CHROME_DISABLE_DEV_SHM_USAGE=true
+ENV CHROME_DISABLE_BACKGROUND_TIMER_THROTTLING=true
+ENV CHROME_DISABLE_RENDERER_BACKGROUNDING=true
+ENV CHROME_DISABLE_BACKGROUNDING_OCCLUDED_WINDOWS=true
+
+# Docker-specific environment variables for thread management
+ENV DOCKER_CONTAINER=true
+ENV container=docker
+
+# Memory limits for Chrome (in MB)
+ENV CHROME_MEMORY_LIMIT=2048
+ENV CHROME_MAX_OLD_SPACE_SIZE=2048
+
+# Additional memory optimization for containerized environment
+ENV MALLOC_CHECK_=0
+ENV MALLOC_PERTURB_=0
+
+# Set memory limits for the container (can be overridden at runtime)
+ENV MEMORY_LIMIT=4G
+ENV SWAP_LIMIT=2G
+
+# Thread and process limits
+ENV MAX_THREADS=100
+ENV MAX_PROCESSES=50
+
+# Expose port if needed for future API functionality
+EXPOSE 5000
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
+  CMD python3 -c "import os; exit(0 if os.path.exists('croma_scraping_progress.json') else 1)"
+
+# Default command - run the Flipkart scraper in headless mode
+CMD ["python3", "enhanced_croma_mobile_scraper.py", "--headless"]

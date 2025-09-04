@@ -5,6 +5,12 @@ import re
 import json
 import argparse
 import sys
+import subprocess
+import platform
+try:
+    import winreg
+except ImportError:
+    winreg = None
 import undetected_chromedriver as uc
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -61,18 +67,55 @@ class AmazonMobileScraper:
         print("Falling back to no proxy")
         return None
     
+    def get_chrome_version_major(self):
+        """Detect installed Chrome major version (best-effort)."""
+        candidates = [
+            "chrome",
+            "google-chrome",
+            "C:/Program Files/Google/Chrome/Application/chrome.exe",
+            "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe",
+        ]
+        for binary in candidates:
+            try:
+                out = subprocess.check_output([binary, "--version"], stderr=subprocess.STDOUT, universal_newlines=True, timeout=3)
+                m = re.search(r"(\d+)\.\d+\.\d+\.\d+", out)
+                if m:
+                    return int(m.group(1))
+            except Exception:
+                pass
+
+        if platform.system().lower().startswith('win') and winreg is not None:
+            reg_paths = [
+                (winreg.HKEY_CURRENT_USER, r"Software\\Google\\Chrome\\BLBeacon"),
+                (winreg.HKEY_LOCAL_MACHINE, r"Software\\Google\\Chrome\\BLBeacon"),
+                (winreg.HKEY_LOCAL_MACHINE, r"Software\\WOW6432Node\\Google\\Chrome\\BLBeacon"),
+            ]
+            for hive, path in reg_paths:
+                try:
+                    with winreg.OpenKey(hive, path) as key:
+                        version, _ = winreg.QueryValueEx(key, "version")
+                        m = re.match(r"(\d+)", version)
+                        if m:
+                            return int(m.group(1))
+                except OSError:
+                    continue
+        return None
+    
     def setup_driver(self, use_proxy=True):
-        """Setup undetected Chrome driver with proxy support"""
+        """Setup Chrome driver with proper headless support"""
         try:
             if self.driver:
                 self.driver.quit()
             
-            chrome_options = uc.ChromeOptions()
-            
+            # For headless mode, prefer regular Chrome driver over undetected_chromedriver
+            # as undetected_chromedriver has issues with proper headless mode
             if self.headless:
-                chrome_options.add_argument("--headless")
-                chrome_options.add_argument("--disable-gpu")
-                chrome_options.add_argument("--window-size=1920,1080")
+                print("Headless mode requested - using regular Chrome driver for better headless support")
+                self.setup_regular_chrome(use_proxy)
+                return
+            
+            # For non-headless mode, try undetected Chrome first
+            chrome_options = uc.ChromeOptions()
             
             # Add proxy if available
             if use_proxy and self.current_proxy:
@@ -85,8 +128,6 @@ class AmazonMobileScraper:
             chrome_options.add_argument("--disable-blink-features=AutomationControlled")
             chrome_options.add_argument("--disable-extensions")
             chrome_options.add_argument("--disable-plugins")
-            chrome_options.add_argument("--disable-images")
-            chrome_options.add_argument("--disable-javascript")
             chrome_options.add_argument("--disable-web-security")
             chrome_options.add_argument("--allow-running-insecure-content")
             chrome_options.add_argument("--disable-features=VizDisplayCompositor")
@@ -100,24 +141,49 @@ class AmazonMobileScraper:
             ]
             chrome_options.add_argument(f"--user-agent={random.choice(user_agents)}")
             
-            # Create undetected Chrome driver
-            self.driver = uc.Chrome(options=chrome_options)
+            # Create undetected Chrome driver (pin to detected version if available), with retry
+            version_main = self.get_chrome_version_major()
+            try:
+                if version_main:
+                    self.driver = uc.Chrome(options=chrome_options, version_main=version_main)
+                else:
+                    self.driver = uc.Chrome(options=chrome_options)
+            except Exception as inner_e:
+                msg = str(inner_e)
+                retry_version = None
+                m_current = re.search(r"Current browser version is (\d+)", msg)
+                m_only = re.search(r"only supports Chrome version (\d+)", msg)
+                if m_current:
+                    retry_version = int(m_current.group(1))
+                elif m_only:
+                    retry_version = int(m_only.group(1))
+                if retry_version:
+                    print(f"Retrying with Chrome version: {retry_version}")
+                    self.driver = uc.Chrome(options=chrome_options, version_main=retry_version)
+                else:
+                    raise inner_e
+
+            # Verify driver was created successfully
+            if not self.driver:
+                raise Exception("Driver creation failed - driver is None")
+
             self.driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
             self.wait = WebDriverWait(self.driver, 15)
             
-            print("Chrome driver setup completed successfully")
+            print("Undetected Chrome driver setup completed successfully")
             
         except Exception as e:
             print(f"Error setting up Chrome driver: {e}")
             # Fallback to regular Chrome if undetected fails
-            if "undetected" in str(e).lower():
-                print("Falling back to regular Chrome driver...")
-                self.setup_regular_chrome(use_proxy)
+            print("Falling back to regular Chrome driver...")
+            self.setup_regular_chrome(use_proxy)
     
     def setup_regular_chrome(self, use_proxy=True):
-        """Fallback to regular Chrome driver"""
+        """Setup regular Chrome driver with enforced headless mode"""
         try:
             chrome_options = Options()
+            
+            # Essential Chrome options
             chrome_options.add_argument("--no-sandbox")
             chrome_options.add_argument("--disable-dev-shm-usage")
             chrome_options.add_argument("--disable-blink-features=AutomationControlled")
@@ -125,24 +191,71 @@ class AmazonMobileScraper:
             chrome_options.add_experimental_option('useAutomationExtension', False)
             
             if self.headless:
-                chrome_options.add_argument("--headless")
+                print("Setting up ENFORCED headless mode...")
+                # Multiple headless configurations for maximum compatibility
+                chrome_options.add_argument("--headless=new")  # New headless mode for Chrome 109+
+                chrome_options.add_argument("--headless")      # Legacy headless mode
                 chrome_options.add_argument("--disable-gpu")
+                chrome_options.add_argument("--disable-software-rasterizer")
+                chrome_options.add_argument("--disable-background-timer-throttling")
+                chrome_options.add_argument("--disable-backgrounding-occluded-windows")
+                chrome_options.add_argument("--disable-renderer-backgrounding")
+                chrome_options.add_argument("--disable-features=TranslateUI")
+                chrome_options.add_argument("--disable-ipc-flooding-protection")
                 chrome_options.add_argument("--window-size=1920,1080")
+                chrome_options.add_argument("--no-first-run")
+                chrome_options.add_argument("--disable-default-apps")
+                chrome_options.add_argument("--disable-popup-blocking")
+                chrome_options.add_argument("--disable-background-networking")
+                chrome_options.add_argument("--disable-component-update")
+                chrome_options.add_argument("--disable-client-side-phishing-detection")
+                chrome_options.add_argument("--disable-sync")
+                chrome_options.add_argument("--disable-translate")
+                chrome_options.add_argument("--hide-scrollbars")
+                chrome_options.add_argument("--mute-audio")
+                chrome_options.add_argument("--disable-logging")
+                chrome_options.add_argument("--disable-plugins")
+                chrome_options.add_argument("--disable-extensions")
+                chrome_options.add_argument("--disable-images")
+                
+                # Force headless property
+                try:
+                    chrome_options.headless = True
+                except Exception:
+                    pass
+                    
+                print("Headless mode configured with multiple fallbacks")
             
             if use_proxy and self.current_proxy:
                 chrome_options.add_argument(f'--proxy-server={self.current_proxy}')
+                print(f"Using proxy: {self.current_proxy[:20]}...")
             
+            # User agent for better compatibility
             user_agents = [
                 "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
                 "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
             ]
             chrome_options.add_argument(f"--user-agent={random.choice(user_agents)}")
             
+            # Create regular Chrome driver
             self.driver = webdriver.Chrome(options=chrome_options)
+            
+            # Verify driver was created successfully
+            if not self.driver:
+                raise Exception("Regular Chrome driver creation failed - driver is None")
+                
+            # Additional stealth configurations
             self.driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
+            self.driver.execute_cdp_cmd('Network.setUserAgentOverride', {
+                "userAgent": random.choice(user_agents)
+            })
+            
             self.wait = WebDriverWait(self.driver, 15)
             
-            print("Regular Chrome driver setup completed successfully")
+            if self.headless:
+                print("Regular Chrome driver setup completed successfully in HEADLESS mode")
+            else:
+                print("Regular Chrome driver setup completed successfully")
             
         except Exception as e:
             print(f"Error setting up regular Chrome driver: {e}")
@@ -163,6 +276,10 @@ class AmazonMobileScraper:
             # Setup new driver
             self.setup_driver(use_proxy=True)
             
+            # Validate driver was created successfully
+            if not self.driver:
+                raise Exception("Failed to create driver in change_session")
+            
             # Reset row counter
             self.rows_processed = 0
             
@@ -175,10 +292,13 @@ class AmazonMobileScraper:
                 print("Trying without proxy...")
                 self.current_proxy = None
                 self.setup_driver(use_proxy=False)
+                if not self.driver:
+                    raise Exception("Failed to create driver without proxy")
                 self.rows_processed = 0
                 print("Chrome session changed without proxy")
             except Exception as e2:
                 print(f"Failed to change session: {e2}")
+                raise
     
     def load_progress(self):
         """Load progress from previous scraping session"""
@@ -272,6 +392,11 @@ class AmazonMobileScraper:
         try:
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
             filename = f"{self.screenshot_dir}/{reason}_{index}_{timestamp}.png"
+            if not self.driver:
+                print("No active driver; skipping screenshot")
+                return None
+            # Ensure screenshots directory exists
+            os.makedirs(self.screenshot_dir, exist_ok=True)
             self.driver.save_screenshot(filename)
             print(f"Screenshot saved: {filename}")
             return filename
@@ -282,6 +407,12 @@ class AmazonMobileScraper:
     def search_amazon(self, search_query):
         """Search for products on Amazon.in"""
         try:
+            if not self.driver:
+                print("Driver not initialized; reinitializing...")
+                self.setup_driver(use_proxy=True)
+                if not self.driver:
+                    return False
+                    
             # Navigate to Amazon.in
             self.driver.get("https://www.amazon.in")
             time.sleep(random.uniform(2, 4))

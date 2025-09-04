@@ -1,10 +1,16 @@
+from contextlib import contextmanager
 import csv
+import gc
+import platform
+import subprocess
 import time
 import random
 import re
 import json
 import argparse
 import sys
+import winreg
+import psutil
 import undetected_chromedriver as uc
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -17,9 +23,6 @@ import pandas as pd
 import os
 from datetime import datetime
 import requests
-import gc
-import psutil
-from contextlib import contextmanager
 
 class CromaMobileScraper:
     def __init__(self, headless=False):
@@ -103,6 +106,10 @@ class CromaMobileScraper:
                             return proxy
                         else:
                             print("Invalid proxy format received")
+                    elif response.status_code == 403:
+                        print(f"Proxy API returned 403 Forbidden (attempt {attempt + 1}/3) - Access denied")
+                        print("Switching to system IP due to proxy API access issues")
+                        return None  # Return None immediately on 403 to use system IP
                     else:
                         print(f"Proxy API returned status code: {response.status_code}")
             except requests.exceptions.Timeout:
@@ -117,9 +124,43 @@ class CromaMobileScraper:
             if attempt < 2:  # Don't sleep on last attempt
                 time.sleep(random.uniform(2, 5))
         
-        print("Falling back to no proxy after all attempts failed")
+        print("Falling back to system IP after all proxy attempts failed")
         return None
     
+    def get_chrome_version_major(self):
+        """Detect installed Chrome major version (best-effort)."""
+        candidates = [
+            "chrome",
+            "google-chrome",
+            "C:/Program Files/Google/Chrome/Application/chrome.exe",
+            "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe",
+        ]
+        for binary in candidates:
+            try:
+                out = subprocess.check_output([binary, "--version"], stderr=subprocess.STDOUT, universal_newlines=True, timeout=3)
+                m = re.search(r"(\d+)\.\d+\.\d+\.\d+", out)
+                if m:
+                    return int(m.group(1))
+            except Exception:
+                pass
+
+        if platform.system().lower().startswith('win') and winreg is not None:
+            reg_paths = [
+                (winreg.HKEY_CURRENT_USER, r"Software\\Google\\Chrome\\BLBeacon"),
+                (winreg.HKEY_LOCAL_MACHINE, r"Software\\Google\\Chrome\\BLBeacon"),
+                (winreg.HKEY_LOCAL_MACHINE, r"Software\\WOW6432Node\\Google\\Chrome\\BLBeacon"),
+            ]
+            for hive, path in reg_paths:
+                try:
+                    with winreg.OpenKey(hive, path) as key:
+                        version, _ = winreg.QueryValueEx(key, "version")
+                        m = re.match(r"(\d+)", version)
+                        if m:
+                            return int(m.group(1))
+                except OSError:
+                    continue
+        return None
+
     def setup_driver(self, use_proxy=True):
         """Setup undetected Chrome driver with proxy support and proper cleanup"""
         try:
@@ -160,6 +201,13 @@ class CromaMobileScraper:
             chrome_options.add_argument("--allow-running-insecure-content")
             chrome_options.add_argument("--disable-features=VizDisplayCompositor")
             
+            # Block geolocation (and notifications) prompts
+            prefs = {
+                "profile.default_content_setting_values.geolocation": 2,
+                "profile.default_content_setting_values.notifications": 2
+            }
+            chrome_options.add_experimental_option("prefs", prefs)
+
             # Random user agent
             user_agents = [
                 "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
@@ -169,8 +217,27 @@ class CromaMobileScraper:
             ]
             chrome_options.add_argument(f"--user-agent={random.choice(user_agents)}")
             
-            # Create undetected Chrome driver
-            self.driver = uc.Chrome(options=chrome_options)
+            # Create undetected Chrome driver (pin to detected version if available)
+            version_main = self.get_chrome_version_major()
+            try:
+                if version_main:
+                    self.driver = uc.Chrome(options=chrome_options, version_main=version_main)
+                else:
+                    self.driver = uc.Chrome(options=chrome_options)
+            except Exception as inner_e:
+                msg = str(inner_e)
+                # Example messages include: only supports Chrome version 140 / Current browser version is 139
+                retry_version = None
+                m_current = re.search(r"Current browser version is (\d+)", msg)
+                m_only = re.search(r"only supports Chrome version (\d+)", msg)
+                if m_current:
+                    retry_version = int(m_current.group(1))
+                elif m_only:
+                    retry_version = int(m_only.group(1))
+                if retry_version:
+                    self.driver = uc.Chrome(options=chrome_options, version_main=retry_version)
+                else:
+                    raise inner_e
             self.driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
             self.wait = WebDriverWait(self.driver, 15)
             
@@ -192,6 +259,10 @@ class CromaMobileScraper:
             chrome_options.add_argument("--disable-blink-features=AutomationControlled")
             chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
             chrome_options.add_experimental_option('useAutomationExtension', False)
+            chrome_options.add_experimental_option("prefs", {
+                "profile.default_content_setting_values.geolocation": 2,
+                "profile.default_content_setting_values.notifications": 2
+            })
             
             if self.headless:
                 chrome_options.add_argument("--headless")
@@ -228,9 +299,12 @@ class CromaMobileScraper:
                 if new_proxy:
                     self.current_proxy = new_proxy
                     print(f"Switched to new proxy: {new_proxy[:20]}...")
+                else:
+                    print("No proxy available, switching to system IP")
+                    self.current_proxy = None
             
             # Setup new driver
-            self.setup_driver(use_proxy=True)
+            self.setup_driver(use_proxy=(self.current_proxy is not None))
             
             # Reset row counter
             self.rows_processed = 0
@@ -241,11 +315,11 @@ class CromaMobileScraper:
             print(f"Error changing Chrome session: {e}")
             # Try without proxy if proxy fails
             try:
-                print("Trying without proxy...")
+                print("Trying without proxy (system IP)...")
                 self.current_proxy = None
                 self.setup_driver(use_proxy=False)
                 self.rows_processed = 0
-                print("Chrome session changed without proxy")
+                print("Chrome session changed with system IP")
             except Exception as e2:
                 print(f"Failed to change session: {e2}")
     
@@ -321,10 +395,109 @@ class CromaMobileScraper:
             print(f"Unexpected error creating backup: {e}")
             return None
     
+    def handle_critical_error_restart(self, error_msg, search_query, index):
+        """Handle critical errors that require Chrome driver restart"""
+        print(f"CRITICAL ERROR DETECTED: {error_msg}")
+        print("Stopping process and restarting Chrome driver in 5 seconds...")
+        
+        # Create backup on critical error
+        backup_file = self.create_backup()
+        if backup_file:
+            print(f"Emergency backup created: {backup_file}")
+        
+        # Take screenshot for debugging
+        self.take_screenshot("critical_error", search_query, index)
+        
+        # Save current progress before restart
+        self.save_progress()
+        print("Progress saved before restart")
+        
+        # Close current driver completely
+        try:
+            if self.driver:
+                self.driver.quit()
+        except Exception as e:
+            print(f"Error closing driver during restart: {e}")
+        finally:
+            self.driver = None
+            self.wait = None
+        
+        # Clean up resources aggressively
+        self.cleanup_resources()
+        
+        # Wait 5 seconds as requested
+        print("Waiting 5 seconds before restart...")
+        time.sleep(5)
+        
+        # Force garbage collection
+        gc.collect()
+        
+        # Reset counters
+        self.rows_processed = 0
+        self.error_retry_count = 0
+        
+        # Try to get new proxy for fresh start
+        new_proxy = self.get_proxy()
+        if new_proxy:
+            self.current_proxy = new_proxy
+            print(f"Using new proxy for restart: {new_proxy[:20]}...")
+        else:
+            print("No proxy available, switching to system IP for restart")
+            self.current_proxy = None
+        
+        # Setup new driver
+        try:
+            self.setup_driver(use_proxy=(self.current_proxy is not None))
+            print("Chrome driver successfully restarted")
+            return True
+        except Exception as e:
+            print(f"Failed to restart Chrome driver: {e}")
+            # Try one more time without proxy if it failed
+            try:
+                print("Attempting restart without proxy...")
+                self.current_proxy = None
+                self.setup_driver(use_proxy=False)
+                print("Chrome driver restarted successfully with system IP")
+                return True
+            except Exception as e2:
+                print(f"Failed to restart even without proxy: {e2}")
+                return False
+
     def handle_error_with_backup(self, error_msg, search_query, index):
         """Handle errors by creating backup and managing retries with exponential backoff"""
         print(f"Error occurred: {error_msg}")
         
+        # Check for critical errors that require driver restart
+        critical_error_patterns = [
+            'https',
+            'ssl',
+            'certificate',
+            'max retries exceeded',
+            'connection pool is full',
+            'too many open files',
+            'connection broken',
+            'connection aborted',
+            'connection reset',
+            'remote end closed connection',
+            'session not created',
+            'chrome not reachable',
+            'session deleted',
+            'target window already closed',
+            'no such window',
+            'chrome crashed',
+            'browser process exited',
+            'connection refused'
+        ]
+        
+        # Check if this is a critical error
+        error_lower = error_msg.lower()
+        is_critical_error = any(pattern in error_lower for pattern in critical_error_patterns)
+        
+        if is_critical_error:
+            print(f"Detected critical error pattern in: {error_msg}")
+            return self.handle_critical_error_restart(error_msg, search_query, index)
+        
+        # Regular error handling for non-critical errors
         # Create backup on error
         backup_file = self.create_backup()
         if backup_file:
@@ -363,6 +536,9 @@ class CromaMobileScraper:
         try:
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
             filename = f"{self.screenshot_dir}/{reason}_{index}_{timestamp}.png"
+            if not self.driver:
+                print("No active driver; skipping screenshot")
+                return None
             self.driver.save_screenshot(filename)
             print(f"Screenshot saved: {filename}")
             return filename
@@ -371,50 +547,60 @@ class CromaMobileScraper:
             return None
 
     def search_croma(self, search_query):
-        """Search for products on Croma.com with comprehensive error handling"""
-        for attempt in range(3):  # Try up to 3 times
-            try:
-                # Navigate to Croma.com
-                self.driver.get("https://www.croma.com")
-                time.sleep(random.uniform(2, 4))
-                
-                # Find and fill the search box
-                search_box = self.wait.until(
-                    EC.presence_of_element_located((By.ID, "searchV2"))
-                )
-                
-                # Clear and enter search query
-                search_box.clear()
-                search_box.send_keys(search_query)
-                time.sleep(random.uniform(1, 2))
-                
-                # Submit search
-                search_box.send_keys(Keys.RETURN)
-                time.sleep(random.uniform(3, 5))
-                
-                return True
-                
-            except TimeoutException as e:
-                print(f"Timeout error searching Croma (attempt {attempt + 1}/3): {e}")
-                if attempt < 2:
-                    time.sleep(random.uniform(5, 10))
-                    continue
-            except WebDriverException as e:
-                print(f"WebDriver error searching Croma (attempt {attempt + 1}/3): {e}")
-                if any(error_type in str(e).lower() for error_type in ['timeout', 'connection', 'pool', 'http', 'network']):
-                    print("Detected connection/proxy error, switching IP...")
-                    self.change_session(change_proxy=True)
-                if attempt < 2:
-                    time.sleep(random.uniform(5, 10))
-                    continue
-            except Exception as e:
-                print(f"Unexpected error searching Croma (attempt {attempt + 1}/3): {e}")
-                if attempt < 2:
-                    time.sleep(random.uniform(3, 7))
-                    continue
-        
-        print("All search attempts failed")
-        return False
+        """Search for products on Croma.com"""
+        try:
+            # Check if driver is still valid
+            if not self.driver:
+                print("Driver is None, attempting to recreate...")
+                self.setup_driver(use_proxy=True)
+                if not self.driver:
+                    raise Exception("Failed to create driver")
+            
+            # Navigate to Croma.com
+            self.driver.get("https://www.croma.com")
+            time.sleep(random.uniform(2, 4))
+            
+            # Find and fill the search box
+            search_box = self.wait.until(
+                EC.presence_of_element_located((By.ID, "searchV2"))
+            )
+            
+            # Clear and enter search query
+            search_box.clear()
+            search_box.send_keys(search_query)
+            time.sleep(random.uniform(1, 2))
+            
+            # Submit search
+            search_box.send_keys(Keys.RETURN)
+            time.sleep(random.uniform(3, 5))
+            
+            return True
+            
+        except Exception as e:
+            error_msg = f"Error searching Croma: {e}"
+            print(error_msg)
+            
+            # Check for critical errors that need driver restart
+            critical_patterns = [
+                'https', 'ssl', 'certificate', 'max retries exceeded',
+                'connection pool is full', 'too many open files', 'connection broken',
+                'connection aborted', 'connection reset', 'remote end closed connection',
+                'session not created', 'chrome not reachable', 'session deleted',
+                'target window already closed', 'no such window', 'chrome crashed',
+                'browser process exited', 'connection refused'
+            ]
+            
+            error_lower = str(e).lower()
+            if any(pattern in error_lower for pattern in critical_patterns):
+                print("Detected critical error in search_croma, will trigger restart...")
+                raise Exception(f"Critical error in search: {e}")
+            
+            # Check if it's a proxy/connection error (non-critical)
+            if any(error_type in error_lower for error_type in ['timeout', 'connection', 'pool', 'http']):
+                print("Detected connection/proxy error, switching IP...")
+                self.change_session(change_proxy=True)  # Change proxy on error
+                return False
+            return False
     
     # def handle_continue_shopping(self):
     #     """Handle 'Continue shopping' button if it appears"""
@@ -449,6 +635,11 @@ class CromaMobileScraper:
         products = []
         
         try:
+            # Check if driver is still valid
+            if not self.driver:
+                print("Driver is None in extract_product_links")
+                raise Exception("Driver is None, needs restart")
+            
             # Look for product links with the specified class pattern
             # Croma uses various class patterns for product links
             link_selectors = [
@@ -469,7 +660,11 @@ class CromaMobileScraper:
                     if links:
                         print(f"Found {len(links)} links with selector: {selector}")
                         break
-                except:
+                except Exception as selector_error:
+                    # Check for critical errors in element finding
+                    error_lower = str(selector_error).lower()
+                    if any(pattern in error_lower for pattern in ['session deleted', 'chrome not reachable', 'no such window']):
+                        raise Exception(f"Critical error in element finding: {selector_error}")
                     continue
             
             if not links:
@@ -501,11 +696,20 @@ class CromaMobileScraper:
                         print(f"Croma Product {i+1}: {text[:50]}...")
                         
                 except Exception as e:
+                    error_lower = str(e).lower()
+                    # Check for critical errors in link extraction
+                    if any(pattern in error_lower for pattern in ['session deleted', 'chrome not reachable', 'no such window']):
+                        raise Exception(f"Critical error in link extraction: {e}")
                     print(f"Error extracting Croma product {i+1}: {e}")
                     continue
             
         except Exception as e:
-            print(f"Error extracting Croma product links: {e}")
+            error_msg = f"Error extracting Croma product links: {e}"
+            print(error_msg)
+            # Re-raise critical errors to be handled by caller
+            error_lower = str(e).lower()
+            if any(pattern in error_lower for pattern in ['critical error', 'session deleted', 'chrome not reachable', 'no such window']):
+                raise Exception(error_msg)
         
         return products
     
@@ -774,7 +978,7 @@ def main():
             return
         
         # Start Croma scraping (process all entries)
-        print("=== STARTING AMAZON SCRAPING ===")
+        print("=== STARTING CROMA SCRAPING ===")
         print(f"Headless mode: {'Enabled' if args.headless else 'Disabled'}")
         scraper.scrape_permutations(csv_file)
         
