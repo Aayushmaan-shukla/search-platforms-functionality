@@ -1234,7 +1234,9 @@ class FlipkartMobileScraper:
                     chrome_options.add_argument(f'--proxy-server={self.current_proxy}')
                     self.logger.info(f"Using proxy: {self.current_proxy[:20]}...")
                 
-                # Basic Chrome options for all environments
+                # Basic Chrome options (similar to working Amazon scraper)
+                chrome_options.add_argument("--no-sandbox")
+                chrome_options.add_argument("--disable-dev-shm-usage")
                 chrome_options.add_argument("--disable-blink-features=AutomationControlled")
                 chrome_options.add_argument("--disable-extensions")
                 chrome_options.add_argument("--disable-plugins")
@@ -1243,15 +1245,10 @@ class FlipkartMobileScraper:
                 chrome_options.add_argument("--disable-web-security")
                 chrome_options.add_argument("--allow-running-insecure-content")
                 chrome_options.add_argument("--disable-features=VizDisplayCompositor")
-                chrome_options.add_argument("--disable-background-timer-throttling")
-                chrome_options.add_argument("--disable-renderer-backgrounding")
-                chrome_options.add_argument("--disable-backgrounding-occluded-windows")
                 
-                # Environment-specific options
+                # Environment-specific additional options
                 if self.is_docker_env:
-                    # Docker-specific Chrome optimizations
-                    chrome_options.add_argument("--no-sandbox")
-                    chrome_options.add_argument("--disable-dev-shm-usage")
+                    # Docker-specific optimizations
                     chrome_options.add_argument("--disable-gpu-sandbox")
                     chrome_options.add_argument("--disable-software-rasterizer")
                     chrome_options.add_argument("--disable-background-networking")
@@ -1276,7 +1273,7 @@ class FlipkartMobileScraper:
                     chrome_options.add_argument("--js-flags=--max-old-space-size=2048")
                     chrome_options.add_argument("--aggressive-cache-discard")
                 else:
-                    # Server/desktop environment options
+                    # Server environment - minimal additional options
                     chrome_options.add_argument("--disable-default-apps")
                     chrome_options.add_argument("--disable-sync")
                     chrome_options.add_argument("--disable-translate")
@@ -1300,24 +1297,23 @@ class FlipkartMobileScraper:
                 ]
                 chrome_options.add_argument(f"--user-agent={random.choice(user_agents)}")
                 
-                # Get Chrome version for compatibility
-                chrome_version = self.get_chrome_version()
-                
                 # Create undetected Chrome driver with timeout settings
                 try:
                     self.driver = uc.Chrome(options=chrome_options)
                 except Exception as chrome_error:
                     self.logger.error(f"Failed to create Chrome driver: {chrome_error}")
-                    # Try with version-specific options
-                    if chrome_version:
-                        self.logger.info(f"Retrying with Chrome version {chrome_version}")
-                        try:
-                            self.driver = uc.Chrome(options=chrome_options, version_main=chrome_version.split('.')[0])
-                        except Exception as retry_error:
-                            self.logger.error(f"Retry with version also failed: {retry_error}")
-                            raise
-                    else:
-                        raise
+                    # Try with version-specific options if we can get the version
+                    try:
+                        chrome_version = self.get_chrome_version()
+                        if chrome_version:
+                            version_main = int(chrome_version.split('.')[0])
+                            self.logger.info(f"Retrying with Chrome version {chrome_version} (main: {version_main})")
+                            self.driver = uc.Chrome(options=chrome_options, version_main=version_main)
+                        else:
+                            raise chrome_error
+                    except Exception as retry_error:
+                        self.logger.error(f"Retry with version also failed: {retry_error}")
+                        raise chrome_error
                 
                 self.driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
                 
@@ -1377,7 +1373,6 @@ class FlipkartMobileScraper:
             chrome_options.add_argument("--disable-blink-features=AutomationControlled")
             chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
             chrome_options.add_experimental_option('useAutomationExtension', False)
-            chrome_options.add_argument("--max_old_space_size=4096")  # Limit memory usage
             
             if self.headless:
                 chrome_options.add_argument("--headless")
@@ -1395,7 +1390,16 @@ class FlipkartMobileScraper:
             
             self.driver = webdriver.Chrome(options=chrome_options)
             self.driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
-            self.wait = WebDriverWait(self.driver, 15)
+            
+            # Set timeouts based on environment
+            if self.is_docker_env:
+                self.driver.set_page_load_timeout(30)
+                self.driver.implicitly_wait(10)
+                self.wait = WebDriverWait(self.driver, 15)
+            else:
+                self.driver.set_page_load_timeout(60)
+                self.driver.implicitly_wait(15)
+                self.wait = WebDriverWait(self.driver, 20)
             
             self.logger.info("Regular Chrome driver setup completed successfully")
             
@@ -1412,6 +1416,8 @@ class FlipkartMobileScraper:
             chrome_options.add_argument("--no-sandbox")
             chrome_options.add_argument("--disable-dev-shm-usage")
             chrome_options.add_argument("--disable-blink-features=AutomationControlled")
+            chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
+            chrome_options.add_experimental_option('useAutomationExtension', False)
             
             if self.headless:
                 chrome_options.add_argument("--headless")
