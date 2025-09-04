@@ -9,7 +9,10 @@ import re
 import json
 import argparse
 import sys
-import winreg
+try:
+    import winreg
+except ImportError:
+    winreg = None
 import psutil
 import undetected_chromedriver as uc
 from selenium import webdriver
