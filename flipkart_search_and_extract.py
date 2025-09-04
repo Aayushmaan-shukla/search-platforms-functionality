@@ -905,7 +905,7 @@ class FlipkartMobileScraper:
         self.proxy_base_url = "https://proxyscrape.com/v2/?request=get&protocol=http&timeout=10000&country=all&ssl=all&anonymity=all"
         self.current_proxy = None
         self.rows_processed = 0
-        self.session_change_threshold = 5
+        self.session_change_threshold = 3  # Reduced from 5 to 3 for better stability
         self.backup_threshold = 100  # Create backup every 100 rows
         self.error_retry_count = 0
         self.max_retries = 5  # Increased to 5 retries as requested
@@ -1057,6 +1057,76 @@ class FlipkartMobileScraper:
         return (self.is_docker_env and 
                 self.thread_cleanup_count >= self.thread_cleanup_threshold)
     
+    def check_chrome_health(self):
+        """Check if Chrome driver is responsive"""
+        try:
+            if not self.driver:
+                return False
+            
+            # Try a simple operation to check if Chrome is responsive
+            self.driver.current_url
+            return True
+        except Exception as e:
+            self.logger.warning(f"Chrome health check failed: {e}")
+            return False
+    
+    def force_chrome_restart(self):
+        """Force restart Chrome when it becomes unresponsive"""
+        try:
+            self.logger.warning("Forcing Chrome restart due to unresponsiveness...")
+            
+            # Kill any existing Chrome processes
+            if self.driver:
+                try:
+                    self.driver.quit()
+                except:
+                    pass
+            
+            # Wait for processes to clean up
+            time.sleep(5)
+            
+            # Force garbage collection
+            gc.collect()
+            
+            # Kill any remaining Chrome processes (Docker-specific)
+            if self.is_docker_env:
+                try:
+                    import subprocess
+                    subprocess.run(['pkill', '-f', 'chrome'], check=False)
+                    subprocess.run(['pkill', '-f', 'chromedriver'], check=False)
+                    time.sleep(2)
+                except:
+                    pass
+            
+            # Create new driver
+            self.setup_driver(use_proxy=True)
+            
+            self.logger.info("Chrome restart completed")
+            return True
+            
+        except Exception as e:
+            self.logger.error(f"Failed to restart Chrome: {e}")
+            return False
+    
+    def monitor_chrome_processes(self):
+        """Monitor Chrome processes and clean up if needed"""
+        if not self.is_docker_env:
+            return
+            
+        try:
+            import subprocess
+            result = subprocess.run(['pgrep', '-f', 'chrome'], capture_output=True, text=True)
+            chrome_processes = len(result.stdout.strip().split('\n')) if result.stdout.strip() else 0
+            
+            if chrome_processes > 10:  # Too many Chrome processes
+                self.logger.warning(f"Too many Chrome processes detected: {chrome_processes}")
+                subprocess.run(['pkill', '-f', 'chrome'], check=False)
+                time.sleep(2)
+                gc.collect()
+                
+        except Exception as e:
+            self.logger.error(f"Error monitoring Chrome processes: {e}")
+    
     def safe_driver_quit(self):
         """Safely quit driver with proper error handling and thread cleanup"""
         try:
@@ -1137,7 +1207,39 @@ class FlipkartMobileScraper:
                 chrome_options.add_argument("--disable-web-security")
                 chrome_options.add_argument("--allow-running-insecure-content")
                 chrome_options.add_argument("--disable-features=VizDisplayCompositor")
-                chrome_options.add_argument("--max_old_space_size=4096")  # Limit memory usage
+                chrome_options.add_argument("--max_old_space_size=2048")  # Reduced memory usage
+                chrome_options.add_argument("--disable-background-timer-throttling")
+                chrome_options.add_argument("--disable-renderer-backgrounding")
+                chrome_options.add_argument("--disable-backgrounding-occluded-windows")
+                
+                # Docker-specific Chrome optimizations
+                chrome_options.add_argument("--disable-gpu-sandbox")
+                chrome_options.add_argument("--disable-software-rasterizer")
+                chrome_options.add_argument("--disable-background-networking")
+                chrome_options.add_argument("--disable-default-apps")
+                chrome_options.add_argument("--disable-sync")
+                chrome_options.add_argument("--disable-translate")
+                chrome_options.add_argument("--hide-scrollbars")
+                chrome_options.add_argument("--mute-audio")
+                chrome_options.add_argument("--no-first-run")
+                chrome_options.add_argument("--disable-infobars")
+                chrome_options.add_argument("--disable-notifications")
+                chrome_options.add_argument("--disable-popup-blocking")
+                chrome_options.add_argument("--disable-prompt-on-repost")
+                chrome_options.add_argument("--disable-hang-monitor")
+                chrome_options.add_argument("--disable-client-side-phishing-detection")
+                chrome_options.add_argument("--disable-component-update")
+                chrome_options.add_argument("--disable-domain-reliability")
+                chrome_options.add_argument("--disable-features=TranslateUI")
+                chrome_options.add_argument("--disable-ipc-flooding-protection")
+                
+                # Memory and process management
+                chrome_options.add_argument("--memory-pressure-off")
+                chrome_options.add_argument("--max_old_space_size=2048")
+                chrome_options.add_argument("--js-flags=--max-old-space-size=2048")
+                
+                # Timeout and connection settings
+                chrome_options.add_argument("--aggressive-cache-discard")
                 chrome_options.add_argument("--disable-background-timer-throttling")
                 chrome_options.add_argument("--disable-renderer-backgrounding")
                 chrome_options.add_argument("--disable-backgrounding-occluded-windows")
@@ -1151,10 +1253,18 @@ class FlipkartMobileScraper:
                 ]
                 chrome_options.add_argument(f"--user-agent={random.choice(user_agents)}")
                 
-                # Create undetected Chrome driver
+                # Create undetected Chrome driver with timeout settings
                 self.driver = uc.Chrome(options=chrome_options)
                 self.driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
+                
+                # Set shorter timeouts for Docker environment
+                self.driver.set_page_load_timeout(30)  # Reduced from default
+                self.driver.implicitly_wait(10)  # Reduced from default
                 self.wait = WebDriverWait(self.driver, 15)
+                
+                # Test the driver with a simple operation
+                self.driver.get("about:blank")
+                self.logger.info("Chrome driver initialized and tested successfully")
                 
                 self.logger.info("Chrome driver setup completed successfully")
                 return  # Success, exit retry loop
@@ -1376,9 +1486,15 @@ class FlipkartMobileScraper:
     def take_screenshot(self, reason, search_query, index):
         """Take screenshot for debugging purposes with error handling"""
         try:
+            # Check Chrome health before taking screenshot
+            if not self.check_chrome_health():
+                self.logger.warning("Chrome is unresponsive, skipping screenshot")
+                return None
+                
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
             filename = f"{self.screenshot_dir}/{reason}_{index}_{timestamp}.png"
             if self.driver:
+                # Use shorter timeout for screenshot
                 self.driver.save_screenshot(filename)
                 self.logger.info(f"Screenshot saved: {filename}")
                 return filename
@@ -1387,6 +1503,10 @@ class FlipkartMobileScraper:
                 return None
         except Exception as e:
             self.logger.error(f"Error taking screenshot: {e}")
+            # If screenshot fails due to timeout, try to restart Chrome
+            if 'timeout' in str(e).lower() or 'connection' in str(e).lower():
+                self.logger.warning("Screenshot failed due to timeout, attempting Chrome restart...")
+                self.force_chrome_restart()
             return None
 
     def is_valid_product_url(self, url):
@@ -1448,15 +1568,22 @@ class FlipkartMobileScraper:
         """Search for products on Flipkart.com with comprehensive error handling"""
         for attempt in range(self.max_retries):
             try:
+                # Check Chrome health before each search
+                if not self.check_chrome_health():
+                    self.logger.warning("Chrome is unresponsive, attempting restart...")
+                    if not self.force_chrome_restart():
+                        self.logger.error("Failed to restart Chrome, skipping search")
+                        return False
+                
                 # Check system resources before each search
                 self.check_system_resources()
                 
-                # Navigate to Flipkart.com
+                # Navigate to Flipkart.com with timeout handling
                 self.driver.get("https://www.flipkart.com")
                 time.sleep(random.uniform(2, 4))
                 
-                # Find and fill the search box
-                search_box = self.wait.until(
+                # Find and fill the search box with shorter timeout
+                search_box = WebDriverWait(self.driver, 10).until(
                     EC.presence_of_element_located((By.CLASS_NAME, "Pke_EE"))
                 )
                 
@@ -1474,7 +1601,9 @@ class FlipkartMobileScraper:
             except TimeoutException as e:
                 self.logger.warning(f"Timeout searching Flipkart (attempt {attempt + 1}/{self.max_retries}): {e}")
                 if attempt < self.max_retries - 1:
-                    time.sleep(3)
+                    # Try to restart Chrome on timeout
+                    if not self.force_chrome_restart():
+                        time.sleep(5)
                     continue
                 else:
                     return False
@@ -1484,15 +1613,17 @@ class FlipkartMobileScraper:
                 self.logger.error(f"WebDriver error searching Flipkart (attempt {attempt + 1}/{self.max_retries}): {e}")
                 
                 # Check if it's a connection-related error
-                if any(error_type in error_str for error_type in ['timeout', 'connection', 'pool', 'http', 'max retries', 'too many open files']):
-                    self.logger.warning("Detected connection/proxy error, switching IP...")
+                if any(error_type in error_str for error_type in ['timeout', 'connection', 'pool', 'http', 'max retries', 'too many open files', 'read timed out']):
+                    self.logger.warning("Detected connection/timeout error, forcing Chrome restart...")
                     try:
-                        self.change_session(change_proxy=True)
+                        if not self.force_chrome_restart():
+                            self.logger.error("Failed to restart Chrome after connection error")
+                            return False
                         if attempt < self.max_retries - 1:
-                            time.sleep(3)
+                            time.sleep(5)
                             continue
                     except Exception as session_error:
-                        self.logger.error(f"Failed to change session: {session_error}")
+                        self.logger.error(f"Failed to restart Chrome: {session_error}")
                         return False
                 else:
                     if attempt < self.max_retries - 1:
@@ -1504,7 +1635,9 @@ class FlipkartMobileScraper:
             except Exception as e:
                 self.logger.error(f"Unexpected error searching Flipkart (attempt {attempt + 1}/{self.max_retries}): {e}")
                 if attempt < self.max_retries - 1:
-                    time.sleep(3)
+                    # Try to restart Chrome on unexpected errors
+                    if not self.force_chrome_restart():
+                        time.sleep(5)
                     continue
                 else:
                     return False
@@ -1752,10 +1885,14 @@ class FlipkartMobileScraper:
                     continue
                 
                 try:
-                    # Check if we need to change session (every 5 rows) - WITHOUT changing proxy
+                    # Check if we need to change session (every 3 rows) - WITHOUT changing proxy
                     if self.rows_processed >= self.session_change_threshold:
-                        print(f"\n--- Changing Chrome session after {self.rows_processed} rows (keeping same proxy) ---")
+                        self.logger.info(f"\n--- Changing Chrome session after {self.rows_processed} rows (keeping same proxy) ---")
                         self.change_session(change_proxy=False)  # Don't change proxy, just new session
+                    
+                    # Monitor Chrome processes in Docker
+                    if self.is_docker_env and self.rows_processed % 10 == 0:
+                        self.monitor_chrome_processes()
                     
                     # Create search query for each row
                     product_name = row['product_name']

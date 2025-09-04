@@ -12,11 +12,14 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
-from selenium.common.exceptions import TimeoutException, NoSuchElementException, ElementClickInterceptedException
+from selenium.common.exceptions import TimeoutException, NoSuchElementException, ElementClickInterceptedException, WebDriverException
 import pandas as pd
 import os
 from datetime import datetime
 import requests
+import gc
+import psutil
+from contextlib import contextmanager
 
 class CromaMobileScraper:
     def __init__(self, headless=False):
@@ -33,39 +36,105 @@ class CromaMobileScraper:
         self.session_change_threshold = 5
         self.backup_threshold = 100  # Create backup every 100 rows
         self.error_retry_count = 0
-        self.max_retries = 2
+        self.max_retries = 5  # Increased to 5 retries as requested
+        self.global_retry_count = 0
+        self.max_global_retries = 3  # Maximum global retries before stopping
+        self.open_files_count = 0
+        self.max_open_files = 50  # Limit open files
         self.setup_driver()
         self.load_progress()
+    
+    @contextmanager
+    def safe_file_operation(self, file_path, mode='r', encoding='utf-8'):
+        """Context manager for safe file operations with proper cleanup"""
+        file_handle = None
+        try:
+            file_handle = open(file_path, mode, encoding=encoding)
+            self.open_files_count += 1
+            yield file_handle
+        except Exception as e:
+            print(f"Error in file operation {file_path}: {e}")
+            raise
+        finally:
+            if file_handle:
+                try:
+                    file_handle.close()
+                    self.open_files_count -= 1
+                except Exception as e:
+                    print(f"Error closing file {file_path}: {e}")
+    
+    def cleanup_resources(self):
+        """Clean up system resources and close open files"""
+        try:
+            # Force garbage collection
+            gc.collect()
+            
+            # Check and limit open files
+            if self.open_files_count > self.max_open_files:
+                print(f"Warning: Too many open files ({self.open_files_count}). Forcing cleanup...")
+                # Force garbage collection multiple times
+                for _ in range(3):
+                    gc.collect()
+                    time.sleep(0.1)
+                
+            # Check system resources
+            try:
+                process = psutil.Process()
+                open_files = process.num_fds() if hasattr(process, 'num_fds') else 0
+                if open_files > 100:  # Unix-like systems
+                    print(f"Warning: High number of open file descriptors: {open_files}")
+            except:
+                pass  # Ignore if psutil doesn't work on this system
+                
+        except Exception as e:
+            print(f"Error during resource cleanup: {e}")
         
     def get_proxy(self):
-        """Get a new proxy from proxyscrape"""
-        try:
-            url = f"{self.proxy_base_url}&apikey={self.proxy_api_key}"
-            response = requests.get(url, timeout=10)
-            if response.status_code == 200:
-                proxy = response.text.strip()
-                if proxy and ':' in proxy:
-                    print(f"New proxy obtained: {proxy[:20]}...")
-                    return proxy
-                else:
-                    print("Invalid proxy format received")
-            else:
-                print(f"Proxy API returned status code: {response.status_code}")
-        except requests.exceptions.Timeout:
-            print("Timeout getting proxy from API")
-        except requests.exceptions.ConnectionError:
-            print("Connection error getting proxy from API")
-        except Exception as e:
-            print(f"Error getting proxy: {e}")
+        """Get a new proxy from proxyscrape with retry logic"""
+        for attempt in range(3):  # Try 3 times
+            try:
+                url = f"{self.proxy_base_url}&apikey={self.proxy_api_key}"
+                with requests.Session() as session:
+                    response = session.get(url, timeout=10)
+                    if response.status_code == 200:
+                        proxy = response.text.strip()
+                        if proxy and ':' in proxy:
+                            print(f"New proxy obtained: {proxy[:20]}...")
+                            return proxy
+                        else:
+                            print("Invalid proxy format received")
+                    else:
+                        print(f"Proxy API returned status code: {response.status_code}")
+            except requests.exceptions.Timeout:
+                print(f"Timeout getting proxy from API (attempt {attempt + 1}/3)")
+            except requests.exceptions.ConnectionError:
+                print(f"Connection error getting proxy from API (attempt {attempt + 1}/3)")
+            except requests.exceptions.TooManyRedirects:
+                print(f"Too many redirects getting proxy (attempt {attempt + 1}/3)")
+            except Exception as e:
+                print(f"Error getting proxy (attempt {attempt + 1}/3): {e}")
+            
+            if attempt < 2:  # Don't sleep on last attempt
+                time.sleep(random.uniform(2, 5))
         
-        print("Falling back to no proxy")
+        print("Falling back to no proxy after all attempts failed")
         return None
     
     def setup_driver(self, use_proxy=True):
-        """Setup undetected Chrome driver with proxy support"""
+        """Setup undetected Chrome driver with proxy support and proper cleanup"""
         try:
+            # Properly close existing driver
             if self.driver:
-                self.driver.quit()
+                try:
+                    self.driver.quit()
+                except Exception as e:
+                    print(f"Error closing existing driver: {e}")
+                finally:
+                    self.driver = None
+                    self.wait = None
+            
+            # Clean up resources before creating new driver
+            self.cleanup_resources()
             
             chrome_options = uc.ChromeOptions()
             
@@ -181,69 +250,79 @@ class CromaMobileScraper:
                 print(f"Failed to change session: {e2}")
     
     def load_progress(self):
-        """Load progress from previous scraping session"""
+        """Load progress from previous scraping session with safe file handling"""
         try:
             if os.path.exists(self.progress_file):
-                with open(self.progress_file, 'r', encoding='utf-8') as f:
+                with self.safe_file_operation(self.progress_file, 'r', 'utf-8') as f:
                     progress_data = json.load(f)
                     self.results = progress_data.get('results', [])
                     self.last_processed_index = progress_data.get('last_processed_index', -1)
                     print(f"Loaded progress: {len(self.results)} entries already processed")
                     print(f"Resuming from index: {self.last_processed_index + 1}")
                 return True
-        except Exception as e:
+        except (FileNotFoundError, json.JSONDecodeError) as e:
             print(f"Error loading progress: {e}")
+        except Exception as e:
+            print(f"Unexpected error loading progress: {e}")
         
         self.last_processed_index = -1
         return False
     
     def save_progress(self):
-        """Save current progress to file"""
+        """Save current progress to file with safe file handling"""
         try:
             progress_data = {
                 'results': self.results,
                 'last_processed_index': self.last_processed_index,
                 'timestamp': datetime.now().isoformat()
             }
-            with open(self.progress_file, 'w', encoding='utf-8') as f:
+            with self.safe_file_operation(self.progress_file, 'w', 'utf-8') as f:
                 json.dump(progress_data, f, indent=2, ensure_ascii=False)
             print(f"Progress saved: {len(self.results)} entries processed")
+        except (OSError, IOError) as e:
+            print(f"File system error saving progress: {e}")
         except Exception as e:
-            print(f"Error saving progress: {e}")
+            print(f"Unexpected error saving progress: {e}")
     
     def create_backup(self):
-        """Create backup file and delete previous backup"""
+        """Create backup file and delete previous backup with safe file handling"""
         try:
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
             backup_file = f"croma_mobile_results_backup_{timestamp}.json"
             
             # Save current results to backup
-            with open(backup_file, 'w', encoding='utf-8') as f:
+            with self.safe_file_operation(backup_file, 'w', 'utf-8') as f:
                 json.dump(self.results, f, indent=2, ensure_ascii=False)
             
             print(f"Backup created: {backup_file}")
             
             # Find and delete previous backup files
-            backup_files = [f for f in os.listdir('.') if f.startswith('croma_mobile_results_backup_') and f.endswith('.json')]
-            backup_files.sort()
-            
-            # Keep only the latest backup, delete others
-            if len(backup_files) > 1:
-                for old_backup in backup_files[:-1]:
-                    try:
-                        os.remove(old_backup)
-                        print(f"Deleted old backup: {old_backup}")
-                    except Exception as e:
-                        print(f"Error deleting old backup {old_backup}: {e}")
+            try:
+                backup_files = [f for f in os.listdir('.') if f.startswith('croma_mobile_results_backup_') and f.endswith('.json')]
+                backup_files.sort()
+                
+                # Keep only the latest backup, delete others
+                if len(backup_files) > 1:
+                    for old_backup in backup_files[:-1]:
+                        try:
+                            os.remove(old_backup)
+                            print(f"Deleted old backup: {old_backup}")
+                        except (OSError, IOError) as e:
+                            print(f"Error deleting old backup {old_backup}: {e}")
+            except (OSError, IOError) as e:
+                print(f"Error managing backup files: {e}")
             
             return backup_file
             
+        except (OSError, IOError) as e:
+            print(f"File system error creating backup: {e}")
+            return None
         except Exception as e:
-            print(f"Error creating backup: {e}")
+            print(f"Unexpected error creating backup: {e}")
             return None
     
     def handle_error_with_backup(self, error_msg, search_query, index):
-        """Handle errors by creating backup and managing retries"""
+        """Handle errors by creating backup and managing retries with exponential backoff"""
         print(f"Error occurred: {error_msg}")
         
         # Create backup on error
@@ -256,13 +335,25 @@ class CromaMobileScraper:
         
         # Increment error retry count
         self.error_retry_count += 1
+        self.global_retry_count += 1
+        
+        # Check if we've exceeded global retry limit
+        if self.global_retry_count >= self.max_global_retries:
+            print(f"Global retry limit ({self.max_global_retries}) reached. Stopping scraper.")
+            return False
         
         if self.error_retry_count >= self.max_retries:
-            print(f"Max retries ({self.max_retries}) reached. Skipping this entry.")
+            print(f"Max retries ({self.max_retries}) reached for this entry. Skipping.")
             self.error_retry_count = 0  # Reset for next entry
             return False
         else:
             print(f"Retry attempt {self.error_retry_count}/{self.max_retries}")
+            
+            # Exponential backoff delay
+            delay = min(30, 2 ** self.error_retry_count)
+            print(f"Waiting {delay} seconds before retry...")
+            time.sleep(delay)
+            
             # Change session and proxy on error
             self.change_session(change_proxy=True)
             return True
@@ -280,36 +371,50 @@ class CromaMobileScraper:
             return None
 
     def search_croma(self, search_query):
-        """Search for products on Croma.com"""
-        try:
-            # Navigate to Croma.com
-            self.driver.get("https://www.croma.com")
-            time.sleep(random.uniform(2, 4))
-            
-            # Find and fill the search box
-            search_box = self.wait.until(
-                EC.presence_of_element_located((By.ID, "searchV2"))
-            )
-            
-            # Clear and enter search query
-            search_box.clear()
-            search_box.send_keys(search_query)
-            time.sleep(random.uniform(1, 2))
-            
-            # Submit search
-            search_box.send_keys(Keys.RETURN)
-            time.sleep(random.uniform(3, 5))
-            
-            return True
-            
-        except Exception as e:
-            print(f"Error searching Croma: {e}")
-            # Check if it's a proxy/connection error
-            if any(error_type in str(e).lower() for error_type in ['timeout', 'connection', 'pool', 'http']):
-                print("Detected connection/proxy error, switching IP...")
-                self.change_session(change_proxy=True)  # Change proxy on error
-                return False
-            return False
+        """Search for products on Croma.com with comprehensive error handling"""
+        for attempt in range(3):  # Try up to 3 times
+            try:
+                # Navigate to Croma.com
+                self.driver.get("https://www.croma.com")
+                time.sleep(random.uniform(2, 4))
+                
+                # Find and fill the search box
+                search_box = self.wait.until(
+                    EC.presence_of_element_located((By.ID, "searchV2"))
+                )
+                
+                # Clear and enter search query
+                search_box.clear()
+                search_box.send_keys(search_query)
+                time.sleep(random.uniform(1, 2))
+                
+                # Submit search
+                search_box.send_keys(Keys.RETURN)
+                time.sleep(random.uniform(3, 5))
+                
+                return True
+                
+            except TimeoutException as e:
+                print(f"Timeout error searching Croma (attempt {attempt + 1}/3): {e}")
+                if attempt < 2:
+                    time.sleep(random.uniform(5, 10))
+                    continue
+            except WebDriverException as e:
+                print(f"WebDriver error searching Croma (attempt {attempt + 1}/3): {e}")
+                if any(error_type in str(e).lower() for error_type in ['timeout', 'connection', 'pool', 'http', 'network']):
+                    print("Detected connection/proxy error, switching IP...")
+                    self.change_session(change_proxy=True)
+                if attempt < 2:
+                    time.sleep(random.uniform(5, 10))
+                    continue
+            except Exception as e:
+                print(f"Unexpected error searching Croma (attempt {attempt + 1}/3): {e}")
+                if attempt < 2:
+                    time.sleep(random.uniform(3, 7))
+                    continue
+        
+        print("All search attempts failed")
+        return False
     
     # def handle_continue_shopping(self):
     #     """Handle 'Continue shopping' button if it appears"""
@@ -423,7 +528,16 @@ class CromaMobileScraper:
                 if index <= self.last_processed_index:
                     continue
                 
+                # Check global retry limit
+                if self.global_retry_count >= self.max_global_retries:
+                    print(f"Global retry limit reached. Stopping scraper at index {index}")
+                    break
+                
                 try:
+                    # Clean up resources periodically
+                    if index % 10 == 0:
+                        self.cleanup_resources()
+                    
                     # Check if we need to change session (every 5 rows) - WITHOUT changing proxy
                     if self.rows_processed >= self.session_change_threshold:
                         print(f"\n--- Changing Chrome session after {self.rows_processed} rows (keeping same proxy) ---")
@@ -522,7 +636,7 @@ class CromaMobileScraper:
                     print(error_msg)
                     
                     # Check if it's a connection-related error
-                    if any(error_type in str(e).lower() for error_type in ['timeout', 'connection', 'pool', 'http', 'network']):
+                    if any(error_type in str(e).lower() for error_type in ['timeout', 'connection', 'pool', 'http', 'network', 'max retries', 'too many open files']):
                         if self.handle_error_with_backup(f"Connection error: {e}", search_query, index):
                             continue  # Retry
                         else:
@@ -537,12 +651,28 @@ class CromaMobileScraper:
                             self.results.append(entry)
                             self.last_processed_index = index
                             self.rows_processed += 1
+                            self.error_retry_count = 0  # Reset for next entry
                             self.save_progress()
                             continue
                     else:
                         # Other errors - create backup and continue
-                        self.handle_error_with_backup(error_msg, search_query, index)
-                        continue
+                        if self.handle_error_with_backup(error_msg, search_query, index):
+                            continue  # Retry
+                        else:
+                            # Max retries reached, create empty entry and continue
+                            entry = {
+                                'product_name': product_name,
+                                'colour': colour,
+                                'ram_rom': ram_rom,
+                                'model_id': model_id,
+                                'croma_links': []
+                            }
+                            self.results.append(entry)
+                            self.last_processed_index = index
+                            self.rows_processed += 1
+                            self.error_retry_count = 0  # Reset for next entry
+                            self.save_progress()
+                            continue
                     
         except KeyboardInterrupt:
             print("\nScraping interrupted by user. Saving progress...")
@@ -551,12 +681,12 @@ class CromaMobileScraper:
             raise
     
     def save_results(self, output_file="croma_mobile_results.json"):
-        """Save Croma results to JSON file"""
+        """Save Croma results to JSON file with safe file handling"""
         
         if self.results:
             try:
                 # Results are already in list format
-                with open(output_file, 'w', encoding='utf-8') as f:
+                with self.safe_file_operation(output_file, 'w', 'utf-8') as f:
                     json.dump(self.results, f, indent=2, ensure_ascii=False)
                 
                 print(f"Croma results saved to {output_file}")
@@ -566,13 +696,15 @@ class CromaMobileScraper:
                 csv_file = output_file.replace('.json', '.csv')
                 self.save_results_csv(csv_file)
                 
+            except (OSError, IOError) as e:
+                print(f"File system error saving Croma results: {e}")
             except Exception as e:
-                print(f"Error saving Croma results: {e}")
+                print(f"Unexpected error saving Croma results: {e}")
         else:
             print("No Croma results to save")
     
     def save_results_csv(self, output_file="croma_mobile_results.csv"):
-        """Save results in CSV format for compatibility"""
+        """Save results in CSV format for compatibility with safe file handling"""
         try:
             csv_data = []
             for entry in self.results:
@@ -593,16 +725,35 @@ class CromaMobileScraper:
             
             if csv_data:
                 df = pd.DataFrame(csv_data)
-                df.to_csv(output_file, index=False, encoding='utf-8')
+                with self.safe_file_operation(output_file, 'w', 'utf-8') as f:
+                    df.to_csv(f, index=False, encoding='utf-8')
                 print(f"CSV results also saved to {output_file}")
         
+        except (OSError, IOError) as e:
+            print(f"File system error saving CSV results: {e}")
         except Exception as e:
-            print(f"Error saving CSV results: {e}")
+            print(f"Unexpected error saving CSV results: {e}")
     
     def close(self):
-        """Close the browser"""
-        if self.driver:
-            self.driver.quit()
+        """Close the browser and cleanup all resources"""
+        try:
+            if self.driver:
+                try:
+                    self.driver.quit()
+                except Exception as e:
+                    print(f"Error closing driver: {e}")
+                finally:
+                    self.driver = None
+                    self.wait = None
+            
+            # Final cleanup
+            self.cleanup_resources()
+            
+            # Save final progress
+            self.save_progress()
+            
+        except Exception as e:
+            print(f"Error during cleanup: {e}")
 
 def main():
     # Parse command line arguments
