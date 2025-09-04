@@ -905,7 +905,7 @@ class FlipkartMobileScraper:
         self.proxy_base_url = "https://proxyscrape.com/v2/?request=get&protocol=http&timeout=10000&country=all&ssl=all&anonymity=all"
         self.current_proxy = None
         self.rows_processed = 0
-        self.session_change_threshold = 3  # Reduced from 5 to 3 for better stability
+        self.session_change_threshold = 3 if self.is_docker_env else 5  # More frequent changes in Docker
         self.backup_threshold = 100  # Create backup every 100 rows
         self.error_retry_count = 0
         self.max_retries = 5  # Increased to 5 retries as requested
@@ -941,6 +941,30 @@ class FlipkartMobileScraper:
             return any(docker_indicators)
         except Exception:
             return False
+    
+    def get_chrome_version(self):
+        """Get Chrome version for compatibility"""
+        try:
+            import subprocess
+            result = subprocess.run(['google-chrome', '--version'], capture_output=True, text=True)
+            if result.returncode == 0:
+                version = result.stdout.strip().split()[-1]
+                self.logger.info(f"Chrome version detected: {version}")
+                return version
+        except Exception as e:
+            self.logger.warning(f"Could not detect Chrome version: {e}")
+        
+        try:
+            import subprocess
+            result = subprocess.run(['chromium-browser', '--version'], capture_output=True, text=True)
+            if result.returncode == 0:
+                version = result.stdout.strip().split()[-1]
+                self.logger.info(f"Chromium version detected: {version}")
+                return version
+        except Exception as e:
+            self.logger.warning(f"Could not detect Chromium version: {e}")
+        
+        return None
     
     def setup_logging(self):
         """Setup logging configuration"""
@@ -1088,15 +1112,19 @@ class FlipkartMobileScraper:
             # Force garbage collection
             gc.collect()
             
-            # Kill any remaining Chrome processes (Docker-specific)
-            if self.is_docker_env:
-                try:
-                    import subprocess
+            # Kill any remaining Chrome processes
+            try:
+                import subprocess
+                if self.is_docker_env:
+                    # More aggressive cleanup in Docker
                     subprocess.run(['pkill', '-f', 'chrome'], check=False)
                     subprocess.run(['pkill', '-f', 'chromedriver'], check=False)
-                    time.sleep(2)
-                except:
-                    pass
+                else:
+                    # Gentler cleanup on server
+                    subprocess.run(['pkill', '-f', 'chrome'], check=False)
+                time.sleep(2)
+            except:
+                pass
             
             # Create new driver
             self.setup_driver(use_proxy=True)
@@ -1110,17 +1138,23 @@ class FlipkartMobileScraper:
     
     def monitor_chrome_processes(self):
         """Monitor Chrome processes and clean up if needed"""
-        if not self.is_docker_env:
-            return
-            
         try:
             import subprocess
             result = subprocess.run(['pgrep', '-f', 'chrome'], capture_output=True, text=True)
             chrome_processes = len(result.stdout.strip().split('\n')) if result.stdout.strip() else 0
             
-            if chrome_processes > 10:  # Too many Chrome processes
-                self.logger.warning(f"Too many Chrome processes detected: {chrome_processes}")
-                subprocess.run(['pkill', '-f', 'chrome'], check=False)
+            # Different limits for different environments
+            max_processes = 5 if self.is_docker_env else 15
+            
+            if chrome_processes > max_processes:
+                self.logger.warning(f"Too many Chrome processes detected: {chrome_processes} (limit: {max_processes})")
+                if self.is_docker_env:
+                    # More aggressive cleanup in Docker
+                    subprocess.run(['pkill', '-f', 'chrome'], check=False)
+                    subprocess.run(['pkill', '-f', 'chromedriver'], check=False)
+                else:
+                    # Gentler cleanup on server
+                    subprocess.run(['pkill', '-f', 'chrome'], check=False)
                 time.sleep(2)
                 gc.collect()
                 
@@ -1196,9 +1230,7 @@ class FlipkartMobileScraper:
                     chrome_options.add_argument(f'--proxy-server={self.current_proxy}')
                     self.logger.info(f"Using proxy: {self.current_proxy[:20]}...")
                 
-                # Additional options for better undetection and resource management
-                chrome_options.add_argument("--no-sandbox")
-                chrome_options.add_argument("--disable-dev-shm-usage")
+                # Basic Chrome options for all environments
                 chrome_options.add_argument("--disable-blink-features=AutomationControlled")
                 chrome_options.add_argument("--disable-extensions")
                 chrome_options.add_argument("--disable-plugins")
@@ -1207,42 +1239,53 @@ class FlipkartMobileScraper:
                 chrome_options.add_argument("--disable-web-security")
                 chrome_options.add_argument("--allow-running-insecure-content")
                 chrome_options.add_argument("--disable-features=VizDisplayCompositor")
-                chrome_options.add_argument("--max_old_space_size=2048")  # Reduced memory usage
                 chrome_options.add_argument("--disable-background-timer-throttling")
                 chrome_options.add_argument("--disable-renderer-backgrounding")
                 chrome_options.add_argument("--disable-backgrounding-occluded-windows")
                 
-                # Docker-specific Chrome optimizations
-                chrome_options.add_argument("--disable-gpu-sandbox")
-                chrome_options.add_argument("--disable-software-rasterizer")
-                chrome_options.add_argument("--disable-background-networking")
-                chrome_options.add_argument("--disable-default-apps")
-                chrome_options.add_argument("--disable-sync")
-                chrome_options.add_argument("--disable-translate")
-                chrome_options.add_argument("--hide-scrollbars")
-                chrome_options.add_argument("--mute-audio")
-                chrome_options.add_argument("--no-first-run")
-                chrome_options.add_argument("--disable-infobars")
-                chrome_options.add_argument("--disable-notifications")
-                chrome_options.add_argument("--disable-popup-blocking")
-                chrome_options.add_argument("--disable-prompt-on-repost")
-                chrome_options.add_argument("--disable-hang-monitor")
-                chrome_options.add_argument("--disable-client-side-phishing-detection")
-                chrome_options.add_argument("--disable-component-update")
-                chrome_options.add_argument("--disable-domain-reliability")
-                chrome_options.add_argument("--disable-features=TranslateUI")
-                chrome_options.add_argument("--disable-ipc-flooding-protection")
-                
-                # Memory and process management
-                chrome_options.add_argument("--memory-pressure-off")
-                chrome_options.add_argument("--max_old_space_size=2048")
-                chrome_options.add_argument("--js-flags=--max-old-space-size=2048")
-                
-                # Timeout and connection settings
-                chrome_options.add_argument("--aggressive-cache-discard")
-                chrome_options.add_argument("--disable-background-timer-throttling")
-                chrome_options.add_argument("--disable-renderer-backgrounding")
-                chrome_options.add_argument("--disable-backgrounding-occluded-windows")
+                # Environment-specific options
+                if self.is_docker_env:
+                    # Docker-specific Chrome optimizations
+                    chrome_options.add_argument("--no-sandbox")
+                    chrome_options.add_argument("--disable-dev-shm-usage")
+                    chrome_options.add_argument("--disable-gpu-sandbox")
+                    chrome_options.add_argument("--disable-software-rasterizer")
+                    chrome_options.add_argument("--disable-background-networking")
+                    chrome_options.add_argument("--disable-default-apps")
+                    chrome_options.add_argument("--disable-sync")
+                    chrome_options.add_argument("--disable-translate")
+                    chrome_options.add_argument("--hide-scrollbars")
+                    chrome_options.add_argument("--mute-audio")
+                    chrome_options.add_argument("--no-first-run")
+                    chrome_options.add_argument("--disable-infobars")
+                    chrome_options.add_argument("--disable-notifications")
+                    chrome_options.add_argument("--disable-popup-blocking")
+                    chrome_options.add_argument("--disable-prompt-on-repost")
+                    chrome_options.add_argument("--disable-hang-monitor")
+                    chrome_options.add_argument("--disable-client-side-phishing-detection")
+                    chrome_options.add_argument("--disable-component-update")
+                    chrome_options.add_argument("--disable-domain-reliability")
+                    chrome_options.add_argument("--disable-features=TranslateUI")
+                    chrome_options.add_argument("--disable-ipc-flooding-protection")
+                    chrome_options.add_argument("--memory-pressure-off")
+                    chrome_options.add_argument("--max_old_space_size=2048")
+                    chrome_options.add_argument("--js-flags=--max-old-space-size=2048")
+                    chrome_options.add_argument("--aggressive-cache-discard")
+                else:
+                    # Server/desktop environment options
+                    chrome_options.add_argument("--disable-default-apps")
+                    chrome_options.add_argument("--disable-sync")
+                    chrome_options.add_argument("--disable-translate")
+                    chrome_options.add_argument("--no-first-run")
+                    chrome_options.add_argument("--disable-infobars")
+                    chrome_options.add_argument("--disable-notifications")
+                    chrome_options.add_argument("--disable-popup-blocking")
+                    chrome_options.add_argument("--disable-prompt-on-repost")
+                    chrome_options.add_argument("--disable-hang-monitor")
+                    chrome_options.add_argument("--disable-client-side-phishing-detection")
+                    chrome_options.add_argument("--disable-component-update")
+                    chrome_options.add_argument("--disable-domain-reliability")
+                    chrome_options.add_argument("--disable-features=TranslateUI")
                 
                 # Random user agent
                 user_agents = [
@@ -1253,14 +1296,36 @@ class FlipkartMobileScraper:
                 ]
                 chrome_options.add_argument(f"--user-agent={random.choice(user_agents)}")
                 
+                # Get Chrome version for compatibility
+                chrome_version = self.get_chrome_version()
+                
                 # Create undetected Chrome driver with timeout settings
-                self.driver = uc.Chrome(options=chrome_options)
+                try:
+                    self.driver = uc.Chrome(options=chrome_options)
+                except Exception as chrome_error:
+                    self.logger.error(f"Failed to create Chrome driver: {chrome_error}")
+                    # Try with version-specific options
+                    if chrome_version:
+                        self.logger.info(f"Retrying with Chrome version {chrome_version}")
+                        try:
+                            self.driver = uc.Chrome(options=chrome_options, version_main=chrome_version.split('.')[0])
+                        except Exception as retry_error:
+                            self.logger.error(f"Retry with version also failed: {retry_error}")
+                            raise
+                    else:
+                        raise
+                
                 self.driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
                 
-                # Set shorter timeouts for Docker environment
-                self.driver.set_page_load_timeout(30)  # Reduced from default
-                self.driver.implicitly_wait(10)  # Reduced from default
-                self.wait = WebDriverWait(self.driver, 15)
+                # Set timeouts based on environment
+                if self.is_docker_env:
+                    self.driver.set_page_load_timeout(30)  # Shorter for Docker
+                    self.driver.implicitly_wait(10)
+                    self.wait = WebDriverWait(self.driver, 15)
+                else:
+                    self.driver.set_page_load_timeout(60)  # Longer for server
+                    self.driver.implicitly_wait(15)
+                    self.wait = WebDriverWait(self.driver, 20)
                 
                 # Test the driver with a simple operation
                 self.driver.get("about:blank")
@@ -1280,13 +1345,20 @@ class FlipkartMobileScraper:
                         continue
                 
                 # Fallback to regular Chrome if undetected fails
-                if "undetected" in str(e).lower():
+                if "undetected" in str(e).lower() or "session not created" in str(e).lower():
                     self.logger.info("Falling back to regular Chrome driver...")
                     try:
                         self.setup_regular_chrome(use_proxy)
                         return
                     except Exception as fallback_error:
                         self.logger.error(f"Regular Chrome driver also failed: {fallback_error}")
+                        # Try with minimal options as last resort
+                        try:
+                            self.logger.info("Trying with minimal Chrome options...")
+                            self.setup_minimal_chrome(use_proxy)
+                            return
+                        except Exception as minimal_error:
+                            self.logger.error(f"Minimal Chrome setup also failed: {minimal_error}")
                 
                 if attempt == self.max_connection_retries - 1:
                     self.logger.error("All driver setup attempts failed")
@@ -1325,6 +1397,46 @@ class FlipkartMobileScraper:
             
         except Exception as e:
             self.logger.error(f"Error setting up regular Chrome driver: {e}")
+            raise
+    
+    def setup_minimal_chrome(self, use_proxy=True):
+        """Setup Chrome with minimal options as last resort"""
+        try:
+            chrome_options = Options()
+            
+            # Only essential options
+            chrome_options.add_argument("--no-sandbox")
+            chrome_options.add_argument("--disable-dev-shm-usage")
+            chrome_options.add_argument("--disable-blink-features=AutomationControlled")
+            
+            if self.headless:
+                chrome_options.add_argument("--headless")
+                chrome_options.add_argument("--disable-gpu")
+                chrome_options.add_argument("--window-size=1920,1080")
+            
+            if use_proxy and self.current_proxy:
+                chrome_options.add_argument(f'--proxy-server={self.current_proxy}')
+            
+            # Minimal user agent
+            chrome_options.add_argument("--user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
+            
+            self.driver = webdriver.Chrome(options=chrome_options)
+            self.driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
+            
+            # Set timeouts
+            if self.is_docker_env:
+                self.driver.set_page_load_timeout(30)
+                self.driver.implicitly_wait(10)
+                self.wait = WebDriverWait(self.driver, 15)
+            else:
+                self.driver.set_page_load_timeout(60)
+                self.driver.implicitly_wait(15)
+                self.wait = WebDriverWait(self.driver, 20)
+            
+            self.logger.info("Minimal Chrome driver setup completed successfully")
+            
+        except Exception as e:
+            self.logger.error(f"Error setting up minimal Chrome driver: {e}")
             raise
     
     def change_session(self, change_proxy=False):
@@ -1890,8 +2002,8 @@ class FlipkartMobileScraper:
                         self.logger.info(f"\n--- Changing Chrome session after {self.rows_processed} rows (keeping same proxy) ---")
                         self.change_session(change_proxy=False)  # Don't change proxy, just new session
                     
-                    # Monitor Chrome processes in Docker
-                    if self.is_docker_env and self.rows_processed % 10 == 0:
+                    # Monitor Chrome processes
+                    if self.rows_processed % (10 if self.is_docker_env else 20) == 0:
                         self.monitor_chrome_processes()
                     
                     # Create search query for each row
