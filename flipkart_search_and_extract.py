@@ -905,7 +905,6 @@ class FlipkartMobileScraper:
         self.proxy_base_url = "https://proxyscrape.com/v2/?request=get&protocol=http&timeout=10000&country=all&ssl=all&anonymity=all"
         self.current_proxy = None
         self.rows_processed = 0
-        self.session_change_threshold = 3 if self.is_docker_env else 5  # More frequent changes in Docker
         self.backup_threshold = 100  # Create backup every 100 rows
         self.error_retry_count = 0
         self.max_retries = 5  # Increased to 5 retries as requested
@@ -913,11 +912,16 @@ class FlipkartMobileScraper:
         self.open_files_count = 0
         self.max_open_files = 50  # Limit to prevent "too many open files" error
         
+        # Detect environment first
+        self.is_docker_env = self.detect_docker_environment()
+        
         # Thread management for Docker
         self.thread_cleanup_threshold = 100  # Cleanup threads every 100 scrapes
         self.initial_thread_count = threading.active_count()
         self.thread_cleanup_count = 0
-        self.is_docker_env = self.detect_docker_environment()
+        
+        # Environment-specific settings
+        self.session_change_threshold = 3 if self.is_docker_env else 5  # More frequent changes in Docker
         
         # Setup logging
         self.setup_logging()
